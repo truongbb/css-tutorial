@@ -3,7 +3,7 @@
 - `CSS` viết tắt của `Cascading Style Sheets`. Nó là một ngôn ngữ được sử dụng để tìm và định dạng lại các phần tử được tạo ra bởi các ngôn ngữ đánh dấu (ví dụ HTML)
 - CSS mô tả cách mà các phần tử HTML được hiển thị lên màn hình, giấy báo, hoặc trên những phương tiện khác.
 - CSS lưu trữ rất nhiều công việc. Nó có thể điều chỉnh bố cục của nhiều trang web khác nhau cùng 1 lúc.
-- External stylesheets (các bảng định kiểu style style bên ngoài) được lưu trữ trong các tệp tin CSS.
+
 
 - CSS được sử dụng để định kiểu style style cho những trang web, bảo gồm thiết kế, bố cục và sự đa dạng trong hiển thị trên những thiết bị và kích thước màn hình khác nhau.
 
@@ -75,9 +75,14 @@ VD: định kiểu style cho thẻ `<p>` có `id="para1"`
 - Nếu muốn định kiểu style cho các phần tử có thuộc tính `id (idChild)` `nằm bên trong` một phần tử chứa thuộc tính `id khác (idParent)`, ta có thể dùng cú pháp bộ chọn `#idParent #idChild {}` (**lưu ý 2 id được viết cách nhau bởi dấu cách**).  
 VD:
     <p align="center">
-    <img src="../images/lesson1/relate_class.png" width=500>
+    <img src="../images/lesson1/relate_id.png" width=500>
+    </p>
+- Như đã đề cập bên trên, giá trị id là riêng biệt trong 1 trang web. Sau đây, chúng ta sẽ thử 1 ví dụ mà có 2 phần tử (`div` và `p`) đặt `id giống nhau` và thực hiện CSS
+    <p align="center">  
+    <img src="../images/lesson1/same_id.png" width=500>
     </p>
 
+    - Kết quả trình duyệt vẫn hiển thị được, điều này được lý giải bởi trình duyệt hiện tại đủ thông minh để cố gắng hiển thị tất cả các thành phần html và thực hiện css cho nó, nhưng về lý thuyết thì việc cùng `id` sẽ không được phép, nếu cố tình làm vậy sẽ gây lỗi khi thực hiện thao tác với thẻ bằng JS (sẽ được thể hiện trong phần JS).
 ### 3.1.2. Bộ chọn CSS class
 - `Bộ chọn class` chọn những phần tử HTML với một thuộc tính `class` cụ thể.
 - Vì tên `class` là `không riêng biệt`, nhiều phần tử HTML có thể được đặt tên class trùng nhau, vì vậy chúng ta `có thể định kiểu style cho 1 hoặc nhiều phần tử HTML theo tên class trong cùng 1 cú pháp`.
@@ -179,7 +184,7 @@ VD:  Background Color, Text Color, Border Color
 <img width = 500 src="../images/lesson1/color_rgb.png">
 </p>
 
-- `RGBA` là mở rộng của hệ màu RGB với 1 tham số `alpha chỉ độ trong suốt của màu`. T*ham số alpha này có giá trị từ 0.0 - 1.0;   *
+- `RGBA` là mở rộng của hệ màu RGB với 1 tham số `alpha chỉ độ trong suốt của màu`. *Tham số alpha này có giá trị từ 0.0 - 1.0; giá trị càng nhỏ thì độ trong suốt càng cao, màu sắc càng mờ*
 
 ### 5.3 CSS HEX Color
 - `Một hệ màu HEX (thập lục phân)` được định nghĩa bằng cách sử dụng các giá trị thập lục phân theo dạng `#rrggbb`, mỗi giá trị `rr`, `gg`, `bb` `có giá trị từ 00 - FF` (tương tự như từ 0 - 255).  
@@ -409,7 +414,7 @@ VD:
     </p>
 
 ## 8. CSS Margins
-- Thuộc tính `margin` được sử dụng để tạo ra một khoảng cách xung quang các phần tử, ra phía bên ngoài của bất kỳ đường viền đã được xác định.
+- Thuộc tính `margin` được sử dụng để tạo ra một khoảng cách xung quanh các phần tử, ra phía bên ngoài của bất kỳ đường viền đã được xác định.
     <p align = "center">
     <img width = 500 src="../images/lesson1/margin.png">
     </p>
@@ -537,7 +542,7 @@ VD: Ví dụ dưới đây, thẻ `<div>` được chỉ định 1 chiều rộn
 
 ### 10.2. Thiết lập max-width
 - Thuộc tính `max-width` được sử dụng để thiết lập chiều rộng tối đa của một phần tử.
-- Thuộc tính `max-width` có thể được chỉ định bằng các giá trị chiều dài như: `px`, `xm`, `pt`, `%` hoặc là thiết lập bằng `none` (không có chiều rộng tối đa).
+- Thuộc tính `max-width` có thể được chỉ định bằng các giá trị chiều dài như: `px`, `cm`, `pt`, `%` hoặc là thiết lập bằng `none` (không có chiều rộng tối đa).
 - **Khi cửa sổ trình duyệt có kích thước nhỏ hơn kích thước chiều rộng của một phần tử, thì lúc đó, trình duyệt sẽ thêm một thanh cuộn theo chiều ngang cho trang web.**
 - Chúng ta có thể sử dụng thuộc tính `max-width` để giải quyết cho những trường hợp kích thước của sổ trình duyệt nhỏ.
 
@@ -552,7 +557,7 @@ VD:
     <img width = 500 src="../images/lesson1/max_width.png">
     </p>
 
-*Lưu ý:* Nếu trong một vài trường hợp nào đấy, mà chúng ta sử dụng cả 2 thuộc tính width và max-width trong cùng 1 phần tử, và giá trị của thuộc tính witdh lớn hơn thì trình duyệt sẽ sử dụng thuộc tính max-width (width sẽ bị bỏ qua).
+*Lưu ý:* Nếu trong một vài trường hợp, mà chúng ta sử dụng cả 2 thuộc tính width và max-width trong cùng 1 phần tử, và giá trị của thuộc tính witdh lớn hơn thì trình duyệt sẽ sử dụng thuộc tính max-width (width sẽ bị bỏ qua).
 
 ## 11. CSS Box Model
 ### 11.1. CSS Box Model
@@ -811,7 +816,19 @@ VD:
     - `white-space: pre;`	- Khoảng trắng sẽ do trình duyệt điều khiển, văn bản sẽ hiển thị trên cùng một hàng, chỉ ngắt dòng tại đoạn văn bản sử dụng thẻ `<pre>`.
     - `white-space: pre-line;` - Văn bản sẽ tự động bao lại khi cần thiết, và xuống hàng.
 ### 13.6. CSS Text Shadow
-- Thuộc tính `text-shadow` thêm phần đổ bóng cho văn bản.  
+- Thuộc tính `text-shadow` thêm phần bóng đổ cho văn bản.
+- Cú pháp:
+    ```css
+    selector {
+        text-shadow: h-offset v-offset blur color; 
+    }
+    ```
+    - Trong đó:
+        - `h-offset`: dịch chuyển đổ bóng theo chiều ngang, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+        - `v-offset`: dịch chuyển đổ bóng theo chiều dọc, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+        - `blur`: tạo độ mờ, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+        - `color`: màu sắc cho bóng
+
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/text_shadow.png">
@@ -1168,8 +1185,6 @@ VD:
 - Mỗi phần tử có một giá trị 1 hiển thị mặc định. Tuy nhiên, ta có thể ghi đè nó.
 - Thay đổi phần tử nội tuyến thành phần tử khối hoặc ngược lại, có thể hữu ích để làm cho trang trông theo một cách cụ thể và vẫn tuân theo các tiêu chuẩn web.
 
- *Lưu ý*: 
- - Đặt thuộc tính hiển thị của một phần tử chỉ thay đổi cách phần tử được hiển thị, KHÔNG phải loại phần tử đó là gì. Vì vậy, một phần tử nội tuyến với `display: block;` không được phép có các phần tử khối khác bên trong nó.
 ### 19.6. So sánh display:none; và visibility:hidden;
 - Cả hai thuộc tính đều được sử dụng để ẩn phần tử đi. Tuy nhiên:
     - `display: none;` - phần tử sẽ bị ẩn, và trang web sẽ được hiển thị như là phần tử không có ở đó.  
