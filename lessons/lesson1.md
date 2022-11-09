@@ -327,9 +327,9 @@ VD:
     - `solid`: Xác định đường viền nét kéo liền
     - `double`: Xác định đường viền kép
     - `groove`: Xác định đường viền có rãnh 3D. Hiệu ứng phụ thuộc vào giá trị của thuộc tính `border-color`
-    - `ridge`: Xác định đường viền 3D. Hiệu ứng phụ thuộc vào giá trị thuộc tính border-color
-    - `inset`: Xác định đường viền in 3D. Hiệu ứng phụ thuộc vào giá trị thuộc tính `border-color`
-    - `outset`: Xác định đường viền ban đầu 3D. Hiệu ứng phụ thuộc vào giá trị thuộc tính `border-color`
+    - `ridge`: Xác định đường viền 3D ridge. Hiệu ứng phụ thuộc vào giá trị thuộc tính border-color
+    - `inset`: Xác định đường viền 3D inset. Hiệu ứng phụ thuộc vào giá trị thuộc tính `border-color`
+    - `outset`: Xác định đường viền 3D outset. Hiệu ứng phụ thuộc vào giá trị thuộc tính `border-color`
     - `none`: Xác định không có đường viền
     - `hidden`: Xác định một đường viền ẩn.
 
@@ -618,9 +618,9 @@ VD:
     - `solid`: Xác định một đường bao ngoài nét liền
     - `double`: Xác định đường bao ngoài nét liền kép
     - `groove`: Xác định một đường bao ngoài 3D có rãnh
-    - `ridge`: Xác định đường bao ngoài 3D
-    - `inset`: Xác định **(chưa tìm được nghĩa tiếng việt cho hợp lý)**
-    - `outset`: Xác định 
+    - `ridge`: Xác định đường bao ngoài 3D ridge
+    - `inset`: Xác định đường bao ngoài 3D inset
+    - `outset`: Xác định đường bao ngoài 3D outset
     - `none`: Không có đường bao ngoài
     - `hidden`: Xác định một đường bao ngoài ẩn đi
 
@@ -1228,8 +1228,8 @@ VD:
     </p>
 
 ### 21.2. `position: relative;`
-- Một phần tử có `position: relative;` được định vị so với vị trí bình thường của nó. 
-- Việc đặt các thuộc tính `top, left, bottom, right` của một phần tử có vị trí tương đối sẽ khiến nó bị điều chỉnh khỏi vị trí bình thường của nó. Nội dung khác sẽ không được điều chỉnh để phù hợp với bất kỳ khoảng trống nào do phần tử để lại.  
+- Một phần tử có `position: relative;` tức là được chỉnh vị trí tương đối liên quan tới vị trí thông thường của nó.
+- Việc đặt các thuộc tính `top, left, bottom, right` tới vị trí tương đối của phần tử thì vị trí của phần tử sẽ được căn chỉnh theo vị trí thông thường của nó. Chẳng hạn, `left:20px` sẽ cộng vào vị trí bên trái của phần tử.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/position_relative.png">
@@ -1328,7 +1328,7 @@ VD:
 
 - `overflow: hidden;`
     <p align = "center">
-    <img width = 500 src="../images/lesson1/overflow_visible.png">
+    <img width = 500 src="../images/lesson1/overflow_hidden.png">
     </p>
 
 - `overflow: scroll;`
