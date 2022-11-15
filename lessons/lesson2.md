@@ -10,14 +10,14 @@
     - `General sibling selector (~)`
 `
 ### 1.1.1. Descendant Selector
-- Bộ chọn `Descendant Selector` có nghĩa là `chọn tất cả những thẻ nằm trong một selector nào đó`. Cú pháp sử dụng dấu cách (space) giữa 2 phần tử `Element Element {}`   
+- Bộ chọn `Descendant Selector` có nghĩa là `chọn` **tất cả** `những thẻ nằm trong một selector nào đó`. Cú pháp sử dụng dấu cách (space) giữa 2 phần tử `Element Element {}`   
 
     VD: chọn tất cả các thẻ `<p>` nằm trong thẻ `<div>`
     <p align="center">
     <img src="../images/lesson2/descendant_selector.png" width=500>
     </p>
 ### 1.1.2. Child selector (>)
-- `Child selector (>)` có ý nghĩa là `chọn tất cả những thẻ con trực tiếp của một selector` nào đó. Nghĩa là thẻ con nằm trong đúng một cấp so với selector đó.
+- `Child selector (>)` có ý nghĩa là `chọn` **tất cả** `những thẻ con trực tiếp của một selector` nào đó. Nghĩa là thẻ con nằm trong đúng một cấp so với selector đó.
 - Cú pháp : `element > element {}`  
 VD: Chọn tất cả thẻ con `<p>` cấp 1 nằm trong thẻ `<div>`
     <p align="center">
@@ -27,7 +27,7 @@ VD: Chọn tất cả thẻ con `<p>` cấp 1 nằm trong thẻ `<div>`
     - Thẻ `<p>` chứa nội dung "Paragraph 3 in the div" không được chọn vì nó là thẻ con cấp 1 của thẻ `<section>` hay gọi là thẻ cháu của thẻ `<div>`
 
 ### 1.1.3 Adjacent sibling selector (+)
-- `Adjacent sibling selector (+)` có ý nghĩa là `chọn một thẻ anh/chị/em ruột nằm liền kề ngay sau một selector` nào đó.
+- `Adjacent sibling selector (+)` có ý nghĩa là `chọn` **một** `thẻ anh/chị/em nằm liền kề ngay sau một selector` nào đó.
 - Thẻ anh/chị/em được hiểu là những thẻ có chung một thẻ cha.
 
 - Cú pháp : `element + element {}`  
@@ -38,7 +38,7 @@ VD: Chọn thẻ `<p>` đầu tiên nằm ngay sau thẻ `<div>`
 </p>
 
 ### 1.1.4. General sibling selector (~)
-- `General sibling selector (~)` có ý nghĩa là `chọn tất cả những thẻ anh/chị/em của 1 selector` nào đó. Tuy nhiên những thẻ này `phải nằm phía sau selector` đó.
+- `General sibling selector (~)` có ý nghĩa là `chọn` **tất cả** `những thẻ anh/chị/em của 1 selector` nào đó. Tuy nhiên những thẻ này `phải nằm phía sau selector` đó.
 - Cú pháp : `element ~ element {}`    
 VD: 
     <p align="center">
@@ -54,45 +54,46 @@ VD:
 
 - Cú pháp:
 
-```css
-selector:pseudo-class {
-    property: value;
-}
-```
+    ```css
+    selector:pseudo-class {
+        property: value;
+    }
+    ```
 ## 2.2. Anchor Pseudo-classes
-- Các liên kết có thể được hiển thị theo các cách khác nhau.
+- Các liên kết có thể được hiển thị theo các cách khác nhau.  
 VD:
-```css
-/* unvisited link */
-a:link {
-  color: red; /*Khi liên kết chưa được truy cập thì có màu đỏ*/
-}
+    ```css
+    /* unvisited link */
+    a:link {
+    color: red; /*Khi liên kết chưa được truy cập thì có màu đỏ*/
+    }
 
-/* visited link */
-a:visited {
-  color: green; /*Khi liên kết được truy cập rồi thì có màu xanh lá*/
-}
+    /* visited link */
+    a:visited {
+    color: green; /*Khi liên kết được truy cập rồi thì có màu xanh lá*/
+    }
 
-/* mouse over link */
-a:hover {
-  color: yellow; /*Khi di chuột qua liên kết thì có màu vàng*/
-}
+    /* mouse over link */
+    a:hover {
+    color: yellow; /*Khi di chuột qua liên kết thì có màu vàng*/
+    }
 
-/* selected link */
-a:active {
-  color: blue; /*Khi liên kết được click thì có màu xanh dương*/
-}
-```
+    /* selected link */
+    a:active {
+    color: blue; /*Khi liên kết được click thì có màu xanh dương*/
+    }
+    ```
 ## 2.3. Pseudo-classes and HTML Classes
 - Có thể kết hợp `Pseudo-class` với tên class của HTML.
 
-VD: Thay đổi màu sắc của thẻ liên kết `<a>` có `class="highlight"` khi di chuột vào liên kết đó.
-```css
-a.highlight:hover {
-  color: #ff0000;
-  font-size: 22px;
-} 
-```
+    VD: Thay đổi màu sắc của thẻ liên kết `<a>` có `class="highlight"` khi di chuột vào liên kết đó.
+
+    ```css
+    a.highlight:hover {
+    color: #ff0000;
+    font-size: 22px;
+    } 
+    ```
 
 ## 2.4. Di chuột qua một phần tử để hiển thị lên một phần tử khác (giống như hiển thị 1 công cụ giải thích)  
 
@@ -130,9 +131,101 @@ VD:
 VD:
  `:lang` xác định dấu ngã (~) cho các phần tử `<q>` với `lang = "no"`:
 
+<p align="center">
+<img src="../images/lesson2/lang_pseudo.png" width=500>
+</p>
+
+## 2.7. CSS :last-child Pseudo-class
+- `:last-child`: chọn phần tử là phần tử con cuối cùng trong phần tử cha của nó
+
+    VD:
+    ```html
+    <style>
+        p:last-child {
+            color: red;
+            font-size: 25px;
+        }
+    </style>
+    <body>
+    <div>
+        <p>This is p1</p>
+        <p>This is p:last-child</p>
+    </div>
+    <div>
+        <p>This is p2</p>
+        <p>This is p3</p>
+        <p>This is p:last-child</p>
+    </div>
+    </body>
+    ```
     <p align="center">
-    <img src="../images/lesson2/lang_pseudo.png" width=500>
+    <img src="../images/lesson2/last-child.png" width=500 height=350>
     </p>
+
+## 2.8. CSS :nth-child(n) Pseudo-class
+- `nth:child(n)`: chọn phần tử theo thứ tự của nó trong phần tử cha.
+- `n` có thể nhận các giá trị như: `1 số nguyên` cụ thể, `even` (chọn các phần tử có thứ tự chẵn) hoặc `odd` (chọn các phần tử có thứ tự lẻ), hoặc 1 công thức (`an+b; a,b là 1 số nguyên; n chạy từ 0,1,2...`)
+
+    VD:
+    ```html
+    <style>
+        p:nth-child(even) {
+            color: red;
+            font-size: 25px;
+        }
+    </style>
+    <body>
+    <div>
+        <p>This is p1</p>
+        <p>This is p2</p>
+        <p>This is p3</p>
+        <p>This is p4</p>
+    </div>
+    <div>
+        <p>This is p1</p>
+        <p>This is p2</p>
+        <p>This is p3</p>
+        <p>This is p4</p>
+        <p>This is p5</p>
+    </div>
+    </body>
+    ```
+
+<p align="center">
+<img src="../images/lesson2/nth-child.png" width=500>
+</p>
+
+## 2.9. CSS :nth-last-child(n) Pseudo-class
+- `:nth-last-child(n)` chọn mọi phần tử là phần tử con thứ n trong phần tử cha, thứ tự được tính từ phần tử con cuối cùng. `n` có thể là một số, một từ khóa (`even/odd`) hoặc một công thức (`n+1`)
+
+    VD: 
+    ```html
+    <style>
+        p:nth-child(even) {
+            color: red;
+            font-size: 25px;
+        }
+    </style>
+    <body>
+    <div>
+        <p>This is p1</p> <!-- Phần tử con thứ 4 -->
+        <p>This is p2</p> <!-- Phần tử con thứ 3 -->
+        <p>This is p3</p> <!-- Phần tử con thứ 2 -->
+        <p>This is p4</p> <!-- Phần tử con thứ 1 -->
+    </div>
+    <div>
+        <p>This is p1</p> <!-- Phần tử con thứ 5 -->
+        <p>This is p2</p> <!-- Phần tử con thứ 4 -->
+        <p>This is p3</p> <!-- Phần tử con thứ 3 -->
+        <p>This is p4</p> <!-- Phần tử con thứ 2 -->
+        <p>This is p5</p> <!-- Phần tử con thứ 1 -->
+    </div>
+    </body>
+    ```
+
+<p align="center">
+<img src="../images/lesson2/nth-last-child.png" width=500>
+</p>
 
 # 3. CSS Pseudo-elements
 - Một CSS `pseudo-element` thường được sử dụng để định kiểu cho các thành phần cụ thể của một phần tử.  
@@ -1576,8 +1669,8 @@ VD: Tạo 1 bộ đếm, tăng giá trị của bộ đếm cho mỗi thẻ `<h2
 <img width = 500 src="../images/lesson2/counter.png">
 </p>
 
-## 11.2. Bộ đếm nồng nhau
-- Chúng ta có thể sử dụng các bộ đếm nồng nhau trong cùng một trang.
+## 11.2. Bộ đếm lồng nhau
+- Chúng ta có thể sử dụng các bộ đếm lồng nhau trong cùng một trang.
 
 VD: Tạo một bộ đếm (section) để tăng các giá trị cho thẻ `<h1>` với nội dung "`Section <giá trị của bộ đếm section>.`" và một bộ đếm (subsection) để tăng các giá trị cho thẻ `<h2>` với nội dung "`Section <giá trị của bộ đếm section>.<giá trị của bộ đếm subsection>`"
 
