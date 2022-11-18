@@ -1007,7 +1007,6 @@ div.desc {
   </div>
 </div>
 
-
 <div class="responsive">
   <div class="gallery">
     <a target="_blank" href="img_forest.jpg">
@@ -1037,10 +1036,6 @@ div.desc {
 
 <div class="clearfix"></div>
 
-<div style="padding:6px;">
-  <p>This example use media queries to re-arrange the images on different screen sizes: for screens larger than 700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images side by side. For screens smaller than 500px, the images will stack vertically (100%).</p>
-  <p>You will learn more about media queries and responsive web design later in our CSS Tutorial.</p>
-</div>
 ```
 - Kết quả:
     - Hình ảnh được trưng bày khi màn hình có kích thước lớn (vd laptop):

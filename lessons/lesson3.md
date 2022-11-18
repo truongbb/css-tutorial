@@ -98,7 +98,7 @@ Do đó, thuộc tính `border-radius` có thể có từ một đến bốn gi�
 - Thuộc tính `border-image` cho phép định nghĩa một hình ảnh được sử dụng để thay thế cho một đường viền bình thường bao quanh một phần tử.
 - Thuộc tính `border-image` có các phần:
   1. Xác định tập tin hình ảnh dùng để làm đường viền hình ảnh.
-  2. Xác định các 'lát cắt" trong tấm hình.
+  2. Xác định các `lát cắt` trong tấm hình.
   3. Xác định độ dày của đường viền hình ảnh.
   4. Xác định khoảng cách đẩy đường viền hình ảnh ra khỏi vị trí ban đầu của nó.
   5. Xác định kiểu lặp lại ở các cạnh của đường viền hình ảnh. ảnh.
@@ -113,7 +113,7 @@ Do đó, thuộc tính `border-radius` có thể có từ một đến bốn gi�
 
     - Những lát cắt `2 4 6 8` sẽ được đặt lần lượt vào các cạnh phía trên, bên phải, phía dưới, bên trái của đường viền.
 
-*Lưu ý:* Để thuộc tính `border-image` hoạt động, thì trong định kiểu phần tử cũng cần phải có thuộc tính `border`.
+*Lưu ý:* Để thuộc tính `border-image` hoạt động, thì trong định kiểu style của phần tử cũng cần phải có thuộc tính `border`.
 
 - Thuộc tính `border-image` là thuộc tính viết tắt cho các thuộc tính sau:
     - `border-image-source`: url('đường dẫn tới ảnh')
@@ -541,7 +541,7 @@ VD:
 </p>
 
 ## 3.3. Full Size Background Image
-- Nếu như chúng ta muốn có một hình nền trên một trang web mà nó luôn bảo phủ toàn bộ cửa sổ trình duyệt mọi lúc thì sử dụng bộ chọn thẻ `<html>`, và khai báo các giá trị thuộc tính `background` và `background-size` như sau:
+- Nếu như chúng ta muốn có một hình nền trên một trang web mà nó luôn bao phủ toàn bộ cửa sổ trình duyệt mọi lúc thì sử dụng bộ chọn thẻ `<html>`, và khai báo các giá trị thuộc tính `background` và `background-size` như sau:
   ```css
   html {
     background: url(img_man.jpg) no-repeat center fixed;
@@ -830,7 +830,7 @@ VD:
 ## 6.1. CSS Linear Gradients
 
 ### 6.1.1. Cú pháp
-- Sử dụng hàm `linear- gradient` để tạo ra đối tượng mày biến đổi liên tục từ màu này sang màu khác với các tham số khác nhau, chuyển đổi từ các hướng khác nhau
+- Sử dụng hàm `linear- gradient` để tạo ra đối tượng màu biến đổi liên tục từ màu này sang màu khác với các tham số khác nhau, chuyển đổi từ các hướng khác nhau
 - Để tạo ra `linear gradient` chúng ta phải định nghĩa tối thiểu các điểm dừng màu. Điểm dừng màu là màu nằm giữa khoảng màu cần biến đổi liên tục. Chúng ta cũng cần thiết lập một điểm bắt đầu và hướng hoặc góc qua đó màu biến đổi.
 - Cú pháp:
   ```css
@@ -1646,7 +1646,7 @@ VD:
   </div>
   ```
 <p align = "center">
-<img width = 400 src="../images/lesson3/scale.png">
+<img width = 400 src="../images/lesson3/rotate.png">
 </p>
 
 ### 10.1.2. Phương thức scale()

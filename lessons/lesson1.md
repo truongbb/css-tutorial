@@ -1269,30 +1269,24 @@ VD:
 - VD: Định vị văn bản ở góc trên bên trái của bức ảnh:
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-          <style>
-                .container {
-                  position: relative;
-                }
+<style>
+    .container {
+        position: relative;
+    }
 
-                .topleft {
-                  position: absolute;
-                  top: 8px;
-                  left: 16px;
-                  font-size: 18px;
-                }
+    .topleft {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        font-size: 18px;
+    }
 
-                img { 
-                  width: 100%;
-                  height: auto;
-                  opacity: 0.3;
-                }
-          </style>
-</head>
-<body>
-
+    img { 
+        width: 100%;
+        height: auto;
+        opacity: 0.3;
+    }
+</style>
 <h2>Image Text</h2>
 <p>Add some text to an image in the top left corner:</p>
 
