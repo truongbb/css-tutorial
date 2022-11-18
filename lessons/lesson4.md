@@ -378,9 +378,10 @@ VD:
 </p>
 
 ## 2.8.Image Hover Overlay
+
 - Tạo một hiệu ứng che phủ hình ảnh khi di chuột vào một phần tử
 
-  VD: Khi di chuột vào ảnh, ảnh sẽ mờ đi vào bị che phủ bởi một cái hộp văn bản
+  VD: Khi di chuột vào ảnh, ảnh sẽ mờ đi vào bị che phủ bởi một khối văn bản
   ```html
   <style>
   .container {
@@ -434,9 +435,8 @@ VD:
 <p align = "center">
   <img width = 500 src="../images/lesson4/overlay_image.png">
 </p>
-- Có thêm tham khảo một số hiệu ứng che phủ hình ảnh khác tại 
 
-[Image Hover Overlay](https://www.w3schools.com/css/css3_images.asp)
+- Có thêm tham khảo một số hiệu ứng che phủ hình ảnh khác tại [Image Hover Overlay](https://www.w3schools.com/css/css3_images.asp)
 
 ## 2.9. Flip an Image
 - Để `đảo/lật ngược` một hình ảnh khi di chuột vào, chúng ta sử dụng thuộc tính `transform: scale()`
@@ -688,7 +688,7 @@ VD:
 # 5. CSS object-position property
 - Thuộc tính `object-position` được sử dụng để chỉ định một hình ảnh hay video được đặt ở vị trí nào trong phần tử chứa nó.
 - Giả sử rằng một phần của hình ảnh được hiển thị mà không phải vị trí như chúng ta muốn. Xác định vị trí hình ảnh mong muốn, chúng ta sẽ sử dụng thuộc tính `object-position`.
-- Nó có 2 giá trị: một trục là `trên-dưới` và 2 là `trái-phải`. Những con số này có thể được để là `phần trăm (%), pixel(px) hoặc đơn vị đo lường và có thể là giá trị âm` . Một số cái có thể được sử dụng làm như `center`, `top`, `right`,...
+- Nó có 2 giá trị: một trục là `trên-dưới` và 2 là `trái-phải`. Những con số này có thể được để là `phần trăm (%), pixel(px), đơn vị đo lường, có thể là giá trị âm` hoặc cũng có thể là các giá trị như `center`, `top`, `right`, `bottom`,...
 
   VD:
   ```html
@@ -706,7 +706,7 @@ VD:
   </style>
 
   <div>
-    <h3>Using object-fit: scale-down</h3>
+    <h3>Using object-position</h3>
     <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
   </div>
 
@@ -1053,7 +1053,7 @@ VD:
 - Sử dụng thuộc tính `transform: translateY(4px);` để khi button được click vào thì button sẽ dịch chuyển vị trí xuống dưới theo trục Y 1 khoảng để tạo hiệu ứng giống như nó được nhấn xuống.   
 ...
 
-# 8. CSS Pagiantion
+# 8. CSS Pagination
 ## 8.1. Simple Pagination
 - Nếu một trang web có nhiều trang, chúng ta có thể thêm vào 1 phân trang đơn giản tới mỗi trang web như sau:
   ```html
