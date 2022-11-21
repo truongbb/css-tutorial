@@ -1,3 +1,91 @@
+
+## 25. CSS Layout - display:inline-block
+- So với `display: inline`, sự khác biệt chính là `display: inline-block` cho phép thiết lập chiều rộng và chiều cao trên phần tử.
+- Ngoài ra, với `display: inline-block`, `margin/padding trên cùng và dưới cùng` được tôn trọng, nhưng với `display: inline` thì không.
+- So với `display: block`, sự khác biệt chính là `display: inline-block` không thêm dấu ngắt dòng sau phần tử, vì vậy phần tử có thể nằm cạnh các phần tử khác.  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/display_inline_block.png">
+    </p>
+
+- Sử dụng khối nội tuyến để tạo liên kết điều hướng
+    - Một cách sử dụng phổ biến `display: inline-block` là hiển thị các mục danh sách theo chiều ngang thay vì chiều dọc. Ví dụ sau tạo liên kết điều hướng ngang:  
+    VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/nav_inline_block.png">
+    </p>
+
+## 26. CSS Layout - Horizontal & Vertical Align
+### 26.1. Căn giữa cho phần tử - Sử dụng margin:auto
+- Trong CSS, để căn giữa một phần tử khối (như `<div>`), ta sử dụng thuộc tính `margin có giá trị là auto` để căn chỉnh phần tử nằm ở giữa so với phần tử cha của nó.
+
+- Phần tử sau khi chiếm không gian nhất định, khoảng trống còn lại sẽ được chia đều cho hai bên lề:  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_element.png">
+    </p>
+
+*Lưu ý:*
+
+- Căn chỉnh giữa sẽ không tạo ra hiệu ứng nếu không có thuộc tính `width` (hoặc width có giá trị là 100%) vì nó chiếm hết động rộng sẵn có, không thể căn giữa được nữa.
+- Thuộc tính `margin: auto` chỉ căn giữa cho phần tử `block` như `<div>, <p>, <h1> đến <h6>, <header>, <footer>, <section>, <nav>... `còn các phần tử `inline` như `<span>, <a>, <strong>, <b>, <i>...` sẽ `không được áp dụng`.
+- Có thể ghi đè lại phần tử hiển thị block hay inline bằng cách sử dụng thuộc tính display. Ví dụ: `span { display: block;}`.
+
+### 26.2. Căn giữa Văn bản 
+- Để chỉ căn giữa văn bản bên trong một phần tử, hãy sử dụng `text-align: center;`  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/center_text.png">
+    </p>
+
+### 26.3. Căn giữa hình ảnh
+- Để căn giữa một ảnh, đặt `margin-left và margin-right thành auto` và `làm cho hình ảnh trở thành phần tử dạng block.`  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/img_center.png">
+    </p>
+
+### 26.4. Căn trái/phải - Sử dụng position
+- Một phương pháp khác để căn chỉnh phần tử là sử dụng `position: absolute`.  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_position.png">
+    </p>
+
+### 26.5. Căn trái/phải - Sử dụng float
+- Thuộc tính `float` cũng được sử dụng để căn chỉnh phần tử.  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_float.png">
+    </p>
+
+### 26.6. Căn giữa theo chiều dọc - Sử dụng padding
+- Có nhiều cách để căn giữa một phần tử theo chiều dọc trong CSS. Giải pháp đơn giản nhất đó là sử dụng `padding`.  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_padding.png">
+    </p>
+### 26.7. Căn giữa theo chiều dọc - Sử dụng line-height
+- Cũng có cách khác để căn giữa theo chiều dọc là sử dụng thuộc tính `line-height` với giá trị giống như thuộc tính `height`.  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_line_height.png">
+    </p>
+
+### 26.8. Căn giữa theo chiều dọc - Sử dụng position và transform
+- Nếu không sử dụng `padding` và `line-height` như trên, có thể dùng cách thứ ba là sử dụng `position` và `transform`:  
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/position_transform.png">
+    </p>
+
+### 26.9. Căn giữa theo chiều dọc - Sử dụng Flexbox 
+- Cũng có thể sử dụng `flexbox` để căn giữa mọi thứ.   
+VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/align_flexbox.png">
+    </p>
+
 # 1. CSS Combinators
 ## 1.1. CSS Combinators - Bộ kết hợp CSS
 - Bộ chọn CSS có thể chứa nhiều hơn 1 bộ chọn đơn (`selector`). Giữa các bộ chọn đơn, chúng ta có thể bao gồm 1 bộ kết hợp.
@@ -1353,758 +1441,3 @@ VD:
 <p align = "center">
 <img width = 500 src="../images/lesson2/styling_form.png">
 </p>
-
-# 10. CSS Forms
-## 10.1. Styling Input Fields
-- Để định kiểu style cho tất cả các phần tử `<input>` trong biểu mẫu, ta sử dụng cú pháp sau:
-    ```css
-    input {
-
-    }
-    ```
-- Nếu như chỉ muốn định kiểu cho một loại input được chỉ định, thì chúng ta có thể sử dụng `attribute selector` (bộ chọn thuộc tính):  
-    VD:
-    - `input[type=text]`: chỉ chọn những trường nhập text 
-    - `input[type=password]`: chỉ chọn những trường nhập password
-    - `input[type=button]`: chỉ chọn những trường button...
-
-- Một số định kiểu style cho trường input trong biểu mẫu:
-    - `width`: định nghĩa chiều rộng
-    - `padding`, `margin`: định nghĩa phần đệm và lề cho input
-    - `border`: định nghĩa đường viền cho input
-    - `box-sizing: border-box;` - thuộc tính này để đảm bảo rằng padding và border đã được bao gồm trong tổng kích thước chiều rộng và chiều cao của phần tử. 
-    - `color`, `background-color`,...  
-    VD:
-        ```html
-        <style> 
-        input[type=text] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            color: red;
-            background-color: white;
-            border: 2px solid green;
-            font-size: 20px;
-        }
-        </style>
-        <h2>Style input fields</h2>
-
-        <form>
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="fname">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lname">
-        </form>
-        ```
-    <p align = "center">
-    <img width = 500 src="../images/lesson2/style_input.png">
-    </p>
-
-    - `Focused Inputs`: 
-        - Mặc định, một số trình duyệt sẽ thêm một đường outline màu xanh dương bao xung quanh trường input khi người dùng click vào. Chúng ta có thể xóa bỏ hành vi này bằng cách thêm thuộc tính `outline: none;` vào phần input.
-        - Sử dụng bộ chọn `:focus` để định kiểu style cho trường input khi người dùng click vào.
-        VD:
-        ```html
-            <style> 
-            input[type=text] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                box-sizing: border-box;
-                border: 1px solid #555;
-                outline: none;
-            }
-
-            input[type=text]:focus {
-                background-color: lightblue;
-                border: 2px solid red;
-            }
-            </style>
-        
-            <form>
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="fname" value="John">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lname" value="Doe">
-            </form>
-        ```
-    <p align = "center">
-    <img width = 500 src="../images/lesson2/input_focus.png">
-    </p>
-
-    - `Input với biểu tượng/hình ảnh`
-        - Nếu muốn thêm 1 biểu tượng vào bên trong input, sử dụng thuộc tính `backdround-image` và `background-position` để xác định ảnh và vị trí của nó.  
-        VD: 
-
-     ```html
-        <style> 
-        input[type=text] {
-            width: 100%;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: white;
-            background-image: url('searchicon.png');
-            background-position: 10px 10px; 
-            background-repeat: no-repeat;
-            padding: 12px 20px 12px 40px;
-        }
-        </style>
-    ```
-    <p align = "center">
-    <img width = 500 src="../images/lesson2/icon_input.png">
-    </p>
-## 10.2. Styling Select Menus
-VD:  
-```html
-    <style> 
-    select {
-        width: 100%;
-        padding: 16px 20px;
-        border: none;
-        border-radius: 4px;
-        background-color: #f0f1f1;
-    }
-    </style>
-
-    <h2>Styling a select menu</h2>
-
-    <form>
-        <select id="country" name="country">
-            <option value="au">Australia</option>
-            <option value="ca">Canada</option>
-            <option value="usa">USA</option>
-        </select>
-    </form>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/styling_menu.png">
-</p>
-
-## 10.3. Styling Input Buttons
-VD:
-```html
-<style> 
-input[type=button], input[type=submit], input[type=reset] {
-  background-color: #04AA6D;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  margin: 4px 2px;
-  cursor: pointer;/*khi di chuột vào con trỏ chuột chuyển thành hình bàn tay*/
-}
-</style>
-<input type="button" value="Button">
-<input type="reset" value="Reset">
-<input type="submit" value="Submit">
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/style_button.png">
-</p>
-
-## 10.4 Responsive Forms
-VD:
-```html
-<style>
-* {
-  box-sizing: border-box;
-}
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-</style>
-
-<div class="container">
-  <form action="/action_page.php">
-  <div class="row">
-    <div class="col-25">
-      <label for="fname">First Name</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="lname">Last Name</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="country">Country</label>
-    </div>
-    <div class="col-75">
-      <select id="country" name="country">
-        <option value="australia">Australia</option>
-        <option value="canada">Canada</option>
-        <option value="usa">USA</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="subject">Subject</label>
-    </div>
-    <div class="col-75">
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <input type="submit" value="Submit">
-  </div>
-  </form>
-</div>
-```
-*Kết quả:*
-- Khi kích thước cửa sổ trình duyệt bình thường, biểu mẫu chia làm 2 cột label và input:
-<p align = "center">
-<img width = 500 src="../images/lesson2/responsive_form_normal.png">
-</p>
-
-- Khi kích thước cửa sổ trình duyệt nhỏ hơn bằng 600px, 2 cột label và input của biểu mẫu xếp chồng lên nhau, kích thước chiều rộng bằng chiều rộng của màn hình :
-<p align = "center">
-<img width = 500 src="../images/lesson2/responsive_less600.png">
-</p>
-
-# 11. CSS Counters
-## 11.1. Tự động tăng số với bộ đếm Counters
-- `CSS Counters` như là các biến. Giá trị của các biến này có thể được tăng theo quy tắc CSS.
-- `CSS Counter` có những giá trị sau:
-    - `counter-reset`: tạo hoặc bắt đầu lại một bộ đệm.
-    - `counter-increment`: tăng một giá trị đếm.
-    - `content`: Chèn nội dung đã được định trước.
-    - `Hàm counter() hoặc counters()` : thêm giá trị của một bộ đếm tới một phần tử
-
-- Để sử dụng CSS counter, trước tiên phải tạo bộ đếm với counter-reset.  
-VD: Tạo 1 bộ đếm, tăng giá trị của bộ đếm cho mỗi thẻ `<h2>` và thêm nội dung "`Section <giá trị của bộ đếm>:`" để bắt đầu mỗi thẻ `<h2>`
-
-    ```html
-    <style>
-    body {
-    counter-reset: section;
-    }
-
-    h2::before {
-    counter-increment: section;
-    content: "Section " counter(section) ": ";
-    }
-    </style>
-    <h1>Using CSS Counters</h1>
-
-    <h2>HTML Tutorial</h2>
-    <h2>CSS Tutorial</h2>
-    <h2>JavaScript Tutorial</h2>
-    <h2>Python Tutorial</h2>
-    <h2>SQL Tutorial</h2>
-    ```
-<p align = "center">
-<img width = 500 src="../images/lesson2/counter.png">
-</p>
-
-## 11.2. Bộ đếm lồng nhau
-- Chúng ta có thể sử dụng các bộ đếm lồng nhau trong cùng một trang.
-
-VD: Tạo một bộ đếm (section) để tăng các giá trị cho thẻ `<h1>` với nội dung "`Section <giá trị của bộ đếm section>.`" và một bộ đếm (subsection) để tăng các giá trị cho thẻ `<h2>` với nội dung "`Section <giá trị của bộ đếm section>.<giá trị của bộ đếm subsection>`"
-
-```html
-<style>
-body {
-  counter-reset: section;
-}
-
-h1 {
-  counter-reset: subsection;
-}
-
-h1::before {
-  counter-increment: section;
-  content: "Section " counter(section) ". ";
-}
-
-h2::before {
-  counter-increment: subsection;
-  content: counter(section) "." counter(subsection) " ";
-}
-</style>
-
-<h1>HTML/CSS Tutorials</h1>
-<h2>HTML</h2>
-<h2>CSS</h2>
-<h2>Bootstrap</h2>
-<h2>W3.CSS</h2>
-
-<h1>Scripting Tutorials</h1>
-<h2>JavaScript</h2>
-<h2>jQuery</h2>
-<h2>React</h2>
-```
-
-<p align = "center">
-<img width = 500 src="../images/lesson2/nest_counter.png">
-</p>
-
-## 11.3. Sử dụng bộ đếm counter để đánh chỉ mục cho các danh mục trong danh sách có thứ tự
-
-```html
-<style>
-ol {
-  counter-reset: section;
-  list-style-type: none;
-}
-li{
-  color: red;
-  font-size: 20px;
-}
-
-li::before {
-  counter-increment: section;
-  content: counters(section,".") " ";
-}
-</style>
-<ol>
-  <li>item</li>
-  <li>item   
-  <ol>
-    <li>item</li>
-    <li>item</li>
-    <li>item
-    <ol>
-      <li>item</li>
-      <li>item</li>
-      <li>item</li>
-    </ol>
-    </li>
-    <li>item</li>
-  </ol>
-  </li>
-  <li>item</li>
-  <li>item</li>
-</ol>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/ol_counter.png">
-</p>
-
-# 12. CSS Website Layout
-## 12.1. Bố cục trang web
-- Một trang web thường được chia thành header, menus, content và footer:
-<p align = "center">
-<img width = 500 src="../images/lesson2/layout_web.png">
-</p>
-
-### 12.1.1. Header
-- Một `header` thường được đặt ở phía trên đầu của một trang web. Nó thường chứa logo hoặc tên của trang web.  
-VD:
-
-```html
-<style>
-#header{
-    margin-left: 50px;
-    display: flex;
-}
-
-</style>
-<div class="header">
-    <h1>Slick<label>Red</label></h1>
-</div>
-```
-
-<p align = "center">
-<img width = 500 src="../images/lesson2/header.png">
-</p>
-
-### 12.1.2. Navigation Bar
-```html
-<style>
-.nav ul{
-    background-color: #420000;
-    width: 100%;
-    overflow: hidden;
-    text-align: center;
-    padding: 0px;
-   
-}
-.nav ul li{
-    float: left;
-    height: 50px;
-    list-style: none;
-    width: 16%;
-}
-.nav ul li a{
-    color: white;
-    padding: 12px 15px;
-    text-decoration: none;
-    display: block;
-    font-size: 20px;
-    height: 50px;
-}
-.nav ul li a:hover{
-    background-color: orange;
-}
-</style>
-
-<div class="header">
-    <h1>Slick<label>Red</label></h1>
-</div>
-<div class="nav">
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Design</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</div>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/header_nav.png">
-</p>
-
-## 12.1.3. Content
-
-```html
-<style>
-.content{
-    background-color: #facfcf;
-    display: flex;
-    height:60vh;
-}
-
-.menu ul{
-    width: 150px;
-    background-color: brown;
-    margin-top: 5px;
-    height: 90%;
-    padding: 0px;
-   
-}
-.menu ul li{
-    list-style: none;  
-   
-}
-.menu ul li a{
-    text-decoration: none;
-    display: block;
-    color: white;
-    padding: 10px 10px;
-}
-.content-right{
-    padding-left: 10px;
-}
-</style>
-<div class="content">
-    <div class="menu">
-        <ul>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">SEO</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Ajax</a></li>
-            <li><a href="#">JQuery</a></li>
-            <li><a href="#">Web design</a></li>
-            <li><a href="#">Web programming</a></li>
-            <li><a href="#">Content creation</a></li>
-            <li><a href="#">Internet marketing</a></li>
-            <li><a href="#">xHTML templates</a></li>   
-        </ul>
-    </div>
-    <div class="content-right">
-        <h2>You may use this template in any manner you like. All I ask 
-            is that you leave the link back to my site at the bottom of the 
-            page.</h2>
-        <h3>Template Notes</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-        <h3>More information</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco  laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <h3>Template Notes</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in  voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-    </div>
-</div>
-```
-
-<p align = "center">
-<img width = 500 src="../images/lesson2/header_nav_content.png">
-</p>
-
-### 12.1.4. Footer
-
-```html
-<style>
-.footer{
-    margin-top:  20px;
-    height: 70px;    
-}
-.footer ul{
-    background-color: #facfcf;
-    width: 80%;
-    margin-left: 150px;
-}
-.footer ul li{
-    list-style: none;
-    float: left;
-    width: 20%;
-    border-right: 1px solid black;
-}
-.footer ul li a{
-    text-decoration: none;
-    color: black;
-    display: block;
-    text-align: center;
-}
-</style>
-
-<div class="footer">
-    <ul>
-        <li><a href="#">florida web design</a></li>
-        <li><a href="#">web tutorials</a></li>
-        <li><a href="#">html codes</a></li>
-        <li><a href="#">free templates</a></li>
-    </ul>
-</div>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/full_layout.png">
-</p>
-
-# 13. CSS Units
-- CSS có một số đơn vị khác nhau sử dụng cho định nghĩa 1 độ dài cho các phần tử
-- Một số thuộc tính CSS sử dụng giá trị độ dài như: `width`, `margin`, `padding`, `height`, ...
-- Độ dài là một con số được theo sau bởi một đơn vị độ dài như `px`, `cm`, `em`,...
-
- VD:
- ```css
-h1 {
-  font-size: 60px;
-}
-
-p {
-  font-size: 5em;
-  line-height: 1cm;
-}
- ```
-- *Lưu ý:*
-    - Số và đơn vị độ dài phải được viết liền, với giá trị 0 thì không cần viết đơn vị theo sau.
-    - Trong CSS, độ dài chấp nhận 1 giá trị âm
-## Có 2 loại đơn vị độ dài là đơn vị tuyệt đối và tương đối
-### a. Đơn vị tuyệt đối:
-- `Đơn vị tuyệt đối` sẽ có những giá trị cố định không thay đổi.
-- `Đơn vị tuyệt đối` không được khuyến khích sử dụng cho màn hình, vì có rất nhiều các kích thước màn hình khác nhau. Nó chỉ nên dùng cho những trường hợp biết chắc kích thước của giao diện, như xuất ra máy in chẳng hạn.
-
-- Một số đơn vị tuyệt đối được sử dụng trong CSS:
-   - `px *`: pixels (1px = 1/96th of 1in)
-   - `pt`: points (1pt = 1/72 of 1in)
-   - `pc`: picas (1pc = 12 pt)
-   - `cm`: centimeters
-   - `mm`: millimeters
-   - `in`: inches (1in = 96px = 2.54cm)
-
-### b. Đơn vị tương đối - Relative Units
-- `Đơn vị tương đối` là đơn vị được tính một cách tương đối so với phần tử cha hoặc các phần tử khác.
-- `Đơn vị tương đối` hoạt động tốt hơn cho những thiết bị, những màn hình có kích thước và độ phân giải khác nhau.
-
-- Một số đơn vị tương đối chính được sử dụng trong CSS:
-    - `% (percentages)`: Đơn vị tương đối về kích thước của phần tử con so với phần tử cha (parrent). Ví dụ: Nếu phần tử cha có thuộc tính width:500px, phần tử con có thuộc tính width:50% thì có nghĩa là phần tử con có thuộc tính width:250px
-    - `em`: Là đơn vị tương đối dựa vào thuộc tính font-size của phần tử cha.  
-     Ví dụ: Nếu phần tử cha có thuộc tính font-size:16px, phần tử con có thuộc tính font-size:2em thì có nghĩa là phần tử con có thuộc tính font-size:32px
-    - `rem(root em)`: Là đơn vị tương đối dựa vào thuộc tính font-size của phần html (root element).   
-    Ví dụ: Nếu phần tử html có thuộc tính font-size:12px phần tử cha có thuộc tính font-size:16px, phần tử con có thuộc tính font-size:2rem thì có nghĩa là phần tử con có thuộc tính font-size:24px; Tức là đơn vị `rem` không phụ thuộc vào phần tử cha.
-    - `vw`: 1vw = 1% kích thước của trình duyệt
-
-# 14. CSS Specificity
-## 14.1 Khái niệm
-- Nếu có hai hoặc nhiều quy tắc CSS được chỉ đến cùng một phần tử, bộ chọn nào với giá trị đặc tính cao hơn thì khai báo định kiểu của nó sẽ được áp dụng vào phần tử HTML đó.
-- Mức độ ưu tiên của các đặc tính có tính quyết định xem phần khai báo định kiểu style nào sẽ được áp dùng cho một phần tử.  
-
-VD: Có 3 khai báo định kiểu cho thẻ `<p>`, vì bộ chọn id có mức độ ưu tiên cao hơn nên nó sẽ được áp dụng cho thẻ `<p>` và màu chữ sẽ là màu xanh dương
-- 
-```html
-<style>
-    #demo {color: blue;}
-    .test {color: green;}
-    p {color: red;}
-  </style>
-
-<p id="demo" class="test">Hello World!</p>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson2/priority_selector.png">
-</p>
-
-## 14.2. Mức độ ưu tiên của các bộ chọn CSS
-- `Inline styles` - VD: `<h1 style="color: pink;">`
-- `IDs` - VD: #navbar
-- `Classes, pseudo-classes, attribute selectors` - VD: .test, :hover, [href]
-- `Elements and pseudo-elements` - VD: h1, ::before
-## 14.3. Các tính độ ưu tiên cho các bộ chọn CSS
-- `Inline style` luôn có giá trị `ưu tiên cao nhất`, và nhận giá trị là 1000
-- `Bộ chọn ID`: có giá trị ưu tiên là 100
-- `Classes, pseudo-classes, attribute selectors` có giá trị ưu tiên là 10
-- `Elements and pseudo-elements` có giá trị ưu tiên là 1.
-- `*` (universal selector): giá trị ưu tiên bằng 0
-VD: 
-- `p.test`: giá trị ưu tiên= 1 + 10 = 11
-
-- `p#demo`: giá trị ưu tiên= 1 + 100 = 101
-
-- `<p style="color: pink;">`:	giá trị ưu tiên= 1000
-
-- `#demo`: giá trị ưu tiên= 100
-
-- `.test`: giá trị ưu tiên= 10
-
-- `p.test1.test2`: giá trị ưu tiên= 1 + 10 + 10 = 21
-
-- `#navbar p#demo`: giá trị ưu tiên= 100 + 1 + 100 = 201
-
-## 14.4. Một số ví dụ
-- Nếu cùng một quy tắc nhưng được viết hai lần trong cùng 1 tệp tin css, thì quy tắc viết sau cùng sẽ được chọn
-    VD:
-    ```css
-    h1 {background-color: yellow;}
-    h1 {background-color: red;} /* Được chọn*/
-    ```
-- Bộ chọn id có độ ưu tiên cao hơn bộ chọn thuộc tính
-    VD:
-    ```css
-    div#a {background-color: green;} /*Được chọn*/
-    #a {background-color: yellow;}
-    div[id=a] {background-color: blue;}
-    ```
-
-# 15. CSS !important Rule
-
-## 15.1. Định nghĩa
-- Quy tắc `!important` trong CSS được sử dụng để tăng thêm tầm quan trọng tới một cặp `property/value` hơn bình thường.
-- `!important` được sử dụng để thay đổi thứ tự ưu tiên của code CSS, `thuộc tính css được gán important thì nó sẽ có mức ưu tiên cao nhất`, cho dù thành phần đó được định nghĩa inline hay trong file css.
-
-- Nếu sử dụng `!important`, thì nó sẽ ghi đè tất cả các quy tắc định kiểu style trước đó của thuộc tính chỉ định đó trong một phần tử.
-
-- Cách sử dụng `!important`: chỉ cẩn thêm `!important` vào cuối dòng của 1 khai báo định kiểu mà chúng ta muốn. Cú pháp:
-
-    ```css
-    selector {
-        property: value !important;
-    }
-    ```
-
-    VD:
-    ```html
-    <style>
-    #myid {
-    background-color: blue;
-    }
-
-    .myclass {
-    background-color: gray;
-    }
-
-    p {
-    background-color: red !important;
-    }
-    </style>
-    <p>This is some text in a paragraph.</p>
-    <p class="myclass">This is some text in a paragraph.</p>
-    <p id="myid">This is some text in a paragraph.</p>
-    ```
-- Trong ví dụ trên, cả 3 thẻ `<p>` đều nhận màu nền là màu đỏ, kể cả bộ chọn Id và bộ chọn Class có độ ưu tiên cao hơn. Quy tắc `!important` đã ghi đè tất cả
-
-Kết quả:
-<p align = "center">
-<img width = 500 src="../images/lesson2/important.png">
-</p>
-
-## 15.2. Điểm quan trọng về !important
-- Chỉ có 1 cách đề ghi đè 1 quy tắc `!important` là sử dụng một quy tắc `!important` khác thêm vào một khai báo có mức độ ưu tiên tương tự (hoặc cao hơn)
-- Tuy nhiên điều này sẽ làm cho mã CSS rắc rối, khó hiểu hơn.
-
-    ```css
-    #myid {
-    background-color: blue !important;
-    }
-
-    .myclass {
-    background-color: gray !important;
-    }
-
-    p {
-    background-color: red !important;
-    }
-    ```
-*Lưu ý:* Chỉ sử dụng `!important` khi thật sự cần.
-
-## 15.3. Một số cách sử dụng !important
-- *Cách 1*: Sử dụng !important, nếu phải ghi đè một định kiểu mà không thể ghi đè theo bất kỳ cách nào khác.
-- *Cách 2*: Khi muốn tất cả phần tử nào đó trên trang web của mình chỉ có 1 định kiểu như màu nền xám; chữ đỏ; đường viền nét liền, màu đen dày 1px thì ta sử dụng `!important` cho tất cả các thuộc tính định kiểu của phần tử đó.
-
-VD: với phần tử `<button>`  
-```css
-.button {
-    background-color: #8c8c8c !important;
-    color: red !important;
-    padding: 5px !important;
-    border: 1px solid black !important;
-}
-```
