@@ -1,1365 +1,1706 @@
-# 1. CSS Tooltips
-- `Tooltip` là một thành phần giúp bạn chú thích thêm thông tin khi người dùng di chuột vào một đối tượng nào đó trong trang web.
-## 1.1 Công cụ chú thích cơ bản
-- Tạo một `tooltips` (công cụ chú giải) đơn giản sẽ xuất hiện khi người dùng di chuột vào một phần tử:
-
-  VD:
-  ```html
-  <!-- CSS -->
-  <style>
-  /* Tooltip container */
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; 
-  }
-
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-  
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-  </style>
-
-  <!-- HTML-->
-  <div class="tooltip">Hover over me
-    <span class="tooltiptext">Tooltip text</span>
-  </div>
-  ```
-
-
-**Giải thích**: Chia làm 2 phần HTML và CSS
-
-- Về HTML:
-    - Sử dụng một phần tử chứa (vd như thẻ `<div>`) và đặt tên class cho thẻ `<div>` này là `class="tooltip"`. 
-    - Sử dụng một phần tử nội tuyến (vd như `<span>`) để chứa đoạn văn bản chú thích, đặt tên class cho thẻ `<span>` này là `class="tooltiptext"`.
-    - Khi di chuột vào thẻ `<div>` thì phần văn bản chú thích sẽ được hiển thị ra.
-- Về CSS:
-    - `Class tooltip` sử dụng thuộc tính `position:relative`, giá trị cần thiết để thiết lập ví trí của văn bản chú giải (`position:absolute`).
-    - `Class tooltip` chứa văn bản chú thích. Mặc định nó được ẩn đi, và sẽ được hiển thị khi di chuột vào phần `class tooltip (:hover)`. Chúng ta cũng có thể thêm 1 số định kiểu cơ bản cho nó: như `width`, `background-color`, `color`,...
-    - Thuộc tính `border-radius` được sử dụng để bo góc cho văn bản chú thích
-
+# 0. Content
+1. CSS Colors - Opacity
+2. CSS Color Keywords
+3. CSS Gradients
+4. CSS Shadow Effects
+5. CSS Text Effects
+6. CSS Web Fonts
+7. CSS 2D Transforms
+8. CSS 3D Transforms
+9. CSS Transitions
+10. CSS Animations
+# 1. CSS Colors - Opacity
+## 1.1. RGBA Colors
+- Giá trị màu `RGBA` là một phần mở rộng của giá trị màu `RGB` với một giá trị `alpha` - để định nghĩa độ trong suốt của một màu.
+- Một giá trị màu `RGBA` được định nghĩa với: `rgba(red, green, blue, alpha)`. Giá trị `alpha` là một số nằm trong khoảng 0.0 - 1.0. Giá trị càng nhỏ càng trong suốt (mờ)
+VD: Cùng là màu đỏ nhưng với các giá trị `alpha` khác nhau
 <p align = "center">
-<img width = 500 src="../images/lesson4/basic_tooltip.png">
+<img width = 500 src="../images/lesson3/rgba.png">
 </p>
 
-## 1.2. Xác định vị trí của công cụ chú thích 
-- Dựa vào ví dụ trên để xác định các vị trí khác nhau cho `tooltip`
-### 1.2.1 Tooltip đặt ở bên phải của phần di chuột 
-- Thiết lập các thuộc tính sau cho phần tử class `tooltiptext`
+## 1.2. HSL Colors
+- `HSL viết tắt của Hue (màu sắc), Saturation (độ bão hòa), Lightness (độ đậm nhạt).`
+- Giá trị màu `HSL` được chỉ định với: `hsl(hue, saturation, lightness)`.
+  - `Hue` là một mức độ trên vòng tròn màu (từ 0 - 360).
+    - 0 (hoặc 360) là màu đỏ
+    - 120: là màu xanh lá
+    - 240: là màu xanh dương
+  - `Saturation`: là một giá trị %
+  - `Lightness` là một giá trị %: 0% là đen, 100% là trắng.
+
+VD: cùng là màu đỏ với các giá trị độ đậm nhạt (`lightness`) khác nhau:
+<p align = "center">
+<img width = 500 src="../images/lesson3/hsl.png">
+</p>
+
+## 1.3. HSLA Colors
+- Giá trị màu `HSLA` là một phần mở rộng của giá trị màu `HSL` với một giá trị alpha - để định nghĩa độ trong suốt của một màu.
+- Một giá trị màu RGBA được định nghĩa với: `hsla(hue, saturation, lightness, alpha)`. Giá trị `alpha` là một số nằm trong khoảng 0.0 - 1.0. Giá trị càng nhỏ càng trong suốt (mờ)
+
+VD: Cùng là màu đỏ nhưng với các giá trị độ đậm nhạt và alpha khác nhau
+<p align = "center">
+<img width = 500 src="../images/lesson3/hsla.png">
+</p>
+
+## 1.4. Opacity
+- Thuộc tính `opacity` của CSS đặt độ mờ cho toàn bộ phần tử (cả màu nền và văn bản sẽ là màu đục/trong suốt).
+- Giá trị thuộc tính `opacity` phải là một số trong khoảng từ 0.0 - 1.0. Giá trị càng nhỏ càng trong suốt (mờ).
+
+  VD:
   ```css
-  .tooltip .tooltiptext {
-    top: -5px;
-    left: 105%;
-  }
-  ```
-  - `top: -5px;` được sử dụng để đặt `tooltip` nằm ở giữa của phần tử chứa nó. Sử dụng giá trị 5 vì văn bản `tooltip` có `padding` trên và dưới là 5px.
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/right_tooltip.png">
-</p>
-
-### 1.2.2. Tooltip đặt ở bên trái của phần di chuột 
-- Tương tự thiết lập thuộc tính `right:105%;` ta sẽ xác định được vị trí `tooltip` nằm bên trái
-  ```css
-  .tooltip .tooltiptext {
-    top: -5px;
-    right: 105%;
-  }
-  ```
-
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/left_tooltip.png">
-  </p>
-
-### 1.2.3. Tooltip đặt ở phía trên của phần di chuột 
-- Thiết lập các giá trị sau cho class `tooltiptext` để đặt vị trí `tooltip` ở phía bên trên của phần di chuột 
-  ```css
-  .tooltip .tooltiptext {
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-  }
-  ```
-  - Sử dụng thuộc tính `margin-left` với giá trị -60px. Thao tác này nhằm căn giữa `tooltip` bên trên/bên dưới văn bản có thể di chuột. Nó được đặt bằng một nửa chiều rộng của `tooltip` (120/2 = 60).
-
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/above_tooltip.png">
-</p>
-
-### 1.2.4. Tooltip đặt ở phía dưới của phần di chuột 
-- Thiết lập các giá trị sau cho class `tooltiptext` để đặt vị trí `tooltip` ở phía bên trên của phần di chuột 
-  ```css
-  .tooltip .tooltiptext {
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
-  }
-  ```
-
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/bottom_tooltip.png">
-  </p>
-
-## 1.3. Mũi tên tooltip
-- Để tạo một mũi tên sẽ xuất hiện từ một phía cụ thể của `tooltip`, hãy thêm nội dung "trống" sau `tooltip`, với `pseudo-element` class `::after` cùng với thuộc tính nội dung. Bản thân mũi tên được tạo bằng các đường viền. 
-
-  VD: Mũi tên ở bên dưới `tooltip`, tức là phần `tooltip` ở phía trên của phần có thể di chuột.
-  - Thêm các thiết lập sau kết hợp với phần định vị các ví trí ở ví dụ phía trên ta sẽ có được một mũi tên ở phía dưới `tooltip`, hướng vào phần di chuột
-
-  ```css
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%; /* đặt vị trí mũi tên ở phía dưới tooltip*/
-    left: 50%; /*căn mũi tên ở trung tâm*/
-    border-width: 5px; /*chỉ định kích thước của mũi tên*/
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-    margin-left: -5px; /*thay đổi theo giá trị border-width*/
-  }
-  ```
-  <p align = "center">
-    <img width = 500 src="../images/lesson4/arrow_tooltip.png">
-  </p>
-
-## 1.4. Hoạt ảnh trong tooltips
-- Sử dụng thuộc tính `transition` CSS cùng với thuộc tính `opacity` để chuyển văn bản `tooltip` từ hoàn toàn ẩn sang hiển thị rõ 100% trong một số giây được chỉ định.
-
-  VD:
-  ```html
   <style>
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-    
-    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
-    opacity: 0;
-    transition: opacity 1s;
-  }
-
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
+  #p1 {background-color:rgb(255,0,0);opacity:0.6;}
+  #p2 {background-color:rgb(0,255,0);opacity:0.6;}
+  #p3 {background-color:rgb(0,0,255);opacity:0.6;}
+  #p4 {background-color:rgb(192,192,192);opacity:0.6;}
+  #p5 {background-color:rgb(255,255,0);opacity:0.6;}
+  #p6 {background-color:rgb(255,0,255);opacity:0.6;}
   </style>
-
-  <div class="tooltip">Hover over me
-    <span class="tooltiptext">Tooltip text</span>
-  </div>
-  ```
-# 2. CSS Styling Image
-## 2.1. Bo góc hình ảnh
-- Sử dụng thuộc tính `border-radius` để tạo những hình ảnh được bo góc.
-
-  VD:
-  ```html
-  <style>
-    img {
-    border-radius: 30%;
-  }
-  </style>
-  <img src="paris.jpg" alt="Paris" width="300" height="300">
   ```
 <p align = "center">
-  <img width = 500 src="../images/lesson4/rounded_image.png">
+<img width = 500 src="../images/lesson3/opacity.png">
 </p>
 
-## 2.2. Thumbnail Image
-- Một `thumbnail image` (hình ảnh thu nhỏ) là một hình ảnh nhỏ đại diện cho một hình ảnh lớn hơn, và thường được nhận ra với một đường viền bao quanh nó
-- Sử dụng thuộc tính border để tạo 1 hình ảnh thu nhỏ
-
-  VD:
-  ```html
-  <style>
-  img {
-    border: 1px solid #ddd; /* Gray border */
-    border-radius: 4px;  /* Rounded border */
-    padding: 5px; /* Some padding */
-    width: 150px; /* Set a small width */
-  }
-
-  /* Add a hover effect (blue shadow) */
-  img:hover {
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-  }
-  </style>
-  <body>
-
-  <a target="_blank" href="img_forest.jpg">
-    <img src="img_forest.jpg" alt="Forest">
-  </a>
-  </body>
-  ```
-<p align = "center">
-  <img width = 500 src="../images/lesson4/thumbnail.png">
-</p>
-
-## 2.3. Đặt một hình ảnh ở trung tâm
-VD: 
-  ```html
-  <style>
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-  </style>
-  <img src="paris.jpg" alt="Paris" class="center">
-  ```
-*Lưu ý:* Hình ảnh không thể được đặt ở vị trí trung tâm nếu như nó được thiết lập chiều rộng là 100% (full-width)
-<p align = "center">
-  <img width = 500 src="../images/lesson4/center_image.png">
-</p>
-
-## 2.4. Responsive Image
-- Hình ảnh linh hoạt là hình ảnh sẽ tự động thay đổi kích thước để phù hợp với kích thước của màn hình trình duyệt.
-
-  VD:
-  ```html
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  .responsive {
-    width: 100%;
-    height: auto;
-  }
-  </style>
-  </head>
-  <img src="img_nature.jpg" alt="Nature" class="responsive" width="600" height="400">
-  ```
-- Nếu muốn giảm tỷ lệ kích thước của một hình ảnh, những không bao giờ được tăng tỷ lệ kích thước của một hình ảnh lớn hơn kích thước ban đầu của nó thì sử dụng thuộc tính `max-width: 100%` thay cho `width: 100%`.
-
-  VD:
-  ```html
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-  .responsive {
-    max-width: 100%;
-    height: auto;
-  }
-  </style>
-  </head>
-  <img src="img_nature.jpg" alt="Nature" class="responsive" width="600" height="400">
-  ```
-- Khi kích thước màn hình nhỏ hơn kích thước ảnh, hình ảnh sẽ thu nhỏ tỷ lệ bằng chiều rộng của màn hình
-<p align = "center">
-  <img width = 500 src="../images/lesson4/responsive_img.png">
-</p>
-
-- Tăng kích thước màn hình cho đến khi lớn hơn kích thước ảnh, hình ảnh sẽ tăng kích thước đến khi bằng kích thước ban đầu của nó rồi dừng lại không tăng thêm để bằng chiều rộng của màn hình
-<p align = "center">
-  <img width = 500 src="../images/lesson4/responsive_img_large.png">
-</p>
-
-## 2.5. Polaroid Images/Cards
-  VD
-  ```html
-  <style>
-  body {margin:25px;}
-
-  div.polaroid {
-    width: 80%;
-    background-color: white;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 25px;
-  }
-
-  div.container {
-    text-align: center;
-    padding: 10px 20px;
-  }
-  </style>
-  <div class="polaroid">
-    <img src="img_5terre.jpg" alt="5 Terre" style="width:100%">
-    <div class="container">
-    <p>Cinque Terre</p>
-    </div>
-  </div>
-  ```
-<p align = "center">
-  <img width = 500 src="../images/lesson4/polaroid_image.png">
-</p>
-
-## 2.6. Transparent Image
-- Sử dụng thuộc tính `opacity` để làm cho hình ảnh có độ mờ.
- Thuộc tính này nhận các giá trị từ `0.0-1.0`
-
-  VD:
-  ```html
-  <style>
-  div {
-  float: left;
-  margin: 30px;
-  }
-  .img1 {
-    opacity: 0.3;
-  }
-  .img2 {
-    opacity: 0.7;
-  }
-  </style>
-  <div>
-    <p>Image with 30% opacity:</p>
-    <img class="img1" src="img_forest.jpg" alt="Forest" width="170" height="100">
-  </div>
-  <div>
-    <p>Image with 70% opacity:</p>
-    <img class="img2" src="img_forest.jpg" alt="Forest" width="170" height="100">
-  </div>
-  ```
-<p align = "center">
-  <img width = 500 src="../images/lesson4/opacity_image.png">
-</p>
-
-## 2.7. Image Filters
-- Thuộc tính `filter` của CSS được sử dụng để thêm những hiệu ứng hình ảnh (giống như làm mờ hay độ bão hòa) cho một phần tử
+# 2. CSS Color Keywords
+## 2.1. Từ khóa transparent
+- Từ khóa `transparent` được sử dụng để làm cho màu trong suốt. Điều này thường được sử dụng để tạo màu nền trong suốt cho một phần tử.  
+*Lưu ý:* Từ kháo `transparent` tương đương với giá trị `rgba(0,0,0,0)` tức nó sẽ có màu hoàn toàn trong suốt
 
   VD:
   ```html
   <style>
   body {
-    background-color:white;
-  }
-  img {
-    width: 33%;
-    height: auto;
-    float: left; 
-    max-width: 235px;
+    background-image: url("paper.gif");
   }
 
-  .blur {filter: blur(4px);}
-  .brightness {filter: brightness(250%);}
-  .contrast {filter: contrast(180%);}
-  .grayscale {filter: grayscale(100%);}
-  .huerotate {filter: hue-rotate(180deg);}
-  .invert {filter: invert(100%);}
+  div.ex1 { 
+    background-color: lightgreen;
+    border: 2px solid black;
+    padding: 15px;
+  }
+
+  div.ex2 { 
+    background-color: transparent;
+    border: 2px solid black;
+    padding: 15px;
+  } 
   </style>
-  <img src="pineapple.jpg" alt="Pineapple" width="300" height="300">
-  <img class="blur" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
-  <img class="brightness" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
-  <img class="contrast" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
-  <img class="grayscale" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
-  <img class="huerotate" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <div class="ex1">This div has a light green background.</div>
+  <br>
+  <div class="ex2">This div has a transparent background.</div>
   ```
 <p align = "center">
-  <img width = 500 src="../images/lesson4/filter_image.png">
+<img width = 500 src="../images/lesson3/transparent_keyword.png">
 </p>
 
-## 2.8.Image Hover Overlay
+## 2.2. Từ khóa currentcolor
+- Từ khóa `currentcolor` giống như một biến giữ giá trị hiện tại của thuộc tính `color` của một phần tử.
+- Từ khóa này có thể có hữu ích nếu chúng ta muốn một màu đặc biệt được duy trì trong một phần tử hoặc một trang web.
 
-- Tạo một hiệu ứng che phủ hình ảnh khi di chuột vào một phần tử
-
-  VD: Khi di chuột vào ảnh, ảnh sẽ mờ đi vào bị che phủ bởi một khối văn bản
+  VD: 
   ```html
   <style>
-  .container {
-    position: relative;
-    width: 50%;
-  }
-
-  .image {
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: .5s ease;
-    backface-visibility: hidden;
-  }
-
-  .middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
-  }
-
-  .container:hover .image {
-    opacity: 0.3;
-  }
-
-  .container:hover .middle {
-    opacity: 1;
-  }
-
-  .text {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;
+  div {
+    color: blue;
+    border: 10px solid currentcolor;
+    padding: 15px;  
   }
   </style>
-  <h2>Fade in a Box</h2>
+  <p>The currentcolor keyword refers to the current value of the color property of an element.</p>
 
-  <div class="container">
-    <img src="img_avatar.png" alt="Avatar" class="image" style="width:100%">
-    <div class="middle">
-      <div class="text">John Doe</div>
+  <div>
+  This div element has a blue text color and a blue border.
+  </div>
+  ```
+  Vì giá trị màu hiện tại của thuộc tính `color` đang là màu xanh dương nên màu đường viền của thẻ `<div>` cũng là màu xanh dương.
+<p align = "center">
+<img width = 500 src="../images/lesson3/currentcolor_keyword.png">
+</p>
+
+## 2.3. Từ khóa inherit
+- Từ khóa `inherit` định nghĩa rằng một thuộc tính sẽ kế thừa giá trị của nó từ phần tử cha của nó
+- Từ khóa `inherit` có thể được sử dụng cho bất kỳ thuộc tính CSS nào và trên bất kỳ phần từ HTML nào  
+VD:
+  ```html
+  <style>
+  div {
+    border: 2px solid red;
+  }
+
+  span {
+    border: inherit;
+  }
+  </style>
+
+  <div>Here, the <span>span element's</span> border settings will be inherited from the parent element.</div>
+  <br>
+  <div style="border:2px dotted blue;">Here, the <span>span element's</span> border settings will also be inherited from the parent element.</div>
+  ```
+
+<p align = "center">
+<img width = 500 src="../images/lesson3/inherit_keyword.png">
+</p>
+
+# 3. CSS Gradients
+- CSS `gradient` cho phép chúng ta hiển thị các chuyển tiếp mượt mà giữa hai hoặc nhiều màu được chỉ định.
+- CSS định nghĩa 3 loại của `gradients`:
+  - `Linear Gradients`
+  - `Radial Gradients`
+  - `Conic Gradients`
+
+## 3.1. CSS Linear Gradients
+
+### 3.1.1. Cú pháp
+- Sử dụng hàm `linear- gradient` để tạo ra đối tượng màu biến đổi liên tục từ màu này sang màu khác với các tham số khác nhau, chuyển đổi từ các hướng khác nhau
+- Để tạo ra `linear gradient` chúng ta phải định nghĩa tối thiểu các điểm dừng màu. Điểm dừng màu là màu nằm giữa khoảng màu cần biến đổi liên tục. Chúng ta cũng cần thiết lập một điểm bắt đầu và hướng hoặc góc qua đó màu biến đổi.
+- Cú pháp:
+  ```css
+  background-image: linear-gradient(angle/direction, color1, color2, ...)
+  ```
+
+ Trong đó:
+ - `direction`: hướng đổ màu. `Linear-gradient` có 4 hướng như sau: 
+    - `Từ trên xuống dưới (mặc định)`: **linear-gradient( color1, color2,..)**
+    - `Từ dưới lên trên`: **linear-gradient(to top, color1, color2,..)**
+    - `Từ trái qua phải`: **linear-gradient(to right, color1, color2,..)**
+    - `Từ phải qua trái`: **linear-gradient(to left, color1, color2,..)**
+
+  Ngoài ra cũng có thể xác định hướng bằng cách từ tầm nhìn về các góc (`đường chéo - Diagonal`): vd `từ top left sang bottom right: (linear-gradient(to bottom right, color1, color2,..))`
+ - `angle`: có thể thay đổi các hướng đổ màu của gradient bằng cách định nghĩa một góc (angle):
+    - `0deg`: tương đương với hướng từ dưới lên trên (`to top`)
+    - `180deg`: tương đương với hướng từ trên xuống dưới (`to bottom`)
+    - `90deg`: tương đương với hướng từ trái qua phải (`to right`)
+    - -`90deg`: tương đương với hướng từ phải sang trái (`to left`)
+
+- `color1, color2`,... là các giá trị màu như red, blue, green,...
+
+VD:
+```html
+<style>
+.ele {
+    width: 300px;
+    height: 100px;
+    margin: 4px;
+    color: #FFF;
+    display: inline-block;
+    text-align: center;
+}
+
+.gr-default {
+    background-image: linear-gradient(red, blue); /* Hướng mặc định trên xuống dưới */
+}
+.g-to-right {
+    background-image: linear-gradient(to right, red, blue); /* Hướng trái sang phải */
+}
+.gr-90deg {
+    background-image: linear-gradient(-90deg, red, blue);  /* Hướng -90deg phải sang trái */
+}
+.gr-to-top {
+    background-image: linear-gradient(to top, red, blue); /*Hướng lên */
+}
+.gr-to-top-right {
+    background-image: linear-gradient(to top right, red, blue); /*Hướng lên góc trên bên phải */
+}
+</style>
+
+<div class="ele gr-default">
+    Đỏ -> Xanh: Hướng trên xuống
+</div> 
+<div class="ele g-to-right">
+    Đỏ -> Xanh: Hướng trái sang phải
+</div> 
+<div class="ele gr-90deg">
+    Đỏ -> Xanh: Hướng -90 độ (phải sang trái)
+</div>  
+<div class="ele gr-to-top">
+    Đỏ -> Xanh: Hướng (to top)
+</div>  
+<div class="ele gr-to-top-right">
+    Đỏ -> Xanh: hướng góc top right
+</div>
+```
+
+<p align = "center">
+<img width = 500 src="../images/lesson3/linear_gradient.png">
+</p>
+
+### 6.1.2. Sử dụng nhiều điểm dừng màu
+VD:
+  ```html
+  <style>
+  #grad1 {
+    height: 100px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  }
+  </style>
+  <div id="grad1" style="text-align:center;margin:auto;color:#888888;font-size:40px;font-weight:bold">
+  Rainbow Background
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/multy_color_gradient.png">
+</p>
+
+### 3.1.3. Sử dụng transparency
+- CSS `gradients` cũng hỗ trợ độ trong suốt `transparency`, để tạo hiệu ứng làm mờ.
+- Để thêm độ trong suốt, chúng ta sử dụng` rgba() để định nghĩa các điểm dừng màu`.
+
+  VD:
+  ```html
+  <style>
+  #grad1 {
+    height: 100px;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
+  }
+  </style>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/linear_gradient_transparency.png">
+</p>
+
+### 3.1.4. Lặp lại một linear-gradient
+- Để lặp lại một `linear-gradient` sử dụng hàm `repeating-linear-gradient()`
+- Cú pháp:
+  ```css
+  background-image: repeating-linear-gradient(direction, color1, color2,...)
+  ```
+  VD:
+  ```html
+  <style>
+  div {
+  margin-bottom: 30px;
+  }
+  #grad1 {
+    height: 100px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: repeating-linear-gradient(red, yellow 10%, green 20%);
+  }
+
+  #grad2 {
+    height: 100px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: repeating-linear-gradient(45deg,red,yellow 7%,green 10%);
+  }
+  </style>
+  <p>Repeating gradient top to bottom </p>
+  <div id="grad1"></div>
+  <p>Repeating gradient 45deg (bottom left to top right) </p>
+  <div id="grad2"></div>
+  ````
+<p align = "center">
+<img width = 500 src="../images/lesson3/repeating_gradient.png">
+</p>
+
+## 3.2. CSS Radial Gradients
+### 3.2.1. Cú pháp
+- `Radial Gradient` được định nghĩa bằng tâm của nó.
+- Để tạo ra `Radial Gradient` cần định nghĩa `ít nhất` hai điểm dừng màu.
+- Cú pháp:
+  ```css
+  background-image: radial-gradient(shape size at position, start-color, ..., last-color);
+  ```
+- Trong đó:
+  - `shape`: nhận các giá trị như `ellipse` (mặc định), `circle`
+  - `size`: nhận các giá trị như: `farthest-corner, closest-corner, farthest-side, closest-side`.
+  - `position`: nhận các giá trị `top`, `bottom`, `center` (mặc định), `left`, `right`, hoặc nhận các giá trị cụ thể như `50% 50% là ở tâm, 0% 0% tương đương top left.`
+  - `start-color,..., last-color`: là các điểm dừng màu
+
+VD:
+- `Shape ellipse` và `shape circle`
+
+  ```html
+  <style>
+  #grad1 {
+    height: 150px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(red, yellow, green);
+  }
+
+  #grad2 {
+    height: 150px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(circle, red, yellow, green);
+  }
+  </style>
+  <h1>Radial Gradient - Shapes</h1>
+
+  <h2>Ellipse (this is default):</h2>
+  <div id="grad1"></div>
+
+  <h2><strong>Circle:</strong></h2>
+  <div id="grad2"></div>
+  ```
+<p align = "center">
+<img width = 500 height= 500 src="../images/lesson3/shape_radial_gradient.png">
+</p>
+
+- Các giá trị của từ khóa `Sizes`:
+
+  ```html
+  <style>
+  .div1 {
+  float: left;
+  margin: 15px;
+  }
+  #grad1 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(closest-side at 60% 55%, red, yellow, black);
+  }
+
+  #grad2 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(farthest-side at 60% 55%, red, yellow, black);
+  }
+
+  #grad3 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(closest-corner at 60% 55%, red, yellow, black);
+  }
+
+  #grad4 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: radial-gradient(farthest-corner at 60% 55%, red, yellow, black);
+  }
+  </style>
+  <h1>Radial Gradients - Different size keywords</h1>
+
+  <div class="div1">
+    <h2>closest-side:</h2>
+    <div id="grad1"></div>
+  </div>
+  <div class="div1">
+    <h2>farthest-side:</h2>
+    <div id="grad2"></div>
+  </div>
+  <div class="div1">
+    <h2>closest-corner:</h2>
+    <div id="grad3"></div>
+  </div>
+  <div class="div1">
+    <h2>farthest-corner (default):</h2>
+    <div id="grad4"></div>
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/size_radial_gradients.png">
+
+
+### 3.2.2. Repeating a radial-gradient
+- Sử dụng hàm `repeating-radial-gradient()` để lặp lại một `radial gradients`
+
+  VD:
+  ```html
+  <style>
+  #grad1 {
+    height: 150px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: repeating-radial-gradient(red, yellow 10%, green 15%);
+  }
+  </style>
+  <h1>Repeating Radial Gradient</h1>
+
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/repeating_radial_gradient.png">
+
+## 6.3. CSS Conic Gradients
+### 6.3.1. Cú pháp
+- Một `Gradient conic` là một `gradient` với các chuyển đổi màu được quay xung quanh một điểm trung tâm. Để tạo một `gradient conic`, phải xác định `ít nhất` hai màu.
+- Cú pháp:
+  ```css
+  background-image: conic-gradient([from angle] [at position,] color [degree], color [degree], ...);
+  ```
+- Mặc định, `angle là 0deg` và `position là center`.
+- Nếu `degree` không được xác định, thì các màu sẽ được trải đều xung quanh điểm chính giữa.
+
+VD:
+- Một `conic gradient` với các điểm màu:
+  ```html
+  <style>
+  #grad1 {
+    height: 200px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(red, yellow, green);
+  }
+  </style>
+  <h1>Conic Gradient - Three Colors</h1>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/conic_gradients.png">
+
+- Một `conic gradient` với các điểm màu và một mức độ cho mỗi màu:
+  ```html
+  <style>
+  #grad1 {
+    height: 200px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(red 45deg, yellow 90deg, green 210deg);
+  }
+  </style>
+  <h1>Conic Gradient - Three Colors</h1>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/conic_gradients_degree.png">
+
+### 6.3.2. Tạo một biểu đồ tròn
+- Thêm thuộc tính `border-radius: 50%;` để tạo một `conic gradient` giống như một hình tròn.
+
+  VD:
+  ```html
+  <style>
+  #grad1 {
+    height: 200px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(red, yellow, green, blue, black);
+    border-radius: 50%;
+  }
+  </style>
+  <h1>Conic Gradient - Pie Chart</h1>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/pie_chart.png">
+</p>
+
+### 3.3.3. Conic gradient với [from angle]
+- `[From angle]` chỉ định một góc mà toàn bộ `gradient conic` sẽ được xoay.
+
+  VD:
+  ```html
+  <style>
+  #grad {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(red, yellow, green);
+    border-radius: 50%;
+  }
+  #grad1 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(from 90deg, red, yellow, green);
+    border-radius: 50%;
+  }
+  </style>
+  <h2>Conic Gradient - With a from angle default (0deg)</h2>
+  <div id="grad"></div>
+  <h2>Conic Gradient - With a from angle</h2>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/conic_gradients_angle.png">
+</p>
+
+### 3.3.4. Conic Gradient với vị trí trung tâm được chỉ định 
+- `[At position]` chỉ định tâm của `gradient conic`.
+
+  VD:
+  ```html
+  <style>
+  #grad {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(red, yellow, green);
+    border-radius: 50%;
+  }
+  #grad1 {
+    height: 150px;
+    width: 150px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: conic-gradient(at 60% 45%, red, yellow, green);
+    border-radius: 50%;
+  }
+  </style>
+  <h2>Conic Gradient - With a position default (center 50% 50%) </h2>
+  <div id="grad"></div>
+  <h2>Conic Gradient - With a specified center position</h2>
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/conic_gradients_position.png">
+</p>
+
+### 3.3.5. Reppeating a Gradient Conic 
+- Hàm `repeat-conic-gradient()` được sử dụng để lặp lại các `conic gradient`:  
+VD:
+  ```html
+  <style>
+  #grad1 {
+    height: 200px;
+    width: 200px;
+    background-color: red; /* For browsers that do not support gradients */
+    background-image: repeating-conic-gradient(red 10%, yellow 20%);
+    border-radius: 50%;
+  }
+  </style>
+  <h1>Repeating a Conic Gradient</h1>
+
+  <div id="grad1"></div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/repeating_gradient_conic.png">
+</p>
+
+# 4. CSS Shadow Effects
+- Với CSS chúng ta có thể thêm phần đổ bóng cho văn bản và cho những phần tử
+## 4.1. CSS Text Shadow
+### 4.1.1. Cú pháp
+ - Thuộc tính `text-shadow` được sử dụng để áp dụng đổ bóng cho văn bản
+ - Cú pháp:
+  ```css
+  selector {
+    text-shadow: h-offset v-offset blur color; 
+      }
+  ```
+  - Trong đó:
+      - `h-offset`: dịch chuyển đổ bóng theo chiều ngang, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `v-offset`: dịch chuyển đổ bóng theo chiều dọc, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `blur`: tạo độ mờ, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `color`: màu sắc cho bóng
+
+    VD:
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/text_shadow.png">
+    </p>
+
+### 4.1.2. Multiple Shadows
+- Để thêm nhiều phần đổ bóng cho văn bản, có thể thêm danh sách các bóng được phân tách bằng dấu phẩy.
+
+  VD:
+  ```html
+  <style>
+  h1 {
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+  }
+  </style>
+  <h1>Text-shadow with red and blue neon glow!</h1>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/multiple_shadow.png">
+</p>
+
+### 4.1.3. Border around text
+- Thuộc tính `text-shadow` cũng có thể sử dụng để tạo một đường viền xung quanh các ký tự trong văn bản (không có bóng).
+
+  VD:
+  ```html
+  <style>
+  h1 {
+    color: coral;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+  </style>
+  <h1>Border around text!</h1>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/border_around_text.png">
+</p>
+
+## 4.2. Box shadow
+- Thuộc tính `box-shadow` được sử dụng để áp dụng một hoặc nhiều phần đổ bóng cho một phần tử.
+### 4.2.1. Cú pháp
+
+  ```css
+  selector {
+    box-shadow: h-offset v-offset blur spread-radius color inset; 
+      }
+  ```
+  - Trong đó:
+      - `h-offset`: dịch chuyển đổ bóng theo chiều ngang, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `v-offset`: dịch chuyển đổ bóng theo chiều dọc, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `blur`: tạo độ mờ, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
+      - `spread-radius`: bán kính mở rộng
+      - `color`: màu sắc cho bóng
+      - `inset`: bóng sẽ đổ bên trong box
+
+    VD:
+    ```html
+    <style> 
+    div {
+      width: 300px;
+      height: 100px;
+      padding: 15px;
+      background-color: coral;
+      box-shadow: 10px 10px 5px lightblue;
+    }
+    </style>
+    <h1>The box-shadow Property</h1>
+    <div>A div element with a 5px blurred, lightblue box-shadow.</div>
+    ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/box_shadow.png">
+</p>
+
+### 4.2.2. Thiết lập bán kính mở rộng của bóng đổ
+- Thêm tham số `spread` vào thuộc tính `box-shadow` định nghĩa bán kính mở rộng cho bóng đổ. Một giá trị dương sẽ làm tăng kích thước của phần bóng, giá trị âm sẽ làm giảm kích thước của bóng.
+VD:
+  ```html
+  <style> 
+  div {
+    width: 300px;
+    height: 100px;
+    padding: 15px;
+    background-color: coral;
+    box-shadow: 10px 10px 5px 12px lightblue;
+  }
+  </style>
+
+  <div>A div element with a blurred, lightblue box-shadow, with a spread radius of 12px.</div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/spread_radius.png">
+</p>
+
+### 4.2.3. Thiết lập tham số inset
+- Để phần bóng đổ vào bên trong sử dụng thêm tham số `inset`
+  ```html
+  <style> 
+  div {
+    width: 300px;
+    height: 100px;
+    padding: 15px;
+    background-color: coral;
+    box-shadow: 10px 10px 5px lightblue inset;
+  }
+  </style>
+  <div>A div element with a blurred, lightblue, inset box-shadow.</div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/inset_box_shadow.png">
+</p>
+
+### 4.2.4. Thêm nhiều phần đổ bóng
+- Một phần tử có thể có nhiều phần đổ bóng, các phần khai báo bóng được cách nhau bởi dấu phẩy.
+  VD:
+  ```html
+  <style> 
+  #example1 {
+    width: 300px;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;
+    margin: 20px;
+  }
+
+  </style>
+  <div id="example1">
+    <h2>Multiple shadows</h2>
+    <p>box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green:</p>
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson3/multiple_box_shadow.png">
+</p>
+
+## 4.3. Cards
+- Chúng ta cũng có thể sử dụng thuộc tính `box-shadow` để tạo các thẻ card
+
+  VD:
+  ```html
+  <style>
+  div.card {
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+
+  div.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 40px;
+  }
+
+  div.container {
+    padding: 10px;
+  }
+  </style>
+  <div class="card">
+    <div class="header">
+      <h1>1</h1>
+    </div>
+
+    <div class="container">
+      <p>January 1, 2021</p>
     </div>
   </div>
   ```
 <p align = "center">
-  <img width = 500 src="../images/lesson4/overlay_image.png">
+<img width = 400 height = 350 src="../images/lesson3/card_box_shadow.png">
 </p>
 
-- Có thêm tham khảo một số hiệu ứng che phủ hình ảnh khác tại [Image Hover Overlay](https://www.w3schools.com/css/css3_images.asp)
-
-## 2.9. Flip an Image
-- Để `đảo/lật ngược` một hình ảnh khi di chuột vào, chúng ta sử dụng thuộc tính `transform: scale()`
-
-VD:
-- Lật ngược hình ảnh theo phương ngang (trục X):
-  ```html
-  <style>
-  .imgX:hover {
-    transform: scaleX(-1);
-  }
-  img {
-  margin: 20px;
-  }
-  </style>
-  <img src="paris.jpg" alt="Paris" width="200" height="150">
-
-  <!--Hình ảnh lật khi di chuột-->
-  <img class="imgX" src="paris.jpg" alt="Paris" width="200" height="150"> 
-  ```
-<p align = "center">
-  <img width = 500 src="../images/lesson4/flipX_image.png">
-</p>
-
-- Lật ngược hình ảnh theo trục Y:
-  ```html
-  <style>
-  .imgY:hover {
-    transform: scaleY(-1);
-  }
-  img {
-  margin: 20px;
-  }
-  </style>
-  <img src="paris.jpg" alt="Paris" width="200" height="150">
-  <br>
-  <!--Hình ảnh lật khi di chuột-->
-  <img class="imgY" src="paris.jpg" alt="Paris" width="200" height="150"> 
-  ```
-<p align = "center">
-  <img width = 500 height=400 src="../images/lesson4/flipY_image.png">
-</p>
-
-# 3. CSS Image Reflections
-## 3.1. Image reflections
-- Thuộc tính `box-reflect` được sử dụng để tạo sự phản chiếu của một hình ảnh.
-- Thuộc tính `box-reflect` có các giá trị sau: `below`, `above`, `left`, hoặc `right`.
-
-VD:
-- Tạo phản chiếu sang bên phải của hình ảnh:
-
-  ```html
-  <style>
-  img {
-    -webkit-box-reflect: right;
-  }
-  </style>
-  <p>Show the reflection to the right of the image:</p>
-  <img src="img_tree.png">
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/reflect_image.png">
-  </p>
-
-## 3.2. Reflection Offset
-- Để chỉ định một `khoảng cách giữa hình ảnh và sự phản chiếu` của nó, ta `thêm 1 giá trị khoảng cách` vào thuộc tính `box-refect`:
+# 5. CSS Text Effects
+## 5.1. CSS Text Overflow
+- Thuộc tính `text-overflow` được sử dụng để chỉ định cách mà một nội dung khi bị tràn ra mà không được hiển thị trên trình duyệt nó sẽ có dấu hiệu như thế nào để người dùng biết.
+- Nó có thể được cắt bớt (clip) hoặc được thay bằng dấu chấm lửng (ellipsis `...`)
 
   VD:
   ```html
-  <style>
-  img {
-    -webkit-box-reflect: right 50px;
+  <style> 
+  p.test1 {
+    white-space: nowrap; 
+    width: 200px; 
+    border: 1px solid #000000;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  p.test2 {
+    white-space: nowrap; 
+    width: 200px; 
+    border: 1px solid #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   </style>
-  <p>Show the reflection to the right of the image:</p>
-  <img src="img_tree.png">
+  <h2>text-overflow: clip:</h2>
+  <p class="test1">This is some long text that will not fit in the box</p>
+
+  <h2>text-overflow: ellipsis:</h2>
+  <p class="test2">This is some long text that will not fit in the box</p>
   ```
 <p align = "center">
-<img width = 500 src="../images/lesson4/reflect_image_size.png">
+<img width = 400 height = 350 src="../images/lesson3/text-overflow.png">
 </p>
 
-## 3.3. Reflection with gradient
-- Để tạo một hiệu ứng chuyển đổi cho phần phản chiều của một hình ảnh, bằng cách thêm hàm `linear-gradient(direction, color1, color2,...)`
-
-  VD:
-  ```html
-  <style>
-  img {
-    -webkit-box-reflect: right 0px linear-gradient(to right, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
-  }
-  </style>
-  <img src="img_tree.png">
-  ```
-<p align = "center">
-<img width = 500 src="../images/lesson4/reflect_image_gradient.png">
-</p>
-
-# 4. CSS object-fit property
-## 4.1. Thuộc tính object-fit
-- Thuộc tính `object-fit` được sử dụng để định nghĩa một hình ảnh hoặc video nên được đặt lại kích thước như thế nào để phù hợp với phần chứa nó.
-- Thuộc tính này yêu cầu nội dung để lấp đầy phần chứa bằng nhiều cách khác nhau, ví dụ như giữ nguyên tỷ lệ khung hình đó hoặc kéo dãn và chiếm một khoảng không gian nhiều nhất có thể.
-- Thuộc tính `object-fit` có các giá trị sau:
-  - `fill`: (mặc định)-hình ảnh được đặt lại kích thước để lấp đầy kích thước được chỉ định. Nếu cần thiết, hình ảnh sẽ được kéo dãn hoặc co lại để cho phù hợp.
-  - `contain`: Hình ảnh giữ nguyên tỷ lệ, những nó được đặt lại kích thước để phù hợp với kích thước được chỉ định.
-  - `cover`: Hình ảnh giữ nguyên tỷ lệ và lấp đầy kích thước được chỉ định. Hình ảnh sẽ được cắt bớt để cho phù hợp.
-  - `none`: Hình ảnh không được đặt lại kích thước
-  - `scale-down`: Hình ảnh được thu nhỏ lại thành phiên bản nhỏ nhất của `none` và `contain`.
-
-VD: 
-- `object-fit: cover;`
-  ```html
-  <style>
-  div{
-    float: left;
-    margin: 20px;
-  }
-  .img1 {
-    width: 200px;
-    height: 300px;
-    object-fit: cover;
-  }
-  </style>
-
-  <div>
-    <h3>Using object-fit: cover</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-fit property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object_fit_cover.png">
-  </p>
-
-- `object-fit: fill;`
-  ```html
-  <style>
-  div{
-    float: left;
-    margin: 20px;
-  }
-  .img1 {
-    width: 200px;
-    height: 300px;
-    object-fit: fill;
-  }
-  </style>
-
-  <div>
-    <h3>Using object-fit: fill</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-fit property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object_fit_fill.png">
-  </p>
-
-- `object-fit: contain;`
-  ```html
-  <style>
-  div{
-    float: left;
-    margin: 20px;
-  }
-  .img1 {
-    width: 200px;
-    height: 300px;
-    object-fit: contain;
-  }
-  </style>
-
-  <div>
-    <h3>Using object-fit: contain</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-fit property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object_fit_contain.png">
-  </p>
-
-- `object-fit: none;`
-  ```html
-  <style>
-  div{
-    float: left;
-    margin: 20px;
-  }
-  .img1 {
-    width: 200px;
-    height: 300px;
-    object-fit: none;
-  }
-  </style>
-
-  <div>
-    <h3>Using object-fit: none</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-fit property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object_fit_none.png">
-  </p>
-- `object-fit: scale-down;`
-  ```html
-  <style>
-  div{
-    float: left;
-    margin: 20px;
-  }
-  .img1 {
-    width: 200px;
-    height: 300px;
-    object-fit: scale-down;
-  }
-  </style>
-
-  <div>
-    <h3>Using object-fit: scale-down</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-fit property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object_fit_scale_down.png">
-  </p>
-
-# 5. CSS object-position property
-- Thuộc tính `object-position` được sử dụng để chỉ định một hình ảnh hay video được đặt ở vị trí nào trong phần tử chứa nó.
-- Giả sử rằng một phần của hình ảnh được hiển thị mà không phải vị trí như chúng ta muốn. Xác định vị trí hình ảnh mong muốn, chúng ta sẽ sử dụng thuộc tính `object-position`.
-- Nó có 2 giá trị: một trục là `trên-dưới` và 2 là `trái-phải`. Những con số này có thể được để là `phần trăm (%), pixel(px), đơn vị đo lường, có thể là giá trị âm` hoặc cũng có thể là các giá trị như `center`, `top`, `right`, `bottom`,...
-
-  VD:
-  ```html
-  <style>
-    div{
-      float: left;
-      margin: 20px;
-    }
-    .img1 {
-      width: 200px;
-      height: 300px;
-      object-fit: cover;
-      object-position: 80% 100%;
-    }
-  </style>
-
-  <div>
-    <h3>Using object-position</h3>
-    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
-  </div>
-
-  <div>
-    <h3>Don't use object-position property</h3>
-    <img src="paris.jpg" alt="Paris" width="200" height="300">
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/object-position.png">
-  </p>
-
-# 6. CSS Masking
-- Sử dụng CSS masking tạo một lớp mặt nạ để đặt lên trên một phần tử để ẩn đi một phần hoặc toàn bộ các thành phần của phần tử đó.
-## 6.1. Thuộc tính mask-image
-- Thuộc tính `mask-image` định nghĩa một hình ảnh được sử dụng như một lớp mặt nạ cho một phần tử .
-- Hình ảnh lớp mặt nạ có thể là một hình ảnh PNG, SVG, gradient,...
-### 6.1.1. Sử dụng hình ảnh như lớp mặt nạ
-- Để sử dụng một hình ảnh PNG hoặc SVG như một lớp mặt nạ, sử dụng một giá trị `url()` để chuyển hình ảnh vào lớp mặt nạ
-- Hình ảnh mặt nạ cần có một vùng trong suốt hoặc bán trong suốt. Màu đen hiển thị hoàn toàn trong suốt.  
-
+## 5.2. CSS Word Wrapping
+- Thuộc tính `word-wrap: break-word;` cho phép những từ dài có thể được tách ra và ngắt xuống
+một dòng mới.  
 VD:
-- Chúng ta sử dụng hình ảnh dưới đây như là một hình ảnh mặt nạ - `w3logo.png`:
-<p align = "center">
-<img width = 500 src="../images/lesson4/w3_school.png">
-</p>
-
-- Đây là một hình ảnh gốc ban đầu - `img_5terre.jpg`:
-
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/image.png">
-  </p>
-- Chương trình:
   ```html
-  <style>
-  .mask1 {
-    -webkit-mask-image: url(w3logo.png);
-    mask-image: url(w3logo.png);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;    
+  <style> 
+  p.test {
+    width: 11em; 
+    border: 1px solid #000000;
+  }
+  p.test1 {
+    width: 11em; 
+    border: 1px solid red;
+    word-wrap: break-word;
   }
   </style>
-    <h3>An image with a mask layer image:</h3>
-    <div class="mask1">
-    <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+  </head>
+  <body>
+
+  <h1>There is no word-wrap Property</h1>
+  <p class="test">This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will break and wrap to the next line.</p>
+
+  <h1>The word-wrap Property</h1>
+  <p class="test1">This paragraph contains a very long word: thisisaveryveryveryveryveryverylongword. The long word will break and wrap to the next line.</p>
+  ```
+<p align = "center">
+<img width = 400 height = 350 src="../images/lesson3/word-wrap.png">
+</p>
+
+## 5.3. CSS Word Breaking
+- Thuộc tính `word-break` định nghĩa những nguyên tắc xuống dòng.
+  - `word-break: keep-all;` định nghĩa ngắt dòng ở dấu gạch nối (`-`)
+  - `word-break: break-all;` định nghĩa ngắt dòng ở bất kỳ ký tự nào
+
+  VD:
+  ```html
+  <style> 
+  p.test1 {
+    width: 140px; 
+    border: 1px solid #000000;
+    word-break: keep-all;
+  }
+
+  p.test2 {
+    width: 140px; 
+    border: 1px solid #000000;
+    word-break: break-all;
+  }
+  </style>
+  <h2>word-break: keep-all</h2>
+  <p class="test1">This paragraph contains some text. This line will-break-at-hyphens.</p>
+  <h2>word-break: break-all</h2>
+  <p class="test2">This paragraph contains some text. The lines will break at any character.</p>
+  ```
+<p align = "center">
+<img width = 400 height = 350 src="../images/lesson3/word-break.png">
+</p>
+
+## 5.4. CSS Writing Mode
+- Thuộc tính `writing-mode` chỉ định những dòng văn bản được đặt bố cục theo chiều ngang hay chiều dọc.
+  - `writing-mode: horizontal-tb;`bố cục dòng văn bản theo chiều ngang
+  - `writing-mode: vertical-rl;` bố cục dòng văn bản theo chiều dọc
+
+  VD:
+  ```html
+  <style> 
+  p.test1 {
+    writing-mode: horizontal-tb; 
+  }
+
+  span.test2 {
+    writing-mode: vertical-rl; 
+  }
+
+  </style>
+  <p class="test1">Some text with default writing-mode.</p>
+
+  <p>Some text with a span element with a <span class="test2">vertical-rl</span> writing-mode.</p>
+  ```
+<p align = "center">
+<img width = 400 height = 350 src="../images/lesson3/writing-mode.png">
+</p>
+
+# 6. CSS Web Fonts
+## 6.1. CSS @font-face Rule
+- Các phông chữ web cho phép những người thiết kế trang web sử dụng các phông chữ mà không được cài đặt trên máy tính của người dùng.
+- Khi chúng ta đã tìm được phông chữ mà chúng ta muốn sử dụng, chỉ cần đưa tệp tin phông chữ vào máy chủ web của mình và nó sẽ tự động được tải xuống khi người dùng cần sử dụng.
+- Các phông chữ của riêng bạn được xác định trong quy tắc CSS `@font-face`
+
+## 6.2. Các định dạng phông chữ khác nhau
+- `TrueType Fonts (TTF)`: đây là một phông chữ tiêu chuẩn được phát triển vào cuối những năm 1980 bởi Apple và Microsoft. TrueType là định dạng phông chữ phổ biến nhất cho cả hệ điều hành MacOs và Microsoft Windows.
+- `OpenType Fonts (OTF)`: OpenType là một định dạng cho các phông chữ máy tính có thể mở rộng. Nó được xây dựng trên TrueType và là thương hiệu đã đăng ký của Microsoft. Ngày nay phông chữ OpenType được sử dụng phổ biến trên các nền tảng máy tính lớn.
+- `Web Open Font Format (WOFF)`: WOFF là một định dạng phông chữ để sử dụng trong các trang web. Nó được phát triển vào năm 2009 và hiện là một Khuyến nghị của W3C. WOFF về cơ bản là OpenType hoặc TrueType với tính năng nén và siêu dữ liệu bổ sung. Mục tiêu là hỗ trợ phân phối phông chữ từ máy chủ đến máy khách qua mạng có hạn chế về băng thông.
+- `SVG Fonts/Shape`: Phông chữ SVG cho phép SVG được sử dụng làm glyphs khi hiển thị văn bản. Đặc tả SVG 1.1 xác định mô-đun phông chữ cho phép tạo phông chữ trong tài liệu SVG. Chúng ta cũng có thể áp dụng CSS cho tài liệu SVG và quy tắc `@font-face` có thể được áp dụng cho văn bản trong tài liệu SVG.
+- `Embedded OpenType Fonts (EOT)`: Phông chữ EOT là một dạng phông chữ OpenType nhỏ gọn được Microsoft thiết kế để sử dụng làm phông chữ nhúng trên các trang web.
+
+## 6.3. Cách sử dụng phông chữ mà chúng ta muốn
+- Theo quy tắc `@font-face`, đầu tiên định nghĩa một tên cho phông chữ và sau đó trỏ tới tệp tin phông chữ.
+
+  *Lưu ý*: luôn sử dụng ký tự viết thường cho địa chỉ url của phông chữ.
+- Để sử dụng phông chữ cho một phần tử HTML, tham chiếu tên của phông chữ thông qua thuộc tính `font-family`
+
+  VD:
+  ```html
+  <style> 
+  @font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+  }
+  * {
+    font-family: myFirstFont;
+  }
+  </style>
+  <h1>The @font-face Rule</h1>
+  <div>
+  With CSS, websites can use fonts other than the pre-selected "web-safe" fonts.
   </div>
   ```
 <p align = "center">
-<img width = 500 src="../images/lesson4/mask_image.png">
+<img width = 400 height = 350 src="../images/lesson3/font-face.png">
 </p>
 
-### 6.1.2. Sử dụng gradiens như lớp mặt nạ
-- CSS `linear` và `radial gradients` cũng có thể được sử dụng như những hình ảnh mặt nạ
+# 7. CSS 2D Transforms
+- Các phép biến đổi CSS cho phép chúng ta di chuyển, xoay, chia tỷ lệ và làm nghiêng các phần tử.
+
+## 7.1. Các phương thức biến đổi của CSS 2D
+### 7.1.1. Phương thức translate()
+- Phương thức `translate()` di chuyển một phần tử ra khỏi vị trí ban đầu của nó (dựa theo các tham số được cho bởi trục X và Y)
 - Cú pháp:
   ```css
   selector {
-    /* Linear-gradient*/
-    mask-image: linear-gradient(direction, color, transparent);
-
-    /* radial-gradient*/
-    mask-image: radial-gradient(shape, color, transparent);
+    transform: translate(X, Y); 
   }
   ```
+  VD: di chuyển phần tử `<div>` sang phải 50px, xuống dưới 100px
 
-VD: 
-- `Linear gradient` như một lớp mặt nạ
   ```html
-  <style>
-  .mask1 {
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  <style> 
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+    transform: translate(50px,100px);
   }
   </style>
-  <h3>A linear gradient as a mask layer:</h3>
-  <div class="mask1">
-  <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+  <p>The translate() method moves an element from its current position:</p>
+  <div>
+  This div element is moved 50 pixels to the right, and 100 pixels down from its current position.
   </div>
   ```
 <p align = "center">
-<img width = 500 src="../images/lesson4/linear_gradient_mask.png">
+<img width = 400 height = 350 src="../images/lesson3/translate.png">
 </p>
 
-- `Radial gradient` như một lớp mặt nạ
-
-  ```html
-  <style>
-  .mask2 {
-    -webkit-mask-image: radial-gradient(circle, black 30%, rgba(0, 0, 0, 0.5) 30%);
-    mask-image: radial-gradient(circle, black 30%, rgba(0, 0, 0, 0.5) 30%);
-  }
-  </style>
-  <h3>A radial gradient as a mask layer (a circle):</h3>
-  <div class="mask2">
-  <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
-  </div>
-  ```
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/radial_gradient_mask.png">
-</p>
-
-### 6.1.3. Sử dụng SVG như một lớp mặt nạ
-- Phần tử SVG `<mask>` có thể được sử dụng bên trong đồ họa SVG để tạo hiệu ứng mặt nạ.
-
-  VD:
-  - Một `SVG mask layer` (formed as a triangle):
-
-  ```html
-  <h3>An SVG mask layer (được hiển thị như một tam giác):</h3>
-  <svg width="600" height="400">
-    <mask id="svgmask1">
-      <polygon fill="#ffffff" points="200 0, 400 400, 0 400"></polygon>
-    </mask>
-    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img_5terre.jpg" mask="url(#svgmask1)"></image>
-  </svg>
-  ```
-<p align = "center">
-<img width = 500 src="../images/lesson4/svg_mask.png">
-</p>
-
-- Một `SVG mask layer` (được hiển thị như một hình tròn):
-  ```html
-  <svg width="600" height="400">
-    <mask id="svgmask3">
-      <circle fill="#ffffff" cx="75" cy="75" r="75"></circle>
-      <circle fill="#ffffff" cx="80" cy="260" r="75"></circle>
-      <circle fill="#ffffff" cx="270" cy="160" r="75"></circle>
-      <circle fill="#ffffff" cx="470" cy="120" r="85"></circle>
-    </mask>
-    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img_5terre.jpg" mask="url(#svgmask3)"></image>
-  </svg>
-  ```
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/circle_mask.png">
-</p>
-
-# 7. CSS Buttons
-## 7.1 Basic Button Styling
-- Có các cách để tạo một button đơn giản như ví dụ dưới đây
-
-  ```html
-  <style>
-  .button {
-    background-color: #4CAF50;
-    border: 2px solid red;
-    color: white;
-    padding: 15px 32px;
-    width: 50px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  </style>
-  <button>Default Button</button>
-  <a href="#" class="button">Link Button</a>
-  <button class="button">Button</button>
-  <input type="button" class="button" value="Input Button">
-  ```
-<p align = "center">
-<img width = 500 src="../images/lesson4/button.png">
-</p>
-
-- Ở ví dụ trên, trong phần định kiểu style cho button chúng ta đã sử dụng các thuộc tính của CSS như:
-  - `background-color`: để thay đổi màu nền cho một button.
-  - `color`: để chỉ định màu chữ trong button.
-  - `padding`: để thay đổi phần đệm (padding) của một button.
-  - `border`: đễ xác định đường viền: độ dày, loại và màu đường viền.
-  - `width`: xác định chiều rộng của button
-  - `border-radius`: để bo góc cho đường viền .
-  - `font-size`: để xác định kích thước phông chữ của một button.   
-  ...
-
-## 7.2. Một số định kiểu style khác cho button
-### 7.2.1. Hoverable Buttons
-- Sử dụng bộ chọn `:hover` để thay đổi định kiểu của một button khi mà chúng ta di chuột qua nó.
-- Sử dụng thêm thuộc tính `transition-duration` để xác định tốc độ của hiệu ứng sau khi di chuột qua
+### 7.1.2. Phương thức rotate()
+- Phương thức `rotate()` quay một phần tử theo chiều kim đồng hồ hoặc ngược chiều kim đồng hồ theo một góc độ nhất định.
+- Sử dụng một góc với giá trị dương để xoay phần tử theo chiều kim đồng hồ, giá trị âm để xoay chiều ngược kim đồng hồ.
 
   VD:
   ```html
   <style>
-  .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
   }
 
-  .button1 {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #4CAF50;
-  }
-
-  .button1:hover {
-    background-color: #4CAF50;
-    color: white;
+  div#myDiv {
+    transform: rotate(20deg);
   }
   </style>
-  <h2>Hoverable Buttons</h2>
-  <button class="button button1">Green</button>
-  <button class="button button1">Green</button>
-  ```
-- Khi di chuột vào button bên trái, màu nền của button chuyển sang màu xanh lá, màu chữ chuyển sang màu trắng.
 
-<p align = "center">
-<img width = 500 src="../images/lesson4/hover_button.png">
-</p>
+  <div>
+  This a normal div element.
+  </div>
 
-### 7.2.2. Shadow Buttons
-- Sử dụng thuộc tính `box-shadow` để thêm những phần đổ bóng cho một button với cú pháp:
-
-  ```css
-  button {
-    box-shadow: h-offset v-offset blur color;
-  }
-  ```
-### 7.2.3. Disabled Buttons
-- Sử dụng thuộc tính `opacity` để thêm độ trong suốt tới một button (giống như tạo ra một cái nút bị vô hiệu hóa).
-- Chúng ta cũng có thể thêm thuộc tính `cursor: not-allowed;` để khi di chuột vào button sẽ có một `ký hiệu cấm` được hiển thị lên.  
-VD: 
-  ```css
-  .disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-  ```
-
-  VD: `Shawdow và Disabled Buttons`
-  ```html
-  <style>
-  .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-
-  .button1 {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #4CAF50;
-    box-shadow: 5px 5px 3px gray, 3px 3px 3px rgba(125,125,125,0.6)
-  }
-
-  .button2 {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  </style>
-  <h2>Shadow Buttons</h2>
-  <button class="button button1">Button1</button>
-  <h2>Disabled Buttons</h2>
-  <button class="button button2">Button2</button>
-  ```
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/shadow_disable_button.png">
-</p>
-
-### 7.2.4. Button groups
-- Để tạo một nhóm các button, chúng ta bỏ thuộc tính `margin` đi và thêm một thuộc tình `float:left;` vào trong phần định kiểu của button
-
-  VD:
-  ```html
-  <style>
-  .btn-group .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    float: left;
-  }
-  </style>
-  <div class="btn-group">
-    <button class="button">Button</button>
-    <button class="button">Button</button>
-    <button class="button">Button</button>
-    <button class="button">Button</button>
+  <div id="myDiv">
+  This div element is rotated clockwise 20 degrees.
   </div>
   ```
 <p align = "center">
-<img width = 500 src="../images/lesson4/group_button.png">
+<img width = 400 src="../images/lesson3/rotate.png">
 </p>
 
-- Như ví dụ trên, nhóm button được tạo đặt theo hàng ngang, nếu chúng ta muốn có một nhóm các button đặt theo hàng dọc, thì chúng ta bỏ thuộc tính `float:left;` đi và thay bằng thuộc tính `display:block;`
-
-<p align = "center">
-<img width = 500 src="../images/lesson4/vertical_group_button.png">
-</p>
-
-### 7.2.5. Hoạt ảnh của button
-- Ví dụ tạo một hiệu ứng nhấn khi click vào button
+### 7.1.3. Phương thức scale()
+- Phương thức `scale()`dùng để tăng hoặc giảm kích thước của một phần tử (theo tham số của chiều rộng và chiều cao)
 
   ```html
   <style>
-  .button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+  div {
+    margin: 50px;
+    width: 200px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
   }
-
-  .button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+  .c1 {
+    transform: scale(1.5, 1.5);
   }
   </style>
-  <button class="button">Click Me</button>
-  ```
-- Sử dụng thuộc tính `transform: translateY(4px);` để khi button được click vào thì button sẽ dịch chuyển vị trí xuống dưới theo trục Y 1 khoảng để tạo hiệu ứng giống như nó được nhấn xuống.   
-...
-
-# 8. CSS Pagination
-## 8.1. Simple Pagination
-- Nếu một trang web có nhiều trang, chúng ta có thể thêm vào 1 phân trang đơn giản tới mỗi trang web như sau:
-  ```html
-  <style>
-  .pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-  </style>
-  <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
+  <div >
+  This div element is normal
+  </div>
+  <div class="c1">
+  This div element is half of its original height.
   </div>
   ```
 <p align = "center">
-<img width = 500 src="../images/lesson4/simple_pagination.png">
+<img width = 400 src="../images/lesson3/scale.png">
 </p>
 
-## 8.2. Active and Hoverable Pagination
-- Định kiểu làm nổi bật trang web hiện tại với một class `.active`, và sử dụng bộ chọn `:hover` để thay đổi kiểu cho liên kết mỗi trang khi người dùng di chuột qua nó.  
-VD:
+### 7.1.4. Phương thức scaleX()
+- Phương thức `scaleX()` tăng hoặc giảm chiều rộng của một phần tử. 
   ```html
-  <style>
-  .pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-  }
-
-  /*Định kiểu cho trang web hiện tại: màu nền xanh, chữ màu trắng, bo góc */
-  .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-  }
-
-  /*Định kiểu cho những liên kết trang khác với màu nền xám, bo góc khi di chuột qua nó*/
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 5px;
-  }
-  </style>
-  <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a href="#" class="active">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-  </div>
-  ```
-
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/active_hover_page.png">
-  </p>
-
-## 8.3. Rounded Borders
-- Ở ví dụ bên trên, chúng ta đã thực hiện tạo đường viền và bo góc cho tất cả các liên kết trang. Ví dụ sau đây chúng ta chỉ tạo bo góc cho liên kết đầu tiên và cuối cùng của danh sách phân trang bằng cách sử dụng bộ chọn `:first-child` và `:last-child`
-
-  ```html
-  <style>
-  .pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-  }
-
-  .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-  }
-
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
-  }
-
-  .pagination a:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  .pagination a:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-  </style>
-  <div class="pagination">
-    <a href="#">&laquo;</a>
-    <a href="#">1</a>
-    <a class="active" href="#">2</a>
-    <a href="#">3</a>
-    <a href="#">4</a>
-    <a href="#">5</a>
-    <a href="#">6</a>
-    <a href="#">&raquo;</a>
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/first_last_border_radius.png">
-  </p>
-
-## 8.4. Một số định kiểu khác cho phân trang
-- Tạo khoảng cách giữa các liên kết trong trang: sử dụng thuộc tính `margin`
-- Thay đổi kích thước phân trang: sử dụng thuộc tính `font-size`
-- Căn giữa cho phân trang: sử dụng thuộc tính `text-align: center;`
-
-  VD:
-  ```html
-  <style>
-  .center {
-    text-align: center;
-  }
-  .pagination {
-    display: inline-block;
-  }
-
-  .pagination a {
-    color: black;
-    float: left;
-    font-size: 30px;
-    margin: 0 5px;
-    padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-  }
-
-  .pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-  }
-
-  .pagination a:hover:not(.active) {background-color: #ddd;}
-
-  .pagination a:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  .pagination a:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-  </style>
-  <div class="center">
-    <div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#">1</a>
-      <a class="active" href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">&raquo;</a>
-    </div>
-  </div>
-  ```
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/pagination_more.png">
-  </p>
-
-# 9. CSS Multiple Columns
-- Bố cục nhiều cột trong CSS cho phép xác định số lượng cột của văn bản một cách dễ dàng - giống như trên những tờ báo/tạp chí
-- Những thuộc tính của CSS `multi-column`:
-  - `column-count`: định nghĩa một phần tử có thể được chia thành bao nhiêu cột
-  - `column-gap`: định nghĩa khoảng cách giữa các cột
-  - `column-rule-style`: định nghĩa kiểu style phân tách giữa các cột (có thể là `solid, dotted, double`,...)
-  - `column-rule-width`: định nghĩa độ dày của đường phân tách giữa các cột.
-  - `column-rule-color`: định nghĩa màu sắc của đường phân tách.
-  - `column-rule`: là thuộc tính viết gọn cho các thuộc tính theo thứ tự `column-rule-width`, `column-rule-style`, `column-rule-color`.
-  - `column-span`: định nghĩa một phần tử sẽ phân chia nội dung trải dài qua bao nhiêu cột.
-  - `column-width`: định nghĩa chiều rộng được khuyến cáo, tối ưu cho các cột.
-
-  VD:
-  ```html
-    <style> 
-    .newspaper {
-      column-count: 3;
-      column-gap: 40px;
-      column-rule: 3px dashed lightblue;
+    <style>
+    div {
+      margin: 50px;
+      width: 200px;
+      height: 100px;
+      background-color: yellow;
+      border: 1px solid black;
     }
-
-    h2 {
-      column-span: all;
-    }
-
-    p {
-      column-width: 150px;
+    .c1 {
+      transform: scaleX(0.5);
     }
     </style>
-
-    <div class="newspaper">
-    <h2>Lorem Ipsum Dolor Sit Amet</h2>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
+    <div >
+    This div element is normal
     </div>
-    <h3>Column-width property</h3>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+    <div class="c1">
+    This div element is half of its original width.
+    </div>
     ```
+<p align = "center">
+<img width = 400 height = 350 src="../images/lesson3/scaleX.png">
+</p>
 
-  <p align = "center">
-  <img width = 500 src="../images/lesson4/multi_column.png">
-  </p>
-
-# 10. CSS User Interface
-## 10.1. CSS Resizing
-- Sử dụng thuộc tính `resize` để định nghĩa một phần tử có thể được người dùng thay đổi kích thước như thế nào.
-- Để thay đổi kích thước phần tử trên cửa sổ trình duyệt, chúng ta đặt con trỏ chuột vào góc dưới cùng bên phải của một phần tử để thực hiện.  
-
-VD:
-- Người dùng `chỉ có thể thay đổi được chiều rộng` của một phần tử sử dụng thuộc tính `resize: horizontal;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm ngang. 
+### 7.1.5. Phương thức scaleY()
+- Phương thức `scaleY()` tăng hoặc giảm chiều cao của một phần tử. 
   ```html
-  <style> 
+  <style>
   div {
-    border: 2px solid;
-    padding: 20px; 
-    width: 300px;
-    resize: horizontal; 
-    overflow: auto;
-  }
-  </style>
-  <h1>The resize Property</h1>
-
-  <div>
-    <p>Let the user resize only the width of this div element.</p>
-    <p>To resize: Click and drag the bottom right corner of this div element.</p>
-  </div>
-  ```
-
-- Người dùng `chỉ có thể thay đổi được chiều cao` của một phần tử sử dụng thuộc tính `resize: vertical;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm dọc. 
-  ```html
-  <style> 
-  div {
-    border: 2px solid;
-    padding: 20px; 
-    width: 300px;
-    resize: vertical; 
-    overflow: auto;
-  }
-  </style>
-  <h1>The resize Property</h1>
-
-  <div>
-    <p>Let the user resize only the height of this div element.</p>
-    <p>To resize: Click and drag the bottom right corner of this div element.</p>
-  </div>
-  ```
-- Người dùng `có thể thay đổi được cả chiều rộng và chiều cao` của một phần tử sử dụng thuộc tính `resize: both;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm chéo. 
-  ```html
-  <style> 
-  div {
-    border: 2px solid;
-    padding: 20px; 
-    width: 300px;
-    resize: both; 
-    overflow: auto;
-  }
-  </style>
-  <h1>The resize Property</h1>
-
-  <div>
-    
-    <p>To resize: Click and drag the bottom right corner of this div element.</p>
-  </div>
-  ```
-## 10.2. CSS outline Offset
-- Thuộc tính `outline-offset` định nghĩa 1 khoảng cách giữa một đường bao ngoài (`outline`) và đường viền (`border`) của một phần tử.  
-VD:
-  ```html
-  <style> 
-  div.ex1 {
-    margin: 20px;
+    margin: 50px;
+    width: 200px;
+    height: 100px;
+    background-color: yellow;
     border: 1px solid black;
-    outline: 4px solid red;
-    outline-offset: 15px;
-  }  
+  }
+  .c1 {
+    transform: scaleY(0.5);
+  }
   </style>
-  <h1>The outline-offset Property</h1>
-
-  <div class="ex1">This div has a 4 pixels solid red outline 15 pixels outside the border edge.</div>
+  <div >
+  This div element is normal
+  </div>
+  <div class="c1">
+  This div element is half of its original height.
+  </div>
   ```
 <p align = "center">
-  <img width = 500 src="../images/lesson4/outline_offset.png">
-  </p>
+<img width = 400 height = 350 src="../images/lesson3/scaleY.png">
+</p>
+
+### 7.1.6. Phương thức skewX()
+- Phương thức `skewX()` nghiêng một phần tử dọc theo trục X một góc cho trước
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  div#myDiv {
+    transform: skewX(20deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is skewed 20 degrees along the X-axis.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/skewX.png">
+</p>
+
+### 7.1.7. Phương thức skewY()
+- Phương thức `skewY()` nghiêng một phần tử dọc theo trục Y một góc cho trước.
+
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  div#myDiv {
+    transform: skewY(20deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is skewed 20 degrees along the Y-axis.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/skewY.png">
+</p>
+
+
+### 7.1.8. Phương thức skew()
+- Phương thức `skew()` nghiêng một phần tử dọc theo trục X và trục Y một góc cho trước
+
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  div#myDiv {
+    transform: skew(20deg, 10deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is skewed 20 degrees along the X-axis, 10 degrees along the Y-axis..
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/skew.png">
+</p>
+
+### 7.1.9. Phương thức matrix()
+- Phương thức `matrix()` kết hợp tất cả các phương thức chuyển đổi 2D thành một.
+- Cú pháp:
+  ```css
+    transform: matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY())
+  ```
+  VD:
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  div#myDiv1 {
+    transform: matrix(1, -0.3, 0, 1, 0, 0);
+  }
+
+  div#myDiv2 {
+    transform: matrix(1, 0, 0.5, 1, 150, 0);
+  }
+  </style>ds into one.</p>
+
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv1">
+  Using the matrix() method.
+  </div>
+
+  <div id="myDiv2">
+  Another use of the matrix() method.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/matrix.png">
+</p>
+
+# 8. CSS 3D Transforms
+- Sử dụng thuộc tính `transform` để sử dụng các phương thức chuyển đổi 3D
+## 8.1. Các phương thức chuyển đổi 3D CSS
+### 8.1.1. Phương thức rotateX()
+- Phương thức `rotateX()` xoay một phần tử quanh trục X ở 1 góc độ nhất định.
+
+  VD
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  #myDiv {
+    transform: rotateX(120deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is rotated 120 degrees.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/rotateX_3D.png">
+</p>
+
+### 8.1.2. Phương thức rotateY()
+- Phương thức `rotateY()` xoay một phần tử quanh trục Y ở 1 góc độ nhất định.
+
+  VD
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  #myDiv {
+    transform: rotateY(150deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is rotated 150 degrees.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/rotateY_3D.png">
+</p>
+
+### 8.1.3. Phương thức rotateZ()
+- Phương thức `rotateZ()` xoay một phần tử quanh trục Z ở 1 góc độ nhất định.
+
+  VD
+  ```html
+  <style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  #myDiv {
+    transform: rotateZ(150deg);
+  }
+  </style>
+  <div>
+  This a normal div element.
+  </div>
+
+  <div id="myDiv">
+  This div element is rotated 150 degrees.
+  </div>
+  ```
+<p align = "center">
+<img width = 400 src="../images/lesson3/rotateZ_3D.png">
+</p>
+
+# 9. CSS Transitions
+## 9.1. Đặc điểm
+- Chuyển đổi CSS (`transition`) cho phép chúng ta thay đổi các giá trị thuộc tính một cách suôn sẻ, trong một khoảng thời gian nhất định
+## 9.2. Các sử dụng CSS transition
+- Để tạo một hiệu ứng chuyển đổi, chúng ta phải định nghĩa 2 điều:
+  - Thuộc tính CSS muốn thêm một hiệu ứng.
+  - Thời gian của hiệu ứng
+
+  ```css
+  selector {
+    transition: property duration;
+  }
+- Nếu như chúng ta không khai báo thành phần thời gian (`duration`) thì sẽ không có hiệu ứng, bởi vì giá trị mặc định của nó là `0s` 
+
+  VD:
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 2s;
+  }
+
+  div:hover {
+    width: 300px; /*Khi di chuột vào thì có hiệu ứng tăng kích thước phần tử div */
+  }
+  </style>
+  <div></div>
+  ```
+## 9.3. Thay đổi 1 số giá trị thuộc tính
+- VD: Thêm hiệu ứng cho cả thuộc tính `width` và `height` với thời gian xảy ra hiệu ứng chuyển đổi là `2s` cho `width`, thời gian xảy ra hiệu ứng chuyển đổi là `4s` cho `height`
+
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 2s, height 4s;
+  }
+
+  div:hover {
+    width: 300px;
+    height: 300px;
+  }
+  </style>
+
+  <div></div>
+  ```
+
+## 9.4. Định nghĩa đường cong tốc độ của sự chuyển đổi
+- Thuộc tính `transition-timing-function` xác định đường cong tốc độ của hiệu ứng chuyển tiếp.
+- Thuộc tính `transition-timing-function` có các giá trị sau:
+  - `ease`: định nghĩa một hiệu ứng chuyển đổi với lúc bắt đầu chậm, sau đó nhanh và kết thúc lại chậm (đây là giá trị mặc định).
+  - `linear`: định nghĩa một hiệu ứng chuyển đổi với tốc độ như nhau từ lúc bắt đầu đến khi kết thúc.
+  - `ease-in`: định nghĩa một hiệu ứng chuyển đổi với bắt đầu chậm
+  - `ease-out`: định nghĩa một hiệu ứng chuyển đổi với kết thúc chậm
+  - `ease-in-out`: định nghĩa một hiệu ứng chuyển đổi với bắt đầu và kết thúc chậm
+  - `cubic-bezier(n,n,n,n)`: cho phép bạn tự định nghĩa những giá trị của riêng mình trong 1 hàm `cubic-bezier`
+
+  VD:
+
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 2s;
+  }
+
+  #div1 {transition-timing-function: linear;}
+  #div2 {transition-timing-function: ease;}
+  #div3 {transition-timing-function: ease-in;}
+  #div4 {transition-timing-function: ease-out;}
+  #div5 {transition-timing-function: ease-in-out;}
+
+  div:hover {
+    width: 300px;
+  }
+  </style>
+  <div id="div1">linear</div><br>
+  <div id="div2">ease</div><br>
+  <div id="div3">ease-in</div><br>
+  <div id="div4">ease-out</div><br>
+  <div id="div5">ease-in-out</div><br>
+  ```
+## 9.5. Độ trễ hiệu ứng chuyển tiếp
+- Sử dụng thuộc tính `transition-delay` định nghĩa 1 độ trễ (bằng giây) cho hiệu ứng chuyển tiếp.
+
+  VD:
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 3s;
+    transition-delay: 1s; /*dừng 1s trước khi hiệu ứng bắt đầu*/
+  }
+
+  div:hover {
+    width: 300px;
+  }
+  </style>
+  <div></div>
+  ```
+
+## 9.6. Transition + Transformation
+
+  VD:
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    transition: width 2s, height 2s, transform 2s;
+  }
+
+  div:hover {
+    width: 300px;
+    height: 300px;
+    transform: rotate(180deg);
+  }
+  </style>
+  <div></div>
+  ```
+## 9.7. Một vài ví dụ
+- Những thuộc tính của `transition` có thể được định nghĩa lần lượt từng bước một, vd:
+
+  ```css
+  div {
+    transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+    transition-delay: 1s;
+  }
+  ```
+- Hoặc sử dụng thuộc tính viết gọn của `transition`:
+
+  ```css
+  div {
+    transition: width 2s linear 1s;
+  }
+  ```
+
+# 10. CSS Animations
+- CSS cho phép hoạt ảnh của những phần tử HTML mà không sử dụng JavaScript hoặc Flash
+## 10.1. Định nghĩa
+- Một hoạt ảnh là để cho một phần tử thay đổi dần dần từ một kiểu này sang một kiểu khác.
+- Chúng ta có thể thay đổi bao nhiêu thuộc tính CSS, thay đổi bao nhiêu lần mà chúng ta muốn.
+- Để sử dụng `CSS animation`, đầu tiên phải định nghĩa một số `keyframes` cho hoạt ảnh.
+- Các keyframe giữ các kiểu mà phần tử sẽ có vào những thời điểm nhất định.
+## 10.2. Nguyên tắc @keyframes
+- Khi định kiểu CSS vào bên trong nguyên tắc `@keyframes`, hoạt ảnh sẽ thay đổi dần dần từ kiểu style hiện tại sang một kiểu mới vào những thời điểm nhất định.
+- Cú pháp:
+  ```css
+  @keyframes nameAnimation {
+    from {current style}
+    to {new style}
+  }
+  ```
+- Để cho một hoạt ảnh hoạt động, chúng ta phải liên kết hoạt ảnh với một phần tử.
+
+  ```css
+  selector {
+    animation-name: nameAnimation;
+    animation-duration: duration;
+  }
+  ```
+*Lưu ý:* Thuộc tính `animation-duration` định nghĩa một hoạt ảnh sẽ mất thời gian bao lâu để hoàn thiện. `Nếu như thuộc tính này không được khai báo thì sẽ không có hoạt ảnh xảy ra, vì giá trị mặc định của nó là 0s` 
+
+  VD: Hoạt ảnh kéo dài trong 4s, và chuyển màu nền của thẻ `<div>` từ màu đỏ sang màu vàng. Sau khi hoạt ảnh kết thúc, màu nền của thẻ `<div>` trở về màu đỏ
+  ```html
+    <style>
+  /* The animation code */
+  @keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+  }
+
+  /* The element to apply the animation to */
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+  }
+  </style>
+  <div></div>
+  ```
+- Ở ví dụ trên, sử dụng từ khóa `from` và `to` để chỉ định khi nào thì kiểu style sẽ thay đổi. Ngoài ra, chúng ta cũng có thể sử dụng phần trăm `(%)` để chỉ định. Bằng cách này, chúng ta có thể thêm nhiều kiểu thay đổi mà mình muốn.
+
+  VD:
+  ```html
+  <style>
+  /* The animation code */
+  @keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+  }
+
+  /* The element to apply the animation to */
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+  }
+  </style>
+  <div></div>
+  ```
+
+## 10.3. Độ trễ một hoạt ảnh
+- Thuộc tính `animation-delay` được sử dụng để chỉ định một độ trễ trước khi bắt đầu một hoạt ảnh.
+
+  VD sau bị trễ 2s trước khi bắt đầu một hoạt ảnh
+  ```html
+  <style>
+  div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+  }
+  @keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }
+  </style>
+  <div></div>
+  ```
+- Thuộc tính `animation-delay` có thể nhận giá trị âm. Nếu sử dụng giá trị âm, hoạt ảnh sẽ bắt đầu như thế nó đã thay đổi được N giây rồi.
+
+  VD:
+  ```html
+  <style>
+  div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: -2s;
+  }
+  @keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }
+  </style>
+  <div></div>
+  ```
+## 10.4. Thiết lập số lần mà một hoạt ảnh hoạt động
+- Sử dụng thuộc tính `animation-iteration-count` để chỉ định số lần một hoạt ảnh hoạt động.
+
+  VD:
+  ```html
+  <style>
+  div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-iteration-count: 3; /*hoạt ảnh hoạt động 3 lần*/
+  }
+  @keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }
+  </style>
+  <div></div>
+  ```
+- Nếu muốn hoạt ảnh hoạt động liên tục thì có thể thiết lập giá trị `infinite` cho thuộc tính `animation-iteration-count`
+
+## 10.5. Thay đổi hướng di chuyển của hoạt ảnh
+- Sử dụng thuộc tính `animation-direction` để chỉ định một hoạt ảnh di chuyển theo hướng tiến lên (`forwards`), ngược lại (`backwards`) hay là theo một chu kỳ thay thế.
+- Thuộc tính `animation-direction` có những giá trị sau:
+  - `normal`: hoạt ảnh di chuyển như bình thường (theo hướng tiến lên - `forwards`). Đây là mặc định
+  - `reverse`: hoạt ảnh di chuyển theo hướng ngược về sau (`backwards`).
+  - `alternate`: hoạt ảnh lần đầu tiên di chuyển tiến, sau đó chạy ngược lại
+  - `alternate-reverse`: hoạt ảnh lần đầu tiên di chuyển ngược về sau, sau đó lại di chuyển tiến lên
+
+  VD:
+  ```html
+  <style>
+  div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: red;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+  }
+  @keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:red; left:0px; top:0px;}
+  }
+  </style>
+  <div></div>
+  ```
+
+## 10.6. Xác định đường cong tốc độ của hoạt ảnh
+- Sử dụng thuộc tính `animation-timing-function` để xác định đường cong tốc độ của hoạt ảnh
+- Thuộc tính này có những giá trị sau:
+  - `ease`: chỉ định một hoạt ảnh bắt đầu di chuyển chậm, sau đó thì nhanh, và khi kết thúc lại chậm.
+  - `linear`: chỉ định một hoạt ảnh di chuyển với tốc độ như nhau từ lúc bắt đầu đến khi kết thúc.
+  - `ease-in`: chỉ định một hoạt ảnh bắt đầu di chuyển chậm
+  - `ease-out`: chỉ định một hoạt ảnh di chuyển chậm khi kết thúc.
+  - `ease-in-out`: chỉ định một hoạt ảnh di chuyển chậm khi bắt đầu và khi kết thúc
+  - `cubic-bezier(n,n,n,n)`: để cho chúng ta tự chỉ định những giá trị của riêng mình trong một hàm `cubic-bezier`.  
+
+  VD:
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    font-weight: bold;
+    position: relative;
+    animation: mymove 5s infinite;
+  }
+
+  #div1 {animation-timing-function: linear;}
+  #div2 {animation-timing-function: ease;}
+  #div3 {animation-timing-function: ease-in;}
+  #div4 {animation-timing-function: ease-out;}
+  #div5 {animation-timing-function: ease-in-out;}
+
+  @keyframes mymove {
+    from {left: 0px;}
+    to {left: 300px;}
+  }
+  </style>
+
+  <div id="div1">linear</div>
+  <div id="div2">ease</div>
+  <div id="div3">ease-in</div>
+  <div id="div4">ease-out</div>
+  <div id="div5">ease-in-out</div>
+  ```
+## 10.7. Chỉ định chế độ fill-mode cho một hoạt ảnh
+- Thuộc tính `animation-fill-mode` chỉ định một kiểu cho phần tử đích khi mà hoạt ảnh đang không hoạt động (trước khi nó bắt đầu, sau khi nó kết thúc hoặc cả hai)
+- Thuộc tính này có những giá trị sau:
+  - `none`: giá trị mặc định, hoạt ảnh sẽ không áp dụng bất kỳ một định kiểu nào cho phần tử trước hoặc sau khi nó hoạt động.
+  - `forwards`: phần tử sẽ giữ lại giá trị định kiểu mà được thiết lập cho keyframe cuối cùng (phụ thuộc vào `animation-direction` và `animation-iteration-count`)
+  - `backwards`: phần tử sẽ lấy giá trị định kiểu mà được thiết lập cho keyframe đầu tiên (phụ thuộc vào `animation-direction`) và sẽ giữ giá trị này trong giai đoạn animation-delay`
+  - `both`: Hoạt ảnh sẽ theo dõi những nguyên tắc cho cả `forwards` và `backwards`, mở rộng những thuộc tính `animation` cho cả hướng di chuyển
+
+VD:
+- `animation-fill-mode: forwards;`
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes example {
+    from {top: 0px;}
+    to {top: 200px; background-color: blue;}
+  }
+  </style>
+  <div></div>
+  ```
+
+- `animation-fill-mode: backwards;`
+  ```html
+  <style> 
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 3s; 
+    animation-delay: 2s; 
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes example {
+    from {top: 0px;}
+    to {top: 200px; background-color: blue;}
+  }
+  </style>
+  <div></div>
+  ```
+## 10.8. Thuộc tính viết gọn của animation
+- Chúng ta có thể liệt kê lần lượt các thuộc tính có trong `animation` để định kiểu như sau:
+  ```css
+  div {
+    animation-name: example;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  ```
+- Hoặc có thể sử dụng thuộc tính viết gọn `animation` bằng cách:
+  ```css
+  div {
+    animation: example 5s linear 2s infinite alternate;
+  }
+  ```
+
+# Summary
+- Trong bài học này, chúng ta đã tiếp tục được học những phần định kiểu style nâng cao hơn trong CSS cho color, shadow, 2D&3D transition, animatons. Những định kiểu này làm cho trang web có những hiệu ứng, chuyển đổi trở nên sinh động hơn...

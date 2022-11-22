@@ -1,5 +1,31 @@
-# **Tìm hiểu về CSS** 
-# 1. Định nghĩa
+<h1 style=" text-align:center;">Tìm hiểu vể CSS</h1>
+
+# 0. Content
+1. Giới thiệu về CSS
+2. Cú pháp
+3. CSS Selectors - Bộ chọn
+4. CSS Comments
+5. CSS Colors
+6. CSS Background
+7. CSS Borders
+8. CSS Margins
+9. CSS Padding
+10. CSS Height, Width, Max-width
+11. CSS Box Model
+12. CSS Outline
+13. CSS Text
+14. CSS Font
+15. CSS Icons
+16. CSS Links
+17. CSS List
+18. CSS Tables
+19. CSS Layout - the display property
+20. CSS Layout - width & max-width
+21. CSS Layout - The position property
+22. CSS Layout - Overflow
+23. CSS Layout - float và clear
+# 1. Giới thiệu về CSS 
+## 1.1. Định nghĩa
 - `CSS` viết tắt của `Cascading Style Sheets`. Nó là một ngôn ngữ được sử dụng để tìm và định dạng lại các phần tử được tạo ra bởi các ngôn ngữ đánh dấu (ví dụ HTML)
 - CSS mô tả cách mà các phần tử HTML được hiển thị lên màn hình, giấy báo, hoặc trên những phương tiện khác.
 - CSS lưu trữ rất nhiều công việc. Nó có thể điều chỉnh bố cục của nhiều trang web khác nhau cùng 1 lúc.
@@ -7,7 +33,7 @@
 
 - CSS được sử dụng để định kiểu style style cho những trang web, bảo gồm thiết kế, bố cục và sự đa dạng trong hiển thị trên những thiết bị và kích thước màn hình khác nhau.
 
-## **Tại sao sử dụng CSS**
+## 1.2. Tại sao sử dụng CSS
 - `CSS đã giải quyết được 1 vấn đề lớn`
     - HTML không bao giờ có ý định chứa những thẻ dùng để định dạng cho một trang web.
     - HTML đã tạo ra một mô tả nội dung của một trang web: như tiêu đề, các đoạn văn bản,... Trước khi có CSS, các thuộc tính font, màu sắc, kích thước,... được thêm vào mỗi phần tử của HTML, và được lặp lại trên mọi trang web. Nếu như với một trang web lớn, thì công việc này sẽ trở thành một quá trình rất dài, tốn thời gian và rất khó để lập trình viên theo dõi lại để nâng cấp.
@@ -21,7 +47,7 @@
 - `Cung cấp thêm các thuộc tính`
     - CSS cung cấp các thuộc tính chi tiết hơn HTML để định nghĩa giao diện của trang web. CSS giúp người dùng nhiều styles trên một trang web HTML nên khả năng điều chỉnh trang trở nên vô hạn.
 
-## **Cách nhúng CSS vào website**
+## 1.3. Cách nhúng CSS vào website
 - Như đã được trình bày tại học phần HTML, có 3 phương pháp để nhúng CSS vào một website là `Inline CSS`, `Internal CSS` và `External CSS`. Và phương pháp được `khuyến cáo sử dụng` chính là `External CSS` – Tạo một tập tin kết thúc bằng `.css` riêng và nhúng vào tài liệu HTML thông qua cặp thẻ `<link>`.
 # 2. Cú pháp
 - Một quy tắc CSS bao gồm một `bộ chọn (selector)` và một `khối khai báo (declaration block)`.
@@ -49,7 +75,7 @@ p {
     - `color` là một thuộc tính CSS, `red` là giá trị của thuộc tính color.
     - `text-algin` là một thuộc tính CSS, `center` là giá trị của thuộc tính text-algin.
 
-## 3. CSS Selectors - Bộ chọn
+# 3. CSS Selectors - Bộ chọn
 - `Bộ chọn` được sử dụng để chọn/chỉ ra những phần tử HTML mà chúng ta muốn định kiểu style.
 - Chúng ta có thể chia bộ chọn CSS thành 5 loại:
     - `Bộ chọn đơn (Simple selectors)`: chọn những phần tử dựa vào `tên`, `id`, `class` của phần tử đó.
@@ -60,7 +86,7 @@ p {
 
 Đầu tiên, chúng ta sẽ đi tìm hiểu vể bộ chọn CSS cơ bản nhất là bộ chọn đơn (Simple Selectors).
 
-### 3.1. Bộ chọn phần tử CSS
+## 3.1. Bộ chọn phần tử CSS
 - *Bộ chọn phần tử sẽ chọn những phần tử HTML dựa vào `tên` của phần tử đó.*
 ### 3.1.1. Bộ chọn CSS Id
 - `Bộ chọn id` sử dụng thuộc tính `id` của một phần tử HTML để chọn một phần tử cụ thể trong trang.
@@ -148,7 +174,7 @@ VD:
     }
     ```
 
-## 4. CSS Comments
+# 4. CSS Comments
 - `Chú thích (Comments)` trong CSS được sử dụng để giải thích code, có thể giúp chúng ta khi nhìn lại code dễ hiểu và dễ chỉnh sửa hơn.
 - *Chú thích sẽ bị bỏ qua không được hiển thị lên trên trình duyệt.*
 - Một chú thích CSS được đặt bên trong cặp thẻ `<style></style>` và `bắt đầu` với `/*` và `kết thúc` bằng `*/`  
@@ -163,9 +189,9 @@ VD:
     comment */
     ```
 
-## 5. CSS Colors
+# 5. CSS Colors
 - `Màu sắc trong CSS` được chỉ định bằng cách sử dụng `tên màu` hoặc những giá trị của hệ màu `RGB`, `RGBA`, `HEX`, `HSL`...
-### 5.1 CSS Colors - Color names
+## 5.1 CSS Colors - Color names
 - Một màu sắc có thể được chỉ định bằng cách sử dụng trực tiếp tên của màu đó: green, blue, red, black,... 
 - CSS hỗ trợ [140 tên màu tiêu chuẩn.](https://www.w3schools.com/colors/colors_names.asp).   
 - Có thể sử dụng thuộc tính `<style>` đặt trong thẻ mở của các HTML element mà bạn muốn thiết lập màu sắc   
@@ -175,18 +201,18 @@ VD:  Background Color, Text Color, Border Color
 <img width = 500 src="../images/lesson1/color_name.png">
 </p>
 
-### 5.2 CSS RGB & RGBA Colors
+## 5.2 CSS RGB & RGBA Colors
 - `Một hệ màu RGB` là đại diện của 3 tham số màu `RED`, `GREEN`, `BLUE`; giống như `rgb(red, green, blue)`.   
 - `Mỗi tham số màu có giá trị từ 0 - 255`. Có nghĩa là sẽ có khoảng 256 x 256 x 256 = 16777216 màu sắc.   
-- VD: `rgb(0,0,0): màu đen`; `rgb(255,255,255): màu trắng`; `rgb(255,0,0): màu đỏ`
+ VD: `rgb(0,0,0): màu đen`; `rgb(255,255,255): màu trắng`; `rgb(255,0,0): màu đỏ`
 
-<p align = "center">
-<img width = 500 src="../images/lesson1/color_rgb.png">
-</p>
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/color_rgb.png">
+    </p>
 
 - `RGBA` là mở rộng của hệ màu RGB với 1 tham số `alpha chỉ độ trong suốt của màu`. *Tham số alpha này có giá trị từ 0.0 - 1.0; giá trị càng nhỏ thì độ trong suốt càng cao, màu sắc càng mờ*
 
-### 5.3 CSS HEX Color
+## 5.3 CSS HEX Color
 - `Một hệ màu HEX (thập lục phân)` được định nghĩa bằng cách sử dụng các giá trị thập lục phân theo dạng `#rrggbb`, mỗi giá trị `rr`, `gg`, `bb` `có giá trị từ 00 - FF` (tương tự như từ 0 - 255).  
 - VD: `#ff0000: màu đỏ; #ffff00: màu vàng, #000000: màu đen` 
 
@@ -204,8 +230,8 @@ VD:
     - `Hệ màu 3 số có dạng: #rgb; r,g,b` đại diện cho màu đỏ, xanh lá, xanh dương với `các giá trị nằm trong khoảng từ 0-f`.
     - Hệ màu hex 3 số `chỉ được sử dụng khi mỗi thành phần của (RR, GG, BB) có giá trị giống nhau`. VD: nếu như chúng ta có màu #ff00ff, thì chúng ta có thể viết ngắn gọn thành #f0f; tương tự #22cc33 - #2c3...
 
-## 6. CSS Background
-### 6.1. CSS background-color
+# 6. CSS Background
+## 6.1. CSS background-color
 - Thuộc tính `background-color` định nghĩa màu nền của một phần tử HTML bất kỳ.
 - Màu sắc trong CSS có thể được xác định bằng tên màu, giá trị HEX, RGB (đã được trình bày ở phần CSS color).  
 VD:
@@ -228,7 +254,7 @@ VD:
         <img width = 500 src="../images/lesson1/rgba.png">
         </p>
 
-### 6.2. CSS Background Image
+## 6.2. CSS Background Image
 - Thuộc tính `background-image` định nghĩa một hình ảnh được sử dụng như hình nền của một phần tử.
 - Mặc định, hình ảnh bị lặp lại để bao phủ toàn bộ phần tử.
     <p align = "center">
@@ -236,29 +262,29 @@ VD:
     </p>
 - *Lưu ý:* Khi sử dụng hình ảnh làm hình nền, hãy lựa chọn những bức ảnh mà khi hiển thị không gây ảnh hưởng đến nội dung bên trong phần tử đó
 
-### 6.3. CSS Background Image Repeat
+## 6.3. CSS Background Image Repeat
 ### 6.3.1. CSS background-repeat
 - Mặc định, thuộc tính `background-image` lặp một hình ảnh cả theo chiều dọc và chiều ngang (để bao phủ toàn bộ phần tử được chỉ định).
     <p align = "center">
     <img width = 500 src="../images/lesson1/repeate_img.png">
     </p>
 
-- Nếu như chúng ta muốn thiết lập cho hình ảnh nền được lặp lại chỉ theo 1 chiều dọc hoặc ngang, chúng ta có thể sử dụng thuộc tính `background-repeat`.
+- Nếu như chúng ta muốn thiết lập cho hình ảnh nền được lặp lại chỉ theo 1 chiều dọc hoặc ngang, chúng ta có thể sử dụng thuộc tính `background-repeat`.  
 VD:
-```css
-    /* lặp theo chiều ngang */
-    body {
-        background-image: url("gradient_bg.png");
-        background-repeat: repeat-x;
-    }
+    ```css
+        /* lặp theo chiều ngang */
+        body {
+            background-image: url("gradient_bg.png");
+            background-repeat: repeat-x;
+        }
 
-    /* lặp theo chiều dọc */
-    body {
-        background-image: url("gradient_bg.png");
-        background-repeat: repeat-y;
-    }
-    
-```
+        /* lặp theo chiều dọc */
+        body {
+            background-image: url("gradient_bg.png");
+            background-repeat: repeat-y;
+        }
+        
+    ```
 ### 6.3.2. CSS background-repeat: no-repeat
 - Chúng ta có thể sử dụng thuộc tính `background-repeat: no-repeat` để hiển thị hình ảnh nền `chỉ một lần mà không bị lặp lại`.  
 VD:
@@ -291,7 +317,7 @@ VD:
     - `initial`: sử dụng giá trị mặc định của nó (mặc định là scroll).
     - `inherit`: kế thừa giá trị thuộc tính background-attachment từ phần tử cha của nó.
 
-### 6.5. CSS Background Shorthand
+## 6.5. CSS Background Shorthand
 - Để tối ưu code CSS, chúng ta cũng có thể `định nghĩa tất các các thuộc tính của hình nền (CSS background) vào một thuộc tính đơn`. Điều này được gọi là `một thuộc tính hình nền rút gọn`.
 - VD: thay vì phải viết code như dưới đây
     ```css
@@ -317,9 +343,9 @@ VD:
 `
 - Khi liệt kê các giá trị của thuộc tính `background`, `có thể thiếu một trong các giá trị`, điều đó sẽ **không gây ra ảnh hưởng gì miễn là các giá trị còn lại phải được viết theo đúng thứ tự**.
 
-## 7. CSS Borders
+# 7. CSS Borders
 - Thuộc tính CSS `border` cho phép chúng ta định nghĩa style, chiều dài, và màu sắc cho đường viền của một phần tử
-### 7.1. CSS Border Style
+## 7.1. CSS Border Style
 - Thuộc tính `border-style` định nghĩa loại đường viền sẽ được hiển thị bao quanh phần tử
 - Thuộc tính `border-style` có các giá trị sau:
     - `dotted`: Xác định một đường viền nét đứt chấm 
@@ -345,7 +371,7 @@ VD:
         </p>
 - Thuộc tính `border-style` là thuộc tính `quan trọng nhất` của border, **nếu không có thuộc tính này thì những thuộc tính khác (border-color, border-width) của border không có tác dụng gì. Vì vậy, phải luôn định nghĩa thuộc tính border-style trước tiên**
 
-### 7.2. CSS Border Width
+## 7.2. CSS Border Width
 - Thuộc tính `border-width` định nghĩa độ dày của 4 đường viền xung quanh một phần tử
 - Độ dày của đường viền có thể được thiết lập với một kích thước cụ thể (với đơn vị `px`, `pt`, `cm`,...) hoặc bằng cách sử dụng một trong ba giá trị được xác định sẵn trước là `thin`, `medium`, hoặc `thick`.  
 VD:
@@ -355,40 +381,40 @@ VD:
 
 - Thuộc tính `border-width` có thể `có từ 1 đến 4 giá trị, các giá trị theo thứ tự lần lượt là: đường viền trên, viền phải, viền dưới và viền trái`.
 
-VD: 
-```css
-p.three {
-  border-style: solid;
-  border-width: 25px 10px 4px 35px; /* 25px top, 10px right, 4px bottom and 35px left */
-}
+    VD: 
+    ```css
+    p.three {
+    border-style: solid;
+    border-width: 25px 10px 4px 35px; /* 25px top, 10px right, 4px bottom and 35px left */
+    }
 
-/* nếu như chỉ có 3 giá trị */
- p.two {
-  border-style: solid;
-  border-width: 20px 5px 30px; /* 20px top, 5px on the sides, 30px bottom */
- }
+    /* nếu như chỉ có 3 giá trị */
+    p.two {
+    border-style: solid;
+    border-width: 20px 5px 30px; /* 20px top, 5px on the sides, 30px bottom */
+    }
 
- /* nếu như chỉ có 2 giá trị */
- p.two {
-  border-style: solid;
-  border-width: 20px 10px; /* 20px top and bottom, 10px on the sides */
-}
+    /* nếu như chỉ có 2 giá trị */
+    p.two {
+    border-style: solid;
+    border-width: 20px 10px; /* 20px top and bottom, 10px on the sides */
+    }
 
-/* nếu như chỉ có 1 giá trị */
- p.two {
-  border-style: solid;
-  border-width: 5px; /* 20px top,right, bottom and left  */
- }
-```
+    /* nếu như chỉ có 1 giá trị */
+    p.two {
+    border-style: solid;
+    border-width: 5px; /* 20px top,right, bottom and left  */
+    }
+    ```
 
-### 7.3. CSS Border Color
+## 7.3. CSS Border Color
 - Thuộc tính `border-color` được sử dụng để thiết lập màu sắc cho 4 đường viền xung quanh của một phần tử.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/border_color.png">
     </p>
 - Thuộc tính `border-color` cũng có từ 1 đến 4 giá trị quy định màu của các đường viền giống như thuộc tính `border-width`, `border-color`.
- ### 7.4. Thuộc tính CSS Border Shorthand 
+ ## 7.4. Thuộc tính CSS Border Shorthand 
  - Để tối ưu code, chúng ta cũng có thể định nghĩa tất cả những thuộc tính riêng của đường viền vào trong cùng một thuộc tính.
  - Thuộc tính `border` là một `thuộc tính viết gọn` của những thuộc tính riêng của đường viền như sau:
     - `border-width`
@@ -406,20 +432,20 @@ VD:
     <img width = 500 src="../images/lesson1/one_border.png">
     </p>
 
-### 7.5. CSS Rounded Borders
+## 7.5. CSS Rounded Borders
 - Thuộc tính `border-radius` được sử dụng để bo tròn góc cho các đường viền của một phần tử.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/rounded_border.png">
     </p>
 
-## 8. CSS Margins
+# 8. CSS Margins
 - Thuộc tính `margin` được sử dụng để tạo ra một khoảng cách xung quanh các phần tử, ra phía bên ngoài của bất kỳ đường viền đã được xác định.
     <p align = "center">
     <img width = 500 src="../images/lesson1/margin.png">
     </p>
 - Với CSS, chúng ta có toàn quyền kiểm soát lề. Có nhiều thuộc tính để thiết lập lề cho mỗi cạnh viền của một phần tử (trên, phải, dưới, trái). 
-### 8.1. CSS Margin - Individual Sides
+## 8.1. CSS Margin - Individual Sides
 - CSS có những thuộc tính để định nghĩa lề cho mỗi cạnh viền của phần tử:
     - `margin-top`: lề trên
     - `margin-right`: lề phải
@@ -437,7 +463,7 @@ VD:
     <img width = 500 src="../images/lesson1/individual_margin.png">
     </p>
 
-### 8.2. Margin - Shorthand Property
+## 8.2. Margin - Shorthand Property
 - Để tối ưu code, có thể định nghĩa tất cả các thuộc tính của lề vào trong một thuộc tính.
 - Thuộc tính `margin` là một `thuộc tính viết gọn` của những thuộc tính lề riêng sau:
     -` margin-top`: lề trên
@@ -450,7 +476,7 @@ VD:
     <img width = 500 src="../images/lesson1/shorthand_margin.png">
     </p>
 
-### 8.3. Giá trị `auto`
+## 8.3. Giá trị `auto`
 - Có thể thiết lập thuộc tính `margin` với giá trị `auto` để căn giữa theo chiều ngang của phần tử trong vùng chứa nó.
 - Phần tử sẽ chiếm lấy phần chiều rộng mà nó được chỉ định, khoảng trống không gian còn lại sẽ được chia đều thành 2 phần cho lề trái và lề phải.  
 VD:
@@ -458,14 +484,14 @@ VD:
     <img width = 500 src="../images/lesson1/auto_margin.png">
     </p>
 
-### 8.4. Giá trị inherit
+## 8.4. Giá trị inherit
 - Thuộc tính `margin="inherit"` của `phần tử con` sẽ `kế thừa thuộc tính margin được khai báo của phần tử cha`  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/inherit_margin.png">
     </p>
 
-### 8.5. CSS Margin Collapse: thu gọn lề
+## 8.5. CSS Margin Collapse: thu gọn lề
 - Đôi khi, lề trên và lề dưới của những phần tử được thu gọn lại thành một lề đơn mà khoảng cách sẽ bằng khoảng cách lớn nhất giữa hai lề.
 - *Lưu ý:* Thu gọn lề `chỉ xảy ra` đối với `lề trên và lề dưới`, `không xảy ra với lề phải - trái.`
 
@@ -475,12 +501,12 @@ VD:
         </p>
 - Trong ví dụ trên, lề dưới của thẻ `<h1>` là 50px, lề trên của thẻ `<h2>` là 20px. Như thế khoảng cách giữa 2 phần tử `<h1>` và `<h2>` theo chiều dọc là 20px + 50px = 70px. Nhưng do tính chất thu gọn của lề thì khoảng cách cuối cùng giữa là thẻ là 50px (50px > 20px).
 
-## 9. CSS Padding 
+# 9. CSS Padding 
 - Thuộc tính `padding` được sử dụng để tạo một khoảng cách xung quanh nội dung của một phần tử khoảng cách từ nội dung đến phần viền bên trong của đường viền đã được xác định.
     <p align = "center">
     <img width = 500 src="../images/lesson1/padding.png">
     </p>
-### 9.1. Padding Individual Sides
+## 9.1. Padding Individual Sides
 - Có những thuộc tính để thiết lập `padding` cho mỗi phía của một phần tử (trên, phải, dưới, trái)
     - `padding-top`
     - `padding-right`
@@ -496,7 +522,7 @@ VD:
     <img width = 500 src="../images/lesson1/individual_padding.png">
     </p>
 
-### 9.2. Padding - Shorthand Property
+## 9.2. Padding - Shorthand Property
 - Để tối ưu code, có thể định nghĩa tất cả các thuộc tính của `padding` vào trong một thuộc tính.
 - Thuộc tính `padding` là một thuộc tính viết gọn của những thuộc tính `padding` riêng sau:
     - `padding-top`: lề trên
@@ -509,7 +535,7 @@ VD:
     <img width = 500 src="../images/lesson1/shorthand_padding.png">
     </p>
 
-### 9.3. Padding và chiều rộng phần tử
+## 9.3. Padding và chiều rộng phần tử
 - Thuộc tính CSS `width` định nghĩa chiều rộng của phần nội dung của phần tử. Phần nội dung là phần bên trong của padding, đường viền và lề của một phần tử.
 - *Nếu một phần tử có một chiều rộng được chỉ định trước, sau đó padding được thêm vào phần tử đó thì tổng chiều rộng của phần tử lúc này cũng được tăng lên*. Đây thường là kết quả không mong muốn.  
 
@@ -524,8 +550,8 @@ VD: Ví dụ dưới đây, thẻ `<div>` được chỉ định 1 chiều rộn
     <img width = 500 src="../images/lesson1/box_sizing.png">
     </p>
 
-## 10. CSS Height, Width, Max-width
-### 10.1 CSS height, width
+# 10. CSS Height, Width, Max-width
+## 10.1 CSS height, width
 - Thuộc tính `height` và `width` được sử dụng để thiết lập chiều cao và chiều rộng của một phần tử.
 - Các thuộc tính này `không bao gồm paddings, borders hoặc margins`. Nó thiết lập chiều cao, chiều rộng của phần nội dung bên trong padding, border và margin của phần tử.
 - Thuộc tính `height` và `width` có những giá trị sau:
@@ -540,27 +566,27 @@ VD: Ví dụ dưới đây, thẻ `<div>` được chỉ định 1 chiều rộn
     <img width = 500 src="../images/lesson1/height_width_css.png">
     </p>
 
-### 10.2. Thiết lập max-width
+## 10.2. Thiết lập max-width
 - Thuộc tính `max-width` được sử dụng để thiết lập chiều rộng tối đa của một phần tử.
 - Thuộc tính `max-width` có thể được chỉ định bằng các giá trị chiều dài như: `px`, `cm`, `pt`, `%` hoặc là thiết lập bằng `none` (không có chiều rộng tối đa).
 - **Khi cửa sổ trình duyệt có kích thước nhỏ hơn kích thước chiều rộng của một phần tử, thì lúc đó, trình duyệt sẽ thêm một thanh cuộn theo chiều ngang cho trang web.**
 - Chúng ta có thể sử dụng thuộc tính `max-width` để giải quyết cho những trường hợp kích thước của sổ trình duyệt nhỏ.
 
-VD:
-- Trường hợp, *kích thước cửa sổ trình duyệt nhỏ hơn kích thước phần tử và không sử dụng thuộc tính `max-width`*.
-    <p align = "center">
-    <img width = 500 src="../images/lesson1/no_max_width.png">
-    </p>
+    VD:
+    - Trường hợp, *kích thước cửa sổ trình duyệt nhỏ hơn kích thước phần tử và không sử dụng thuộc tính `max-width`*.
+        <p align = "center">
+        <img width = 500 src="../images/lesson1/no_max_width.png">
+        </p>
 
-- Trường hợp, *kích thước cửa sổ trình duyệt nhỏ hơn kích thước phần tử và có sử dụng thuộc tính `max-width`.*
-    <p align = "center">
-    <img width = 500 src="../images/lesson1/max_width.png">
-    </p>
+    - Trường hợp, *kích thước cửa sổ trình duyệt nhỏ hơn kích thước phần tử và có sử dụng thuộc tính `max-width`.*
+        <p align = "center">
+        <img width = 500 src="../images/lesson1/max_width.png">
+        </p>
 
-*Lưu ý:* Nếu trong một vài trường hợp, mà chúng ta sử dụng cả 2 thuộc tính width và max-width trong cùng 1 phần tử, và giá trị của thuộc tính witdh lớn hơn thì trình duyệt sẽ sử dụng thuộc tính max-width (width sẽ bị bỏ qua).
+*Lưu ý:* Nếu trong một vài trường hợp, mà chúng ta sử dụng cả 2 thuộc tính width và max-width trong cùng 1 phần tử, và giá trị của thuộc tính `witdh` lớn hơn thì trình duyệt sẽ sử dụng thuộc tính `max-width` (`width` sẽ bị bỏ qua).
 
-## 11. CSS Box Model
-### 11.1. CSS Box Model
+# 11. CSS Box Model
+## 11.1. CSS Box Model
 - Trong CSS, thuật ngữ `"box model" (mô hình hộp)` được sử dụng khi nói về thiết kế và bố cục.
 - `Mô hình hộp` thực chất là một cái hộp bao bọc xung quanh mỗi phần tử HTML. Nó bao gồm: `margins`, `borders`, `padding` và `nội dung`.
     <p align = "center">
@@ -573,7 +599,7 @@ VD:
         <img width = 500 src="../images/lesson1/box_model1.png">
         </p>
 
-### 11.2. Chiều rộng và chiều cao của một phần tử
+## 11.2. Chiều rộng và chiều cao của một phần tử
 - **Khi thiết lập chiều rộng và chiều cao cho một phần tử bằng CSS, chúng ta chỉ thiết lập chiều rộng và chiều cao của phần nội dung**. Còn để `tính toán kích thước đầy đủ` của một phần tử, chúng ta phải `cộng thêm` với phần `margin`, `border` và `padding`.
 - Tính `tổng chiều rộng của một phần tử` theo công thức sau:
 
@@ -592,10 +618,10 @@ VD:
             margin: 10px;
         }
     ```
-- Với phần khai báo trên, kích thước chiều rộng thực của thẻ <div> sẽ là: 300px + 10px + 10px + 5px + 5px + 10px + 10px = 350px
+- Với phần khai báo trên, kích thước chiều rộng thực của thẻ `<div>` sẽ là: 300px + 10px + 10px + 5px + 5px + 10px + 10px = 350px
 
-## 12. CSS Outline
-### 12.1. CSS Outline
+# 12. CSS Outline
+## 12.1. CSS Outline
 - Một `outline` `(đường viền bao ngoài)` là một đường được vẽ xung quanh những phần tử, `bên ngoài của đường viền` và làm cho phần tử nổi bật.
     <p align = "center">
     <img width = 500 src="../images/lesson1/outline_layout.png">
@@ -611,7 +637,7 @@ VD:
     - `Outline khác với đường viền`, outline được vẽ bên ngoài đường viền của một phần tử và phải đè lên nội dung khác.
     - `Outline không phải là một phần trong kích thước của phần tử, tổng kích thước của một phần tử không bị ảnh hưởng bởi kích thước của outline`
 
-### 12.2. CSS Outline style
+## 12.2. CSS Outline style
 - Thuộc tính `outline-style` định nghĩa kiểu style của `outline`, và có thể có một trong những giá trị sau: 
     - `dotted`: Xác định một đường bao ngoài dấu chấm đứt
     - `dashed`: Xác định đường bao ngoài nét đứt dài
@@ -628,7 +654,7 @@ VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/outline_style.png">
     </p>
-### 12.3. CSS Outline Color
+## 12.3. CSS Outline Color
 - Thuộc tính `outline-color` được sử dụng để thiết lập màu sắc cho đường bao ngoài.
 - Màu sắc có thể được thiết lập bằng các cách sau:
     - `Xác định bằng tên màu`: như red. green, blue...
@@ -640,7 +666,7 @@ VD:
         <p align = "center">
         <img width = 500 src="../images/lesson1/outline_color.png">
         </p>
-### 12.4. CSS Outline Width
+## 12.4. CSS Outline Width
 - Thuộc tính `outline-width` định nghĩa độ rộng của một đường bao ngoài, và có thể có một trong những giá trị sau:
     - `thin` (thường là 1px)
     - `medium` (thường là 3px)
@@ -652,7 +678,7 @@ VD:
         <img width = 500 src="../images/lesson1/outline_width.png">
         </p>
 
-### 12.5. CSS Outline Shorthand
+## 12.5. CSS Outline Shorthand
 - Thuộc tính `outline` là một `thuộc tính viết gọn` để thiết lập cho những giá trị đường bao ngoài riêng như:
     - `outline-width`
     - `outline-style` (**bắt buộc**)
@@ -663,33 +689,32 @@ VD:
     <img width = 500 src="../images/lesson1/shorthand_outline.png">
     </p>
 
-### 12.6. CSS Outline Offset
+## 12.6. CSS Outline Offset
 - Thuộc tính `outline-offset` thêm khoảng trống giữa đường bao ngoài và đường viền của một phần tử. `Khoảng trống này là trong suốt`.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/outline_offset.png">
     </p>
 
-## 13. CSS Text 
-### 13.1. CSS Text Color
+# 13. CSS Text 
+## 13.1. CSS Text Color
 - Thuộc tính `color` được sử dụng để thiết lập màu sắc cho văn bản. Nó được định nghĩa bằng các cách sau:
     - `Tên màu`: black, blue, pink...
     - `Một giá trị HEX`: #ff0000,...
     - `Một giá trị RGB`: rgb(0,0,0),...  
 
-VD:
+    VD:
+    ```css
+    body {
+        color: blue;
+    }
 
-```css
-body {
-    color: blue;
-}
-
-h1 {
-    color: green;
-}
-```
-### 13.2. CSS Text Alignment và Text Direction
-### 13.2.1. Text Alignment
+    h1 {
+        color: green;
+    }
+    ```
+## 13.2. CSS Text Alignment và Text Direction
+###  13.2.1. Text Alignment
 - Thuộc tính `text-align` được sử dụng để thiết lập vị trí của một văn bản căn theo chiều ngang.
 - Một văn bản có thể được `căn trái (left), phải (right), căn giữa (center) hoặc căn đều (justify)`.  
 VD:
@@ -725,7 +750,7 @@ VD:
     <img width = 500 src="../images/lesson1/vertical_align.png">
     </p>
 
-### 13.3. CSS Text Decoration
+## 13.3. CSS Text Decoration
 - Để thêm một đường trang trí (decoration line) vào văn bản, ta sử dụng thuộc tính `text-decoration-line`. Chúng ta cũng có thể kết hợp nhiều giá trị cho thuộc tính này. Đường trang trí chủ yếu có các giá trị như:
     - `text-decoration-line: underline;` - đường gạch chân văn bản.
     - `text-decoration-line: overline;` - đường gạch trên đầu văn bản.
@@ -768,16 +793,16 @@ VD:
     <img width = 500 src="../images/lesson1/no_underline.png">
     </p>
 
-### 13.4. CSS Text Transformation
+## 13.4. CSS Text Transformation
 - Thuộc tính `text-transformation` để sử dụng để định nghĩa những ký tự viết hoa, viết thường, hay viết hoa ký tự đầu tiên của mỗi từ trong văn bản.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/text_transfor.png">
     </p>
 
-### 13.5. CSS Text Spacing
+## 13.5. CSS Text Spacing
 ### 13.5.1. Text Indentation
-- Thuộc tính `text-indent` được sử dụng để định nghĩa phần thụt lề cho dòng đầu tiên của một văn bản.
+- Thuộc tính `text-indent` được sử dụng để định nghĩa phần thụt lề cho dòng đầu tiên của một văn bản.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/text_indent.png">
@@ -815,7 +840,7 @@ VD:
     - `white-space: nowrap;` - Văn bản sẽ hiển thị trên cùng một hàng, chỉ xuống hàng khi gặp thẻ `<br/>`.
     - `white-space: pre;`	- Khoảng trắng sẽ do trình duyệt điều khiển, văn bản sẽ hiển thị trên cùng một hàng, chỉ ngắt dòng tại đoạn văn bản sử dụng thẻ `<pre>`.
     - `white-space: pre-line;` - Văn bản sẽ tự động bao lại khi cần thiết, và xuống hàng.
-### 13.6. CSS Text Shadow
+## 13.6. CSS Text Shadow
 - Thuộc tính `text-shadow` thêm phần bóng đổ cho văn bản.
 - Cú pháp:
     ```css
@@ -829,16 +854,16 @@ VD:
         - `blur`: tạo độ mờ, thiết lập bằng 1 giá trị cụ thể có đơn vị là `px`, `em`
         - `color`: màu sắc cho bóng
 
-VD:
-    <p align = "center">
-    <img width = 500 src="../images/lesson1/text_shadow.png">
-    </p>
+    VD:
+        <p align = "center">
+        <img width = 500 src="../images/lesson1/text_shadow.png">
+        </p>
 
-## 14. CSS Font
-### 14.1 Chọn phông chữ
+# 14. CSS Font
+## 14.1 Chọn phông chữ
 - Việc chọn đúng phông chữ cho trang web là điều rất quan trọng, nó có sự tác động to lớn đến cách người đọc trải nghiệm trên website của chúng ta.
 - Sử dụng phông chữ dễ đọc là điều quan trọng. Phông chữ làm tăng giá trị cho văn bản của chúng ta. Điều quan trọng nữa là chọn màu sắc và kích thước văn bản chính xác cho phông chữ.
-### 14.2. Bộ phông chữ chung
+## 14.2. Bộ phông chữ chung
 - Trong CSS, có 5 bộ phông chữ chung như:
     - `Phông chữ Serif`: có một nét nhỏ ở các cạnh của mỗi chữ cái. Chúng tạo ra một cảm giác trang trọng và sang trọng. VD: tên 1 số phông chữ: `Times New Roman, Georgia, Garamond`
     - `Phông chữ Sans-serif`: có đường nét rõ ràng (không kèm theo các nét nhỏ). Chúng tạo ra một cái nhìn hiện đại và tối giản. VD: `Arial, Verdana, Helvetica`.
@@ -846,7 +871,7 @@ VD:
     - `Phông chữ Cursive`: bắt chước chữ viết tay của con người. VD: `Brush Script MT, Lucida Handwriting.`
     - `Phông chữ Fantasy`: là phông chữ trang trí/vui tươi. VD: `Copperplate, Papyrus.`
 
-### 14.3. CSS font-family
+## 14.3. CSS font-family
 - Trong CSS, chúng ta sử dụng thuộc tính `font-family` để định nghĩa phông chữ cho một văn bản.  
 
 *Lưu ý:*
@@ -856,12 +881,12 @@ VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/font_family.png">
     </p>
-### 14.4. CSS Web Safe Fonts
+## 14.4. CSS Web Safe Fonts
 - Phông chữ an toàn trên web (Web safe font) là phông chữ được cài đặt phổ biến trên tất cả các trình duyệt và thiết bị.
 - Tuy nhiên, không có những phông chữ an toàn trên web tuyệt đối, luôn có một khả năng là một phông chữ không được tìm thấy hoặc không được cài đặt đúng trên web. Chính vì vậy sử dụng một phông chữ dự phòng (fallback font) là rất quan trọng.
-- Điều này có nghĩa là bạn nên thêm một danh sách các "phông chữ dự phòng" tương tự trong thuộc tính `font-family`. Nếu phông chữ đầu tiên không hoạt động, trình duyệt sẽ thử phông chữ tiếp theo và phông chữ tiếp theo, v.v. Luôn kết thúc danh sách bằng họ phông chữ chung.
-VD
-```css
+- Điều này có nghĩa là bạn nên thêm một danh sách các "phông chữ dự phòng" tương tự trong thuộc tính `font-family`. Nếu phông chữ đầu tiên không hoạt động, trình duyệt sẽ thử phông chữ tiếp theo và phông chữ tiếp theo, v.v. Luôn kết thúc danh sách bằng họ phông chữ chung.  
+    VD
+    ```css
     font-family: "Times New Roman", Times, serif;
     font-family: Georgia, serif;
     font-family: Garamond, serif;
@@ -872,7 +897,7 @@ VD
     font-family: "Courier New", Courier, monospace
     font-family: "Brush Script MT", cursive
     font-family: Copperplate, Papyrus, fantasy
-```
+    ```
 - Danh sách sau đây là các phông chữ an toàn trên web tốt nhất cho HTML và CSS:
     - Arial (sans-serif)
     - Verdana (sans-serif)
@@ -883,7 +908,7 @@ VD
     - Garamond (serif)
     - Courier New (monospace)
     - Brush Script MT (cursive)
-### 14.5. CSS Font Style
+## 14.5. CSS Font Style
 ### 14.5.1. Font style
 - Thuộc tính `font-style` chủ yếu được sử dụng để định nghĩa kiểu chữ nghiêng.
 - Thuộc tính này có 3 giá trị:
@@ -891,9 +916,9 @@ VD
     - `italic`: văn bản được hiển thị bằng chữ nghiêng.
     - `oblique` : văn bản nghiêng (rất giống với italic, nhưng ít được hỗ trợ)
 
-VD: <p align = "center">
-    <img width = 500 src="../images/lesson1/font_style.png">
-    </p>
+    VD: <p align = "center">
+        <img width = 500 src="../images/lesson1/font_style.png">
+        </p>
 
 ### 14.5.2. Font weight
 - Thuộc tính `font-weight` để thiết lập trọng số trọng lượng của phông chữ.
@@ -934,26 +959,27 @@ VD:
     - `font-weight`
     - `font-size/line-height`
     - `font-family`
+
  Trong đó: `font-size` và `font-family` là `bắt buộc`. Những giá trị còn lại nếu thiếu sẽ được sử dụng bằng các giá trị mặc định.  
  VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/shorthand_font.png">
     </p>
 
-## 15. CSS Icons
+# 15. CSS Icons
 - Cách đơn giản nhất để thêm một icon (biểu tượng) đến trang web là sử dụng một thư viện biểu tượng, ví dụ như Font Awesome.
 - Thêm tên của lớp biểu tượng được chỉ định vào bất kỳ phần tử HTML nội tuyến nào (như `<i>` hoặc `<span>`).
-### 15.1. Font Awesome Icons
+## 15.1. Font Awesome Icons
 - Để sử dụng các biểu tượng Font Awesome, hãy truy cập [fontawesome.com](https://fontawesome.com/) , đăng nhập và nhận mã để thêm vào phần `<head>` của trang HTML của chúng ta:
-```html
-<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-```
+    ```html
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    ```
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/font_Awesome_icon.png">
     </p>
 
-### 15.2. Bootstrap Icon
+## 15.2. Bootstrap Icon
 - Để sử dụng các biểu tượng Bootstrap, hãy thêm dòng sau vào bên trong phần `<head>` của trang HTML của chúng ta:
 
 ```html
@@ -964,7 +990,7 @@ VD:
     <img width = 500 src="../images/lesson1/bootstrap_icon.png">
     </p>
 
-### 15.3. Google Icon
+## 15.3. Google Icon
 - Để sử dụng các biểu tượng của Google, hãy thêm dòng sau vào trong phần `<head>` của trang HTML của chúng ta:
 
 ```html
@@ -975,37 +1001,37 @@ VD:
     <img width = 500 src="../images/lesson1/google_icon.png">
     </p>
 
-## 16. CSS Links
-### 16.1. Styling Links
+# 16. CSS Links
+## 16.1. Styling Links
 - Các liên kết có thể được định kiểu style bằng các thuộc tính CSS bất kỳ như `color, font-family`,...
 - Hơn nữa, các liên kết có thể định kiểu style phụ thuộc vào trạng thái của nó.
 - Có 4 trạng thái liên kết:
     - `a:link` - một liên kết bình thường, chưa được ghé thăm.
     - `a:visited` - một liên kết đã được ghé thăm.
     - `a:hover` - một liên kết khi có chuột di chuyển qua.
-    - `a:active` - một liên kết khi được click vào.
+    - `a:active` - một liên kết khi được click vào.  
+
 VD:
-
 ```css
-    /* unvisited link */
-    a:link {
-    color: red;
-    }
+/* unvisited link */
+a:link {
+color: red;
+}
 
-    /* visited link */
-    a:visited {
-    color: green;
-    }
+/* visited link */
+a:visited {
+color: green;
+}
 
-    /* mouse over link */
-    a:hover {
-    color: hotpink;
-    }
+/* mouse over link */
+a:hover {
+color: hotpink;
+}
 
-    /* selected link */
-    a:active {
-    color: blue;
-    }
+/* selected link */
+a:active {
+color: blue;
+}
 ```
 - *Lưu ý:* Khi thiết lập style cho liên kết, có 1 số quy tắc sau:  
 
@@ -1018,64 +1044,63 @@ VD:
     text-decoration: none;
     }
     ```
-### 16.2. Link Buttons
+## 16.2. Link Buttons
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/link_button.png">
     </p>
 
-## 17. CSS List
+# 17. CSS List
 - Nếu trong HTML, với danh sách không có thứ tự các điểm đánh dấu mục trong danh sách là các gạch đầu dòng, chấm tròn...; còn với danh sách có thứ tự thì điểm đánh dấu là các chữ số và chữ cái.
 - Sử dụng thuộc tính `list-style-type` định nghĩa các kiểu của điểm đánh dấu mục trong danh sách.
 - Chúng ta cũng có thể thay đổi các kiểu style cho điểm đánh dấu mục bằng những kiểu khác như hình ảnh, màu sắc, vị trí...
-### 17.1. Sử dụng một hình ảnh làm điểm đánh dấu mục.
-- Sử dụng thuộc tính `list-style-image` để định nghĩa một hình ảnh như điểm đánh dấu danh mục trong danh sách.
+## 17.1. Sử dụng một hình ảnh làm điểm đánh dấu mục.
+- Sử dụng thuộc tính `list-style-image` để định nghĩa một hình ảnh như điểm đánh dấu danh mục trong danh sách.  
 VD: 
     <p align = "center">
     <img width = 500 src="../images/lesson1/image_list.png">
     </p>
 
-### 17.2. Chỉ định vị trí của điểm đánh dấu
+## 17.2. Chỉ định vị trí của điểm đánh dấu
 - Thuộc tính `list-style-position` chỉ định vị trí của các điểm đánh dấu mục danh sách (dấu đầu dòng)
 - "`list-style-position: outside;`" nghĩa là các dấu đầu dòng sẽ nằm ngoài mục danh sách. Đầu mỗi dòng của một mục danh sách sẽ được căn chỉnh theo chiều dọc. Đây là mặc định.
-- "`list-style-position: inside;`" nghĩa là các dấu đầu dòng sẽ nằm bên trong mục danh sách. Vì nó là một phần của mục danh sách, nó sẽ là một phần của văn bản và đẩy văn bản vào.
-
+- "`list-style-position: inside;`" nghĩa là các dấu đầu dòng sẽ nằm bên trong mục danh sách. Vì nó là một phần của mục danh sách, nó sẽ là một phần của văn bản và đẩy văn bản vào.  
 VD: 
     <p align = "center">
     <img width = 500 src="../images/lesson1/list_position.png">
     </p>
 
-### 17.3. Bỏ những thiết lập mặc định
+## 17.3. Bỏ những thiết lập mặc định
 - Thuộc tính `list-style-type: none;` cũng có thể được sử dụng để xóa các điểm đánh dấu/dấu đầu dòng. 
-- Lưu ý rằng danh sách cũng có `margin` và `padding` mặc định. Để loại bỏ điều này, hãy thêm `margin: 0` và` padding: 0` tới bộ chọn trong css `<ul>` hoặc `<ol>`
-
+- Lưu ý rằng danh sách cũng có `margin` và `padding` mặc định. Để loại bỏ điều này, hãy thêm `margin: 0` và` padding: 0` tới bộ chọn trong css `<ul>` hoặc `<ol>`  
 VD: 
     <p align = "center">
     <img width = 500 src="../images/lesson1/remove_bullets.png">
     </p>
 
-### 17.4. List - shorthand property
+## 17.4. List - shorthand property
 - Thuộc tính `list-style` là một thuộc tính viết tắt. Nó được sử dụng để đặt tất cả các thuộc tính danh sách trong một khai báo.
 - Khi sử dụng `list-style`, thứ tự các giá trị là:
     - `list-style-type`
     - `list-style-position`
-    - `list-style-image`
-VD:
-```css
-ul {
-  list-style: square inside url("sqpurple.gif");
-}
-```
+    - `list-style-image`  
+
+    VD:
+    ```css
+    ul {
+    list-style: square inside url("sqpurple.gif");
+    }
+    ```
 *Lưu ý*: Nếu 1 trong những giá trị bị thiếu, thì nó sẽ sử dụng giá trị mặc định của những thuộc tính đó.
 
-- Chúng ta cũng có thể tạo kiểu cho danh sách bằng màu sắc, để làm cho chúng trông thú vị hơn một chút.
+- Chúng ta cũng có thể tạo kiểu cho danh sách bằng màu sắc, để làm cho chúng trông thú vị hơn một chút.  
 VD: 
     <p align = "center">
     <img width = 500 src="../images/lesson1/list_color.png">
     </p>
 
-## 18. CSS Tables
-### 18.1. Table Borders
+# 18. CSS Tables
+## 18.1. Table Borders
 - Để định nghĩa đường viền của bảng trong CSS, sử dụng thuộc tính `border`.
 - Nếu chúng ta muốn một bảng kéo dài ra cả màn hình (full-width), chúng ta thêm thuộc tính width: 100% cho phần tử `<table>`
 
@@ -1090,7 +1115,7 @@ VD:
     <img width = 500 src="../images/lesson1/border_collapse.png">
     </p>
 
-### 18.2. CSS Table Size
+## 18.2. CSS Table Size
 ### 18.2.1. Table Width & Height
 - Chiều rộng và chiều cao của một bảng được định nghĩa bằng thuộc tính `width` và `height`. Có thể định nghĩa với 1 giá trị cụ thể bằng `px,cm,`... hoặc `% theo kích thước của cửa sổ trình duyệt`  
 VD:  
@@ -1099,7 +1124,7 @@ VD:
     </p>
 ### 18.2.2. CSS Table Alignment
 - Căn chỉnh theo chiều ngang: sử dụng thuộc tính `text-align` để thiết lập căn chỉnh theo chiều ngang ( như `trái (left), giữa (center), phải (right)`) cho nội dung của các thẻ `<th>`, `<td>`.
-    - Mặc định, nội dung của thẻ `<th>` sẽ được căn giữa, và nội dung của thẻ `<td>` được căn trái.
+    - Mặc định, nội dung của thẻ `<th>` sẽ được căn giữa, và nội dung của thẻ `<td>` được căn trái.  
     VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/text_align_table.png">
@@ -1112,7 +1137,7 @@ VD:
     <img width = 500 src="../images/lesson1/vertical_align_table.png">
     </p>
 
-### 18.3. CSS Table Style
+## 18.3. CSS Table Style
 ### 18.3.1. Table Padding
 - Để thay đổi khoảng cách giữa đường viền và nội dung trong một bảng, sử dụng thuộc tính `padding` vào thẻ `<th>`, `<td>`  
 VD:
@@ -1142,7 +1167,7 @@ VD:
 
 ### 18.3.5. Table Color
 - Để thiết lập màu sắc chữ hoặc màu nền cho `<th>` và `<td>`, ta sử dụng thuộc tính `color` và `background-color`
-### 18.4. CSS Responsive Table
+## 18.4. CSS Responsive Table
 - Một bảng linh hoạt sẽ hiển thị một thanh cuộn theo chiều ngang nếu màn hình quá nhỏ để hiển thị được đầy đủ nội dung trong bảng.
 - Thêm một phần tử vùng chứa (như `<div>`) với `overflow-x: auto` xung quanh phần tử `<table>` để làm cho nó linh hoạt  
 VD: 
@@ -1154,15 +1179,15 @@ VD:
 
     </div>
 ```
-## 19. CSS Layout - the display property
-### 19.1. Thuộc tính `display`
+# 19. CSS Layout - the display property
+## 19.1. Thuộc tính `display`
 - Thuộc tính `display` định nghĩa một phần tử được hiển thị như thế nào.
 - Mọi phần tử HTML đều có giá trị hiển thị mặc định tùy thuộc vào loại phần tử đó. Giá trị hiển thị mặc định cho hầu hết các phần tử là `khối (block)` hoặc `nội tuyến (inline)`.
 
-### 19.2. Phần tử mức khối
+## 19.2. Phần tử mức khối
 - Một phần tử cấp khối luôn bắt đầu trên một dòng mới và chiếm toàn bộ chiều rộng của màn hình.
 - Những phần tử mức khối là:
-```html
+    ```html
     <div>
     <h1> - <h6>
     <p>
@@ -1170,56 +1195,57 @@ VD:
     <header>
     <footer>
     <section>
-```
-### 19.3. Phần tử nội tuyến
+    ```
+## 19.3. Phần tử nội tuyến
 - Một phần tử nội tuyến không bắt đầu trên một dòng mới và chỉ chiếm  chiều rộng vừa đủ.
 - Những phần tử nội tuyến:
-```html
+    ```html
     <span>
     <a>
     <img>
-```
-### 19.4. `Display: none;`
+    ```
+## 19.4. `Display: none;`
 - `display: none;` thường được sử dụng với JavaScript để ẩn và hiển thị các phần tử mà không cần xóa và tạo lại chúng
-### 19.5. Ghi đè những giá trị hiển thị mặc định
+## 19.5. Ghi đè những giá trị hiển thị mặc định
 - Mỗi phần tử có một giá trị 1 hiển thị mặc định. Tuy nhiên, ta có thể ghi đè nó.
 - Thay đổi phần tử nội tuyến thành phần tử khối hoặc ngược lại, có thể hữu ích để làm cho trang trông theo một cách cụ thể và vẫn tuân theo các tiêu chuẩn web.
 
-### 19.6. So sánh display:none; và visibility:hidden;
+## 19.6. So sánh display:none; và visibility:hidden;
 - Cả hai thuộc tính đều được sử dụng để ẩn phần tử đi. Tuy nhiên:
     - `display: none;` - phần tử sẽ bị ẩn, và trang web sẽ được hiển thị như là phần tử không có ở đó.  
     VD: 
-    <p align = "center">
-    <img width = 500 src="../images/lesson1/display_none.png">
-    </p>
+        <p align = "center">
+        <img width = 500 src="../images/lesson1/display_none.png">
+        </p>
 
     - `visibility:hidden;` - phần tử cũng bị ẩn, những nó vẫn chiếm 1 khoảng không gian như trước khi bị ẩn, tuy bị ẩn đi nhưng nó vẫn ảnh hưởng đến bộ cụ trang.  
     VD: 
-    <p align = "center">
-    <img width = 500 src="../images/lesson1/hidden.png">
-    </p>
-## 20. CSS Layout - width & max-width
+        <p align = "center">
+        <img width = 500 src="../images/lesson1/hidden.png">
+        </p>
+# 20. CSS Layout - width & max-width
 Sử dụng thuộc tính `width`, `max-width` và `margin: auto`
 - Đặt chiều rộng của phần tử cấp khối sẽ ngăn nó kéo dài ra các cạnh của vùng chứa nó. Sau đó, ta có thể đặt lề thành tự động, để căn giữa phần tử theo chiều ngang trong vùng chứa của nó. Phần tử sẽ chiếm chiều rộng được chỉ định và không gian còn lại sẽ được chia đều giữa hai lề.
 
 *Lưu ý*: 
 - Khi cửa sổ trình duyệt nhỏ hơn chiều rộng của phần tử, trình duyệt sẽ thêm một thanh cuộn ngang vào trang.
-- Trong trường hợp đó, sử dụng thuộc tính `max-width` để thay thế, nó sẽ cải thiện được vấn đề với màn hình nhỏ.
+- Trong trường hợp đó, sử dụng thuộc tính `max-width` để thay thế, nó sẽ cải thiện được vấn đề với màn hình nhỏ.  
 VD
-- Khi màn hình lớn, các phần tử hiển thị bình thường
+    - Khi màn hình lớn, các phần tử hiển thị bình thường
     <p align = "center">
     <img width = 500 src="../images/lesson1/max_large.png">
     </p>
-- Khi màn hình nhỏ hơn kích thước phần tử, phần tử `<div class="ex1">` sử dụng thuộc tính `width`, nội dung sẽ **bị che mất, phải kéo thanh cuộn ngang**. Còn phần tử `<div class="ex2">` sử dụng thuộc tính `max-width` vẫn hiển thị đủ nội dung.
+
+    - Khi màn hình nhỏ hơn kích thước phần tử, phần tử `<div class="ex1">` sử dụng thuộc tính `width`, nội dung sẽ **bị che mất, phải kéo thanh cuộn ngang**. Còn phần tử `<div class="ex2">` sử dụng thuộc tính `max-width` vẫn hiển thị đủ nội dung.
     <p align = "center">
     <img width = 500 src="../images/lesson1/small_screen.png">
     </p>
 
-## 21. CSS Layout - The position property
+# 21. CSS Layout - The position property
 - Thuộc tính `position` chỉ định loại phương pháp định vị được sử dụng cho một phần tử.
 - Các phần tử sau đó được định vị bằng cách sử dụng các thuộc tính `top, left, bottom, right`. Tuy nhiên, các thuộc tính này sẽ không hoạt động trừ khi thuộc tính `position` được đặt trước. Chúng cũng hoạt động khác nhau tùy thuộc vào giá trị vị trí.
 
-### 21.1. `position: static;`
+## 21.1. Thuộc tính `position: static;`
 - Các phần tử HTML được định vị tĩnh theo mặc định. Các phần tử được định vị tĩnh không bị ảnh hưởng bởi các thuộc tính `top, left, bottom, right`. 
 - Một phần tử có `position: static;` không được định vị theo bất kỳ cách đặc biệt nào; nó luôn được định vị theo dòng bình thường của trang:  
 VD:
@@ -1227,7 +1253,7 @@ VD:
     <img width = 500 src="../images/lesson1/position_static.png">
     </p>
 
-### 21.2. `position: relative;`
+## 21.2. Thuộc tính `position: relative;`
 - Một phần tử có `position: relative;` tức là được chỉnh vị trí tương đối liên quan tới vị trí thông thường của nó.
 - Việc đặt các thuộc tính `top, left, bottom, right` tới vị trí tương đối của phần tử thì vị trí của phần tử sẽ được căn chỉnh theo vị trí thông thường của nó. Chẳng hạn, `left:20px` sẽ cộng vào vị trí bên trái của phần tử.  
 VD:
@@ -1235,7 +1261,7 @@ VD:
     <img width = 500 src="../images/lesson1/position_relative.png">
     </p>
 
-### 21.3. `position: fixed;`
+## 21.3. Thuộc tính `position: fixed;`
 - Một phần tử có `position: fixed;` được định vị so với chế độ xem, có nghĩa là nó luôn ở cùng một vị trí ngay cả khi trang được cuộn.
 - Các thuộc tính trên cùng, bên phải, bên dưới và bên trái được sử dụng để định vị phần tử.
 - Một phần tử cố định không để lại khoảng trống trên trang mà nó thường được đặt.  
@@ -1244,7 +1270,7 @@ VD:
     <img width = 500 src="../images/lesson1/position_fixed.png">
     </p>
 
-### 21.4. `position: absolute;`
+## 21.4. Thuộc tính `position: absolute;`
 - Thuộc tính `position: absolute` trong CSS có tác dụng giúp định vị trí tuyệt đối cho thành phần theo thành phần bao ngoài, hoặc ít nhất là theo cửa sổ trình duyệt.  
 - Cụ thể hơn, thuộc tính `absolute` xác định định tọa độ của thành phần theo một thẻ cha `relative` (nếu có), Nếu không có thẻ cha thì nó sẽ đi theo body của toàn trang web.   
  VD:
@@ -1252,7 +1278,7 @@ VD:
     <img width = 500 src="../images/lesson1/position_absolute.png">
     </p>
 
-### 21.5. `position: sticky;`
+## 21.5. Thuộc tính `position: sticky;`
 - Một phần tử có `position: sticky;` được định vị dựa trên vị trí cuộn của người dùng. Một phần tử cố định chuyển đổi giữa `relative` và `fixed`, tùy thuộc vào vị trí cuộn. Nó được định vị tương đối cho đến khi một vị trí bù nhất định được đáp ứng trong khung nhìn - sau đó nó "`stick`" vào vị trí (như vị trí: fixed).
 
 VD: 
@@ -1265,46 +1291,42 @@ VD:
     <img width = 500 src="../images/lesson1/scrolled.png">
     </p>
 
-### 21.6. Định vị văn bản trong một bức ảnh
+## 21.6. Định vị văn bản trong một bức ảnh
 - VD: Định vị văn bản ở góc trên bên trái của bức ảnh:
+    ```html
+    <style>
+        .container {
+            position: relative;
+        }
 
-```html
-<style>
-    .container {
-        position: relative;
-    }
+        .topleft {
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            font-size: 18px;
+        }
 
-    .topleft {
-        position: absolute;
-        top: 8px;
-        left: 16px;
-        font-size: 18px;
-    }
+        img { 
+            width: 100%;
+            height: auto;
+            opacity: 0.3;
+        }
+    </style>
+    <h2>Image Text</h2>
+    <p>Add some text to an image in the top left corner:</p>
 
-    img { 
-        width: 100%;
-        height: auto;
-        opacity: 0.3;
-    }
-</style>
-<h2>Image Text</h2>
-<p>Add some text to an image in the top left corner:</p>
-
-<div class="container">
-  <img src="img_5terre_wide.jpg" alt="Cinque Terre" width="1000" height="300">
-  <div class="topleft">Top Left</div>
-</div>
-
-</body>
-</html>
-```
-<p align = "center">
-<img width = 500 src="../images/lesson1/topleft_text.png">
-</p>
+    <div class="container">
+    <img src="img_5terre_wide.jpg" alt="Cinque Terre" width="1000" height="300">
+    <div class="topleft">Top Left</div>
+    </div>
+    ```
+    <p align = "center">
+    <img width = 500 src="../images/lesson1/topleft_text.png">
+    </p>
 
 - Tương tự nếu muốn định vị văn bản ở vị trí nào, chúng ta thay đổi thuộc tính `top, left, right, bottom` của phần tử chứa văn bản theo ý muốn là được.
 
-## 22. CSS Layout - Overflow
+# 22. CSS Layout - Overflow
 - Thuộc tính `overflow` chỉ định cắt nội dung hoặc thêm thanh cuộn khi nội dung của một phần tử quá lớn để vừa với khu vực được chỉ định.
 - Thuộc tính `overflow` có những giá trị sau:
     - `visible`: Mặc định. Phần nội dung tràn ra không được cắt. Nó hiển thị ra bên ngoài hộp của phần tử.
@@ -1343,8 +1365,8 @@ VD:
     <img width = 500 src="../images/lesson1/overflow_xy.png">
     </p>
 
-## 23. CSS Layout - float và clear
-### 23.1. Thuộc tính float
+# 23. CSS Layout - float và clear
+## 23.1. Thuộc tính float
 - Thuộc tính `Float` sử dụng để chuyển một phần tử sang góc trái hoặc phải của không gian bao quanh nó, rất cần thiết trong việc định dạng bố cục trang.
 - Theo mặc định, tất cả các phần tử HTML là không `float`.
 
@@ -1380,7 +1402,7 @@ VD:
     <img width = 500 src="../images/lesson1/float.png">
     </p>
 
-### 23.2. Thuộc tính Clear
+## 23.2. Thuộc tính Clear
 - Khi chúng ta sử dụng thuộc tính `float`, chúng ta muốn phần tử tiếp theo ở bên dưới (không phải ở bên trái hay bên phải), thì sử dụng thuộc tính `clear`.
 - Thuộc tính `clear` có thể có một trong các giá trị sau:
 
@@ -1409,7 +1431,7 @@ VD:
 }
 ```
 
-### 23.4. CSS Layout - Float
+## 23.4. CSS Layout - Float
 ### 23.4.1. Bố cục lưới dạng hộp
 - Ứng dụng tốt nhất của `float` là tạo bố cục dạng hộp đặt cạnh nhau.  
 VD:
@@ -1436,3 +1458,6 @@ VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/nav_menu.png">
     </p>
+
+# Summary
+ - Qua bài học đầu tiên này, chúng ta đã biết nhiều hơn về CSS và các định kiểu style cơ bản cho các phần tử như: color, background, links, tables, layouts,... và biết về bộ chọn đầu tiên của CSS là bộ chọn phần tử...

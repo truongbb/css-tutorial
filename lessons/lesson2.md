@@ -1,5 +1,16 @@
-
-## 25. CSS Layout - display:inline-block
+# 0. Content
+1. CSS Layout - display:inline-block
+2. CSS Layout - Horizontal & Vertical Align
+3. CSS Combinators
+4. CSS Pseudo-Classes
+5. CSS Pseudo-elements
+6. CSS Opacity/Transparency
+7. CSS Navigation Bar
+8. CSS Dropdowns
+9. CSS Image Gallery
+10. CSS Image Sprites
+11. CSS Attribute Selectors
+# 1. CSS Layout - display:inline-block
 - So với `display: inline`, sự khác biệt chính là `display: inline-block` cho phép thiết lập chiều rộng và chiều cao trên phần tử.
 - Ngoài ra, với `display: inline-block`, `margin/padding trên cùng và dưới cùng` được tôn trọng, nhưng với `display: inline` thì không.
 - So với `display: block`, sự khác biệt chính là `display: inline-block` không thêm dấu ngắt dòng sau phần tử, vì vậy phần tử có thể nằm cạnh các phần tử khác.  
@@ -15,8 +26,8 @@ VD:
     <img width = 500 src="../images/lesson1/nav_inline_block.png">
     </p>
 
-## 26. CSS Layout - Horizontal & Vertical Align
-### 26.1. Căn giữa cho phần tử - Sử dụng margin:auto
+## 2. CSS Layout - Horizontal & Vertical Align
+## 2.1. Căn giữa cho phần tử - Sử dụng margin:auto
 - Trong CSS, để căn giữa một phần tử khối (như `<div>`), ta sử dụng thuộc tính `margin có giá trị là auto` để căn chỉnh phần tử nằm ở giữa so với phần tử cha của nó.
 
 - Phần tử sau khi chiếm không gian nhất định, khoảng trống còn lại sẽ được chia đều cho hai bên lề:  
@@ -31,63 +42,63 @@ VD:
 - Thuộc tính `margin: auto` chỉ căn giữa cho phần tử `block` như `<div>, <p>, <h1> đến <h6>, <header>, <footer>, <section>, <nav>... `còn các phần tử `inline` như `<span>, <a>, <strong>, <b>, <i>...` sẽ `không được áp dụng`.
 - Có thể ghi đè lại phần tử hiển thị block hay inline bằng cách sử dụng thuộc tính display. Ví dụ: `span { display: block;}`.
 
-### 26.2. Căn giữa Văn bản 
+## 2.2. Căn giữa Văn bản 
 - Để chỉ căn giữa văn bản bên trong một phần tử, hãy sử dụng `text-align: center;`  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/center_text.png">
     </p>
 
-### 26.3. Căn giữa hình ảnh
+## 2.3. Căn giữa hình ảnh
 - Để căn giữa một ảnh, đặt `margin-left và margin-right thành auto` và `làm cho hình ảnh trở thành phần tử dạng block.`  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/img_center.png">
     </p>
 
-### 26.4. Căn trái/phải - Sử dụng position
+## 2.4. Căn trái/phải - Sử dụng position
 - Một phương pháp khác để căn chỉnh phần tử là sử dụng `position: absolute`.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/align_position.png">
     </p>
 
-### 26.5. Căn trái/phải - Sử dụng float
+## 2.5. Căn trái/phải - Sử dụng float
 - Thuộc tính `float` cũng được sử dụng để căn chỉnh phần tử.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/align_float.png">
     </p>
 
-### 26.6. Căn giữa theo chiều dọc - Sử dụng padding
+## 2.6. Căn giữa theo chiều dọc - Sử dụng padding
 - Có nhiều cách để căn giữa một phần tử theo chiều dọc trong CSS. Giải pháp đơn giản nhất đó là sử dụng `padding`.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/align_padding.png">
     </p>
-### 26.7. Căn giữa theo chiều dọc - Sử dụng line-height
+## 2.7. Căn giữa theo chiều dọc - Sử dụng line-height
 - Cũng có cách khác để căn giữa theo chiều dọc là sử dụng thuộc tính `line-height` với giá trị giống như thuộc tính `height`.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/align_line_height.png">
     </p>
 
-### 26.8. Căn giữa theo chiều dọc - Sử dụng position và transform
+## 2.8. Căn giữa theo chiều dọc - Sử dụng position và transform
 - Nếu không sử dụng `padding` và `line-height` như trên, có thể dùng cách thứ ba là sử dụng `position` và `transform`:  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/position_transform.png">
     </p>
 
-### 26.9. Căn giữa theo chiều dọc - Sử dụng Flexbox 
+## 2.9. Căn giữa theo chiều dọc - Sử dụng Flexbox 
 - Cũng có thể sử dụng `flexbox` để căn giữa mọi thứ.   
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson1/align_flexbox.png">
     </p>
 
-# 1. CSS Combinators
-## 1.1. CSS Combinators - Bộ kết hợp CSS
+# 3. CSS Combinators
+## 3.1. CSS Combinators - Bộ kết hợp CSS
 - Bộ chọn CSS có thể chứa nhiều hơn 1 bộ chọn đơn (`selector`). Giữa các bộ chọn đơn, chúng ta có thể bao gồm 1 bộ kết hợp.
 
 - Bộ kết hợp sẽ hiểu đơn giản là  mối quan hệ giữa các bộ chọn đơn.
@@ -97,14 +108,14 @@ VD:
     - `Adjacent sibling selector (+)`
     - `General sibling selector (~)`
 `
-### 1.1.1. Descendant Selector
+### 3.1.1. Descendant Selector
 - Bộ chọn `Descendant Selector` có nghĩa là `chọn` **tất cả** `những thẻ nằm trong một selector nào đó`. Cú pháp sử dụng dấu cách (space) giữa 2 phần tử `Element Element {}`   
 
     VD: chọn tất cả các thẻ `<p>` nằm trong thẻ `<div>`
     <p align="center">
     <img src="../images/lesson2/descendant_selector.png" width=500>
     </p>
-### 1.1.2. Child selector (>)
+### 3.1.2. Child selector (>)
 - `Child selector (>)` có ý nghĩa là `chọn` **tất cả** `những thẻ con trực tiếp của một selector` nào đó. Nghĩa là thẻ con nằm trong đúng một cấp so với selector đó.
 - Cú pháp : `element > element {}`  
 VD: Chọn tất cả thẻ con `<p>` cấp 1 nằm trong thẻ `<div>`
@@ -114,7 +125,7 @@ VD: Chọn tất cả thẻ con `<p>` cấp 1 nằm trong thẻ `<div>`
 
     - Thẻ `<p>` chứa nội dung "Paragraph 3 in the div" không được chọn vì nó là thẻ con cấp 1 của thẻ `<section>` hay gọi là thẻ cháu của thẻ `<div>`
 
-### 1.1.3 Adjacent sibling selector (+)
+### 3.1.3 Adjacent sibling selector (+)
 - `Adjacent sibling selector (+)` có ý nghĩa là `chọn` **một** `thẻ anh/chị/em nằm liền kề ngay sau một selector` nào đó.
 - Thẻ anh/chị/em được hiểu là những thẻ có chung một thẻ cha.
 
@@ -125,7 +136,7 @@ VD: Chọn thẻ `<p>` đầu tiên nằm ngay sau thẻ `<div>`
 <img src="../images/lesson2/adjacent_sibling.png" width=500>
 </p>
 
-### 1.1.4. General sibling selector (~)
+### 3.1.4. General sibling selector (~)
 - `General sibling selector (~)` có ý nghĩa là `chọn` **tất cả** `những thẻ anh/chị/em của 1 selector` nào đó. Tuy nhiên những thẻ này `phải nằm phía sau selector` đó.
 - Cú pháp : `element ~ element {}`    
 VD: 
@@ -133,8 +144,8 @@ VD:
     <img src="../images/lesson2/general_sibling.png" width=500>
     </p>
 
-# 2. CSS Pseudo-Classes
-## 2.1. Pseudo-Classes là gì?
+# 4. CSS Pseudo-Classes
+## 4.1. Pseudo-Classes là gì?
 - `Pseudo-class (Một lớp giả)` được sử dụng để xác định trạng thái đặc biệt của một phần tử.
 - Ví dụ, nó có thể được sử dụng để:
     - Tạo kiểu cho một phần tử khi người dùng di chuột qua nó.
@@ -147,9 +158,9 @@ VD:
         property: value;
     }
     ```
-## 2.2. Anchor Pseudo-classes
-- Các liên kết có thể được hiển thị theo các cách khác nhau.  
-VD:
+## 4.2. Anchor Pseudo-classes
+- Các liên kết có thể được hiển thị theo các cách khác nhau.    
+    VD:
     ```css
     /* unvisited link */
     a:link {
@@ -171,7 +182,7 @@ VD:
     color: blue; /*Khi liên kết được click thì có màu xanh dương*/
     }
     ```
-## 2.3. Pseudo-classes and HTML Classes
+## 4.3. Pseudo-classes and HTML Classes
 - Có thể kết hợp `Pseudo-class` với tên class của HTML.
 
     VD: Thay đổi màu sắc của thẻ liên kết `<a>` có `class="highlight"` khi di chuột vào liên kết đó.
@@ -183,13 +194,13 @@ VD:
     } 
     ```
 
-## 2.4. Di chuột qua một phần tử để hiển thị lên một phần tử khác (giống như hiển thị 1 công cụ giải thích)  
+## 4.4. Di chuột qua một phần tử để hiển thị lên một phần tử khác (giống như hiển thị 1 công cụ giải thích)  
 
 VD: khi di chuột vào thẻ `<div>` thì thẻ `<p>` được hiển thị ra
     <p align="center">
     <img src="../images/lesson2/tooltip_hover.png" width=500>
     </p>
-## 2.5. CSS - The :first-child Pseudo-class
+## 4.5. CSS - The :first-child Pseudo-class
 - `:first-child pseudo-class` sẽ chọn một phần tử mà phần tử đó là thẻ con đầu tiên của 1 phần tử khác  
 - VD:
     - Chọn phần tử `<p>` bất kỳ là phần tử con đầu tiên của 1 phần tử khác.
@@ -214,7 +225,7 @@ VD:
     <img src="../images/lesson2/all_i_first_child.png" width=500>
     </p>
 
-## 2.6. CSS - The :lang Pseudo-class
+## 4.6. CSS - The :lang Pseudo-class
 - `:lang pseudo-class` cho phép ta xác định các quy tắc đặc biệt cho các ngôn ngữ khác nhau.  
 VD:
  `:lang` xác định dấu ngã (~) cho các phần tử `<q>` với `lang = "no"`:
@@ -223,7 +234,7 @@ VD:
 <img src="../images/lesson2/lang_pseudo.png" width=500>
 </p>
 
-## 2.7. CSS :last-child Pseudo-class
+## 4.7. CSS :last-child Pseudo-class
 - `:last-child`: chọn phần tử là phần tử con cuối cùng trong phần tử cha của nó
 
     VD:
@@ -250,7 +261,7 @@ VD:
     <img src="../images/lesson2/last-child.png" width=500 height=350>
     </p>
 
-## 2.8. CSS :nth-child(n) Pseudo-class
+## 4.8. CSS :nth-child(n) Pseudo-class
 - `nth:child(n)`: chọn phần tử theo thứ tự của nó trong phần tử cha.
 - `n` có thể nhận các giá trị như: `1 số nguyên` cụ thể, `even` (chọn các phần tử có thứ tự chẵn) hoặc `odd` (chọn các phần tử có thứ tự lẻ), hoặc 1 công thức (`an+b; a,b là 1 số nguyên; n chạy từ 0,1,2...`)
 
@@ -283,7 +294,7 @@ VD:
 <img src="../images/lesson2/nth-child.png" width=500>
 </p>
 
-## 2.9. CSS :nth-last-child(n) Pseudo-class
+## 4.9. CSS :nth-last-child(n) Pseudo-class
 - `:nth-last-child(n)` chọn mọi phần tử là phần tử con thứ n trong phần tử cha, thứ tự được tính từ phần tử con cuối cùng. `n` có thể là một số, một từ khóa (`even/odd`) hoặc một công thức (`n+1`)
 
     VD: 
@@ -315,7 +326,7 @@ VD:
 <img src="../images/lesson2/nth-last-child.png" width=500>
 </p>
 
-# 3. CSS Pseudo-elements
+# 5. CSS Pseudo-elements
 - Một CSS `pseudo-element` thường được sử dụng để định kiểu cho các thành phần cụ thể của một phần tử.  
 VD: nó có thể được sử dụng để:
     - Định kiểu cho ký tự, dòng hay của một phần tử đầu tiên.
@@ -327,14 +338,14 @@ selector::pseudo-element {
   property: value;
 }
 ```
-## 3.1. The ::first-line Pseudo-element
+## 5.1. The ::first-line Pseudo-element
 - `::firstline Pseudo-element` được sử dụng để thêm một định kiểu đặc biệt tới dòng đầu tiên của một văn bản.  
 VD: định dạng cho dòng đầu tiên của văn bản trong tất cả các thẻ `<p>`
     <p align="center">
     <img src="../images/lesson2/first_pseudo_element.png" width=500>
     </p>
 
-*lưu ý:* `::first-line pseudo-element` chỉ có thể áp dụng cho những phần tử mức khối
+*Lưu ý:* `::first-line pseudo-element` chỉ có thể áp dụng cho những phần tử mức khối
 - Một số thuộc tính áp dụng cho `::first-line pseudo-element`:
     - Thuộc tính `font`, `color`, `background`
     - `word-spacing`
@@ -349,7 +360,7 @@ VD: định dạng cho dòng đầu tiên của văn bản trong tất cả các
 - Hai dấu hai chấm (`::`) được thay thế cho 1 dấu hai chấm (`:`) phía trước một `pseudo-element trong CSS3`. Và điều này là để phân biệt giữa `pseudo-classes là 1 dấu (:)` và `pseudo-elements là 2 dấu (::)`.
 - Đối với `CSS2` và `CSS1` thì cú pháp sủ dụng `1 dấu hai chấm (:) được sử dụng cho cả pseudo-classes và pseudo-elements`
 
-## 3.2. The ::first-letter Pseudo-elements
+## 5.2. The ::first-letter Pseudo-elements
 - `::first-letter pseudo-element` được sử dụng để thêm một định kiểu đặc biệt tới ký tự đầu tiên của một văn bản.
 
 VD: định kiểu cho ký tự đầu tiên của văn bản trong tất cả thẻ `<p>`
@@ -368,19 +379,19 @@ VD: định kiểu cho ký tự đầu tiên của văn bản trong tất cả t
     - `line-height`
     - `float`
     - `clear`
-## 3.3. Kết hợp Pseudo-elements và HTML Classes
+## 5.3. Kết hợp Pseudo-elements và HTML Classes
 - `Pseudo-elements` có thể được kết hợp với HTML `class` theo cú pháp:
-```css
+    ```css
     selector.class::pseudo-element  {
         property: value;
     }
-```
+    ```
 VD:
     <p align="center">
     <img src="../images/lesson2/pseudo_element_class.png" width=500>
     </p>
 
-## 3.4. Multiple Pseudo-elemnts
+## 5.4. Multiple Pseudo-elemnts
 - Một vài `pseudo-elements` cũng có thể được kết hợp với nhau:  
 
     VD: Kết hợp `::first-letter` và `::first-line` của `pseudo-elements` cho một đoạn văn bản.   
@@ -389,7 +400,7 @@ VD:
 <img src="../images/lesson2/pseudo_element_combination.png" width=500>
 </p>
     
-## 3.5. CSS ::before, ::after Pseudo-element
+## 5.5. CSS ::before, ::after Pseudo-element
 - `::before`/`::after Pseudo-element` có thể được sử dụng để chèn một số nội dung vào trước/sau nội dung có trong một phần tử.  
 
 - Cú pháp:
@@ -413,40 +424,40 @@ VD:
     <img src="../images/lesson2/after_pseudo.png" width=500>
     </p>
 
-## 3.6. CSS - The ::marker Pseudo-element
+## 5.6. CSS - The ::marker Pseudo-element
 - CSS - `::marker Pseudo-element` chọn những điểm đánh dấu của các mục danh sách   
 VD:
     <p align="center">
     <img src="../images/lesson2/makers_pseudo.png" width=500>
     </p>
 
-## 3.6. CSS - The ::selection Pseudo-element
+## 5.7. CSS - The ::selection Pseudo-element
 - `::selection Pseudo-element` dùng để định dạng cho những thành phần được người dùng chọn trong một phần tử.
 - Những thuộc tính CSS được áp dụng cho `::selection`: `color, background, cursor, outline`.
 VD: Những phần nào được chọn sẽ có chữ màu đỏ và màu nền là màu vàng
 
-    <p align="center">
-    <img src="../images/lesson2/select_pseudo.png" width=500>
-    </p>
+<p align="center">
+<img src="../images/lesson2/select_pseudo.png" width=500>
+</p>
 
-# 4. CSS Opacity/Transparency
+# 6. CSS Opacity/Transparency
 - Thuộc tính `opacity` định nghĩa độ mờ/độ trong suốt của một phần tử.
-## 4.1. Transparency Image
+## 6.1. Transparency Image
 - Thuộc tính `opacity` có thể nhận 1 giá trị từ 0.0 - 1.0. Giá trị càng thấp thì càng mờ.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson2/opacity.png">
     </p>
 
-## 4.2. Transparent Hover Effect
+## 6.2. Transparent Hover Effect
 - Thuộc tính `opacity` thường được sử dụng với bộ chọn `:hover` để thay đổi độ mờ khi di chuột qua một phần tử.  
 VD:
     <p align = "center">
     <img width = 500 src="../images/lesson2/hover_opacity.png">
     </p>
 
-# 5. CSS Navigation Bar
-## 5.1 Demo : Navigation Bar
+# 7. CSS Navigation Bar
+## 7.1 Demo : Navigation Bar
 - Navigation Bar = List of Links ( thanh điều hướng hay danh sách các liên kết)
 - Một thanh điều hướng sử dụng những tiêu chuẩn HTML làm một cơ sở.
 
@@ -477,7 +488,7 @@ VD:
         padding: 0;
     }
     ```
-## 5.2. CSS Vertical Navigation Bar
+## 7.2. CSS Vertical Navigation Bar
 - Để tạo một thanh điều hướng theo chiều dọc, chúng ta có thể định kiểu cho những thẻ `<a>` trong danh sách như sau:
     ```css
     li a {
@@ -625,7 +636,7 @@ VD:
 <img width = 500 src="../images/lesson2/full_nav.png">
 </p>
 
-## 5.3. CSS Horizontal Navigation Bar
+## 7.3. CSS Horizontal Navigation Bar
 Có 2 cách để tạo một thanh điều hướng ngang là sử dụng `inline` hoặc `float` cho các danh mục trong danh sách:
 - `Inline List Items`: thêm thuộc tính `display: inline;` tới phần tử `<li>`. Mặc định phần tử `<li>` là phần tử khối. Ở đây thuộc tính này sẽ xóa bỏ dấu xuống dòng ở phía trước và sau mỗi danh mục trong danh sách để các danh mục hiển thị trên cùng 1 dòng.
 
@@ -759,10 +770,12 @@ Thực hiện 1 số định kiểu style cho thanh điều hướng ngang để
         top: 10px;
     }
     ```
+
     - Thanh điều hướng khi chưa kéo thanh cuộn
     <p align = "center">
     <img width = 500 src="../images/lesson2/sticky_nav_before.png">
     </p>
+
     - Thanh điều hướng khi kéo thanh cuộn xuống qua vị trí ban đầu của nó
 
     <p align = "center">
@@ -859,17 +872,19 @@ Thực hiện 1 số định kiểu style cho thanh điều hướng ngang để
     <p align = "center">
     <img width = 500 src="../images/lesson2/normal_width_nav.png">
     </p>
+
     - Thanh điều hướng ở cửa sổ trình duyệt có kích thước nhỏ hơn hoặc bằng 900px
     <p align = "center">
     <img width = 500 src="../images/lesson2/width_less900.png">
     </p>
+
     - Thanh điều hướng ở cửa sổ trình duyệt có kích thước nhỏ hơn hoặc bằng 400px
     <p align = "center">
     <img width = 500 src="../images/lesson2/width_less400.png">
     </p>
 
-# 6. CSS Dropdowns
-## 6.1. Basic Dropdown
+# 8. CSS Dropdowns
+## 8.1. Basic Dropdown
 - Tạo một hộp thả xuống sẽ xuất hiện khi người dùng di chuột qua một phần tử.  
 VD:
     ```html
@@ -881,7 +896,6 @@ VD:
         position: relative;
         display: inline-block;
     }
-
     .dropdown-content {
         display: none;
         position: absolute;
@@ -894,36 +908,32 @@ VD:
     .dropdown-content p {
         color: red;
     }
-
     .dropdown:hover .dropdown-content {
         display: block;
     }
     </style>
     </head>
     <body>
-
     <h2>Hoverable Dropdown</h2>
     <p>Move the mouse over the text below to open the dropdown content.</p>
-
     <div class="dropdown">
         <span>Mouse over me</span>
         <div class="dropdown-content">
             <p>Hello World!</p>
         </div>
     </div>
-
     </body>
     </html>
     ```
 *Giải thích:*
 - Sử dụng bất kỳ một phần tử để mở một danh sách nội dung thả xuống, ở ví dụ này sử dụng thẻ <span> `<span>Mouse over me</span>`
-- Sử dụng thẻ <div> để làm thẻ chứa những nội dung thả xuống, sau đó thêm bất kỳ nội dung nào mà chúng ta muốn
+- Sử dụng thẻ `<div>` để làm thẻ chứa những nội dung thả xuống, sau đó thêm bất kỳ nội dung nào mà chúng ta muốn
     ```html
         <div class="dropdown-content">
             <p>Hello World!</p>
         </div>
     ```
-- Lớp .dropdown sử dụng position:relative; lớp .dropdown-content sử dụng position:absolute, cần thiết khi chúng ta muốn nội dung thả xuống được đặt đúng vị trí ngay dưới phần tử thả xuống
+- Lớp `.dropdown` sử dụng `position:relative;`, lớp `.dropdown-content` sử dụng `position:absolute`, cần thiết khi chúng ta muốn nội dung thả xuống được đặt đúng vị trí ngay dưới phần tử thả xuống
     ```css
     .dropdown {
         position: relative;
@@ -946,7 +956,7 @@ VD:
     <p align = "center">
     <img width = 500 src="../images/lesson2/hover_dropdown.png">
     </p>
-## 6.2. Dropdown Menu bên trong một thanh điều hướng
+## 8.2. Dropdown Menu bên trong một thanh điều hướng
 - Ở phần trước đã demo tạo ra một thanh điều hướng cho trang web và tạo một danh sách thả xuống. Sau đây, chúng ta sẽ kết hợp tạo một menu thả xuống bên trong thanh điều hướng cho phép người dùng chọn một lựa chọn từ một danh sách
 
     ```html
@@ -1025,7 +1035,7 @@ VD:
     <img width = 500 src="../images/lesson2/dropdown_nav.png">
     </p>
 
-# 7. CSS Image Gallery
+# 9. CSS Image Gallery
 - Sử dụng CSS tạo một trang trưng bày hình ảnh linh hoạt trên các thiết bị khác nhau:
 ```html
 <style>
@@ -1130,7 +1140,7 @@ div.desc {
     <p align = "center">
     <img width = 500 src="../images/lesson2/large_screen.png">
     </p>
-    - Hình ảnh được trưng bày khi màn hình có kích thước nhỏ hơn bằng 700:
+    - Hình ảnh được trưng bày khi màn hình có kích thước nhỏ hơn bằng 700px:
     <p align = "center">
     <img width = 500 src="../images/lesson2/img_screen_less700.png">
     </p>
@@ -1140,13 +1150,13 @@ div.desc {
     <img width = 500 src="../images/lesson2/img_screen_less500.png">
     </p>
 
-# 8. CSS Image Sprites
-## 8.1. Khái niệm
+# 10. CSS Image Sprites
+## 10.1. Khái niệm
 - `Sprites` là một hình ảnh lớn được tạo ra bằng cách gộp nhiều ảnh nhỏ lại với nhau theo một cách được định trước sao cho có thể tái sử dụng lại từng ảnh nhỏ mà không bị ảnh hưởng bởi các ảnh khác.
 - Để hiển thị được một ảnh nhỏ từ Sprite Image, thay vì sử dụng qua thẻ `img` hoặc `background` thông thường thì ta phải sử dụng thuộc `background` kết hợp với thuộc tính `background-position` để xác định vị trí chính xác của bức ảnh cần hiển thị. 
 - Sử dụng `image sprites` sẽ giảm thiểu số lượng yêu cầu server và tiết kiệm băng thông.
 
-## 8.2. Hướng dẫn
+## 10.2. Hướng dẫn
 - CSS `Image Sprite` có hệ trục tọa độ X, Y sao cho `chiều dương của trục X là hướng từ phải sang trái, chiều dương của Y là hướng từ dưới lên`, gốc tọa độ đặt tại gốc trái trên của Image Sprite, cần hiểu rõ điều này để cài đặt đúng tọa độ X, Y của từng phần trong Image Sprite.  
  VD:
     <p align = "center">
@@ -1178,8 +1188,8 @@ VD: Với ảnh icon.png bên trên, ta muốn lấy ra phần ảnh thứ 2 th�
     background: url(icon.png) -50px 0;
 }
 ```
-## 8.3. Một số ví dụ demo
-### 8.3.1. Image Spritesc - Tạo một danh sách điều hướng
+## 10.3. Một số ví dụ demo
+### 10.3.1. Image Sprites - Tạo một danh sách điều hướng
 
 ```css
 <style>
@@ -1234,39 +1244,39 @@ VD: Với ảnh icon.png bên trên, ta muốn lấy ra phần ảnh thứ 2 th�
     <img width = 500 src="../images/lesson2/image_sprite.png">
     </p>
 - 
-```css
-#home {
-  left: 0px; /*định vị ví trí hiển thị của phần ảnh home */
-  width: 46px; /* chiều rộng của phần ảnh home*/
-  background: url('img_navsprites.gif') 0 0; /*0 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif */
-}
-```
+    ```css
+    #home {
+    left: 0px; /*định vị ví trí hiển thị của phần ảnh home */
+    width: 46px; /* chiều rộng của phần ảnh home*/
+    background: url('img_navsprites.gif') 0 0; /*0 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif */
+    }
+    ```
 - Tương tự với phần ảnh prev và next:
-```css
-#prev {
-  left: 63px;/*định vị ví trí hiển thị của phần ảnh prev, 63px được tính từ trái sang phải*/
-  width: 43px;
-  background: url('img_navsprites.gif') -47px 0; /*-47px 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif.
-  47px vì chiều rộng của phần ảnh home đầu tiên là 46px + 1px đường biên chia giữa 2 phần ảnh
-  */
-}
-```
+    ```css
+    #prev {
+    left: 63px;/*định vị ví trí hiển thị của phần ảnh prev, 63px được tính từ trái sang phải*/
+    width: 43px;
+    background: url('img_navsprites.gif') -47px 0; /*-47px 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif.
+    47px vì chiều rộng của phần ảnh home đầu tiên là 46px + 1px đường biên chia giữa 2 phần ảnh
+    */
+    }
+    ```
 
-```css
-#next {
-  left: 129px;/*định vị ví trí hiển thị của phần ảnh prev, 63px được tính từ trái sang phải*/
-  width: 43px;
-  background: url('img_navsprites.gif') -91px 0; /*-91px 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif.
-  91px vì chiều rộng của phần ảnh home đầu tiên là 46px + 1px đường biên chia giữa 2 phần ảnh (home & prev) + 43px (width của ảnh prev) + 1px đường biên chia giữa 2 phần ảnh (next & prev)
-  */
-}
-```
+    ```css
+    #next {
+    left: 129px;/*định vị ví trí hiển thị của phần ảnh prev, 63px được tính từ trái sang phải*/
+    width: 43px;
+    background: url('img_navsprites.gif') -91px 0; /*-91px 0 là vị trí tọa độ X Y của phần ảnh home trên ảnh img_navsprites.gif.
+    91px vì chiều rộng của phần ảnh home đầu tiên là 46px + 1px đường biên chia giữa 2 phần ảnh (home & prev) + 43px (width của ảnh prev) + 1px đường biên chia giữa 2 phần ảnh (next & prev)
+    */
+    }
+    ```
 Kết quả:
     <p align = "center">
     <img width = 500 src="../images/lesson2/nav_img_sprite.png">
     </p>
- ### 8.3.2. Image Sprites - Hover Effect
- - Tương tự như ví dụ bên trên, chúng ta chỉ cần thêm phần định kiểu bộ chọn :hover để có được hiệu ứng di chuột
+ ### 10.3.2. Image Sprites - Hover Effect
+ - Tương tự như ví dụ bên trên, chúng ta chỉ cần thêm phần định kiểu bộ chọn `:hover` để có được hiệu ứng di chuột
     ```css
     #home a:hover {
     background: url('img_navsprites_hover.gif') 0 -45px;
@@ -1284,8 +1294,8 @@ Kết quả:
     <img width = 500 src="../images/lesson2/hover_effect.png">
     </p>
 
-# 9. CSS Attribute Selectors
-## 9.1. CSS [attribute] Selector
+# 11. CSS Attribute Selectors
+## 11.1. CSS [attribute] Selector
 - `[attribute] selector` được sử dụng để `chọn những phần tử với một thuộc tính được chỉ định`.  
 VD: chọn tất cả thẻ `<a>` có một thuộc tính `target`
 
@@ -1303,7 +1313,7 @@ VD: chọn tất cả thẻ `<a>` có một thuộc tính `target`
     <img width = 500 src="../images/lesson2/css_attribute.png">
     </p>
 
-## 9.2. CSS [attribute="value"] Selector
+## 11.2. CSS [attribute="value"] Selector
 - `[attribute="value"] selector` được sử dụng để `chọn những phần tử với một thuộc tính và giá trị được chỉ định`.  
 VD: Chọn tất cả thẻ `<a>` với thuộc tính `target="_blank"`
 
@@ -1321,7 +1331,7 @@ VD: Chọn tất cả thẻ `<a>` với thuộc tính `target="_blank"`
     <img width = 500 src="../images/lesson2/attribute_value_selector.png">
     </p>
 
-## 9.3. CSS [attribute~="value"] Selector
+## 11.3. CSS [attribute~="value"] Selector
 - `[attribute~="value"] selector` được sử dụng để `chọn những phần tử với một thuộc tính có giá trị chứa một từ được chỉ định`  
 *Lưu ý:* giá trị được chỉ định ở đây là một từ riêng  
 VD: Chọn tất cả các phần tử có thuộc tính title chứa một danh sách các từ được phân tách bằng dấu cách, và 1 trong số từ đó là "flower"
@@ -1338,11 +1348,11 @@ VD: Chọn tất cả các phần tử có thuộc tính title chứa một danh
     <img src="img_flwr.gif" title="flower" width="224" height="162">
     <img src="img_tree.gif" title="tree" width="200" height="358">
     ```
-    <p align = "center">
-    <img width = 500 src="../images/lesson2/attribute_as_value_selector.png">
-    </p>
+<p align = "center">
+<img width = 500 src="../images/lesson2/attribute_as_value_selector.png">
+</p>
 
-## 9.4. CSS [attribute|="value"] Selector
+## 11.4. CSS [attribute|="value"] Selector
 - CSS `[attribute|="value"] Selector` được sử dụng để `chọn các phần tử có thuộc tính được chỉ định, mà giá trị của nó có thể chính xác là giá trị được chỉ định hoặc giá trị được chỉ định theo sau bởi dấu gạch ngang (-)`.  
 VD: 
     ```html
@@ -1358,7 +1368,7 @@ VD:
     <p align = "center">
     <img width = 500 src="../images/lesson2/value_hyphen_selector.png">
     </p>
-## 9.5. CSS [attribute^="value"] Selector
+## 11.5. CSS [attribute^="value"] Selector
 - `[attribute^="value"] Selector` được sử dụng để `chọn những phần tử với giá trị của thuộc tính bắt đầu bằng giá trị được chỉ định`.  
 *Lưu ý:* giá trị được chỉ định ở đây không phải là cả 1 từ.  
 VD:
@@ -1376,7 +1386,7 @@ VD:
 <p align = "center">
 <img width = 500 src="../images/lesson2/start_value_selector.png">
 
-## 9.6. CSS [attribute$="value"] Selector
+## 11.6. CSS [attribute$="value"] Selector
 - `[attribute$="value"] Selector` được sử dụng để `chọn những phần tử với giá trị của thuộc tính kết thúc bằng giá trị được chỉ định.`  
 *Lưu ý:* giá trị được chỉ định ở đây không phải là cả 1 từ.  
 VD:
@@ -1394,27 +1404,27 @@ VD:
 <p align = "center">
 <img width = 500 src="../images/lesson2/end_value_selector.png">
 
-## 9.7. CSS [attribute*="value"] Selector
+## 11.7. CSS [attribute*="value"] Selector
 - CSS `[attribute*="value"] Selector` được sử dụng để `chọn những phần tử mà giá trị thuộc tính của nó chứa một giá trị được chỉ định`
 
-*Lưu ý:* giá trị được chỉ định ở đây không phải là cả 1 từ.
+    *Lưu ý:* giá trị được chỉ định ở đây không phải là cả 1 từ.
 
-VD: Chọn những phần tử có giá trị thuộc tính class chứa `"te"`
+    VD: Chọn những phần tử có giá trị thuộc tính class chứa `"te"`
 
-```html
-<style> 
-[class*="te"] {
-    background: yellow;
-}
-</style>
-<div class="first_test">The first div element.</div>
-<div class="second">The second div element.</div>
-<div class="my-test">The third div element.</div>
-```
+    ```html
+    <style> 
+    [class*="te"] {
+        background: yellow;
+    }
+    </style>
+    <div class="first_test">The first div element.</div>
+    <div class="second">The second div element.</div>
+    <div class="my-test">The third div element.</div>
+    ```
 <p align = "center">
 <img width = 500 src="../images/lesson2/contain_value_selector.png">
 
-## 9.8. Styling Forms
+## 11.8. Styling Forms
 - Các `attribute selector` có thể hữu ích cho việc tạo kiểu cho các biểu mẫu `không có class hoặc ID`:  
 VD:
     ```html
@@ -1441,3 +1451,6 @@ VD:
 <p align = "center">
 <img width = 500 src="../images/lesson2/styling_form.png">
 </p>
+
+# Summary
+- Ở bài học này, chúng ta đã được học thêm về các bộ chọn khác nữa của CSS là bộ chọn kết hợp (combinators), Pseudo-classes, Pseudo-elements, Attributes Selectors,...

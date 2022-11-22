@@ -1,1618 +1,1379 @@
-# 1. CSS Variables - The var() function
-## 1.1. Hàm `var()`
-### 1.1.1. Định nghĩa
-- Hàm `var()` được sử dụng để chèn giá trị cho một biến CSS
-- Chúng ta có thẻ tạo các biến với phạm vi toàn cục hoặc cục bộ, thay đổi những giá trị với JavaScript và thay đổi những giá trị dựa vào `media queries`.
-- Một cách tốt để sử dụng các biến CSS là khi nói đến màu sắc trong thiết kế trang web của chúng ta. Thay vì sao chéo và dán những loại màu giống nhau lặp đi lặp lại, thì chúng ta có thể đặt nó trong các biến.
-### 1.1.2. Cú pháp của hàm `var()`
-- Cú pháp:
-    ```css
-    selector {
-        property: var(--name, value);
-    }
-    ```
-- Trong đó:
-    - `name`: `(bắt buộc)` - đây là tên biến (`phải bắt đầu với hai dấu gạch ngang`).
-    - `value`: giá trị dự phòng (sẽ được sử dụng nếu như biến không được tìm thấy) `(giá trị này có thể có hoặc không)`
-
-### 1.1.3. Cách hoạt động của hàm `var()`
-- Đầu tiên, các biến CSS có thể có một phạm vi toàn cục hoặc cục bộ.
-- Biến toàn cục có thể được truy cập/sử dụng trên toàn bộ tài liệu, trong khi biến cục bộ có thể được sử dụng bên trong bộ chọn mà nó được khai báo.
-- Để tạo một biến với phạm vi toàn cục, thì khai báo nó ở bên trong bộ chọn `:root`. Bộ chọn `:root`  khớp với phần tử gốc của tài liệu.
-- Để tạo biến với phạm vi cục bộ, khai báo nó bên trong bộ chọn mà sẽ sử dụng nó.
-
-    VD:
-    ```html
-    <style>
-    :root {
-    --blue: #1e90ff;
-    --white: #ffffff; 
-    }
-
-    body {
-    background-color: var(--blue);
-    }
-
-    h2 {
-    border-bottom: 2px solid var(--blue);
-    }
-
-    .container {
-    color: var(--blue);
-    background-color: var(--white);
-    padding: 15px;
-    }
-
-    button {
-    background-color: var(--white);
-    color: var(--blue);
-    border: 1px solid var(--blue);
-    padding: 5px;
-    }
-    </style>
-    </head>
-    <body>
-
-    <h1>Using the var() Function</h1>
-
-    <div class="container">
-    <h2>Lorem Ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit.</p>
-    <p>
-        <button>Yes</button>
-        <button>No</button>
-    </p>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/var_function.png">
-</p>
-
-- Lợi ích của việc sử dụng hàm `var()`:
-    - Làm cho mã code dễ đọc hơn.
-    - Làm cho việc thay đổi giá trị màu dễ dàng hơn. Thay vì đi thay đổi giá trị của tất cả khai báo trong các bộ chọn thì giờ đây chỉ cần thay đổi mỗi giá trị ở biến.
-
-## 1.2. CSS Overriding variables
-### 1.2.1. Ghi đè biến toàn cục bằng biến cục bộ
-- Ở ví dụ của phần trước, chúng ta sử dụng biến toàn cục `--blue` và `--white` cho toàn bộ tài liệu. Nhưng đôi khi chúng ta muốn các biến chỉ thay đổi ở một phần cụ thể nào đó trong trang. 
-- Giả sử, chúng ta muốn phần tử button có một màu chữ xanh khác, thì chúng ta có thể tạo 1 biến màu khác hoặc khai báo lại biến `--blue` trong bộ chọn button. Thì lúc này, khi người dùng sử dụng `var(--blue)` bên trong bộ chọn button này, nó sẽ sử dụng giá trị biến cục bộ `--blue` được khai báo ở đây.
-
-- Do đó, chúng ta thấy rằng biến cục bộ `--blue` sẽ ghi đè biến toàn cục `--blue` cho phần tử button.
-
-    VD:
-    ```html
-    <style>
-    :root {
-    --blue: #1e90ff;
-    --white: #ffffff;
-    }
-
-    body {
-    background-color: var(--blue);
-    }
-
-    h2 {
-    border-bottom: 2px solid var(--blue);
-    }
-
-    .container {
-    color: var(--blue);
-    background-color: var(--white);
-    padding: 15px;
-    }
-
-    button {
-    --blue: #0000ff; /* local variable will override global */
-    background-color: var(--white);
-    color: var(--blue);
-    border: 1px solid var(--blue);
-    padding: 5px;
-    }
-    </style>
-    <h1>Override Global Variable With Local Variable</h1>
-
-    <div class="container">
-    <h2>Lorem Ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit.</p>
-    <p>
-        <button>Yes</button>
-        <button>No</button>
-    </p>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/override_variable.png">
-</p>
-
-### 1.2.2. Tạo một biến cục bộ mới
-- Nếu một biến chỉ được sử dụng ở một nơi duy nhất, chúng ta cũng có thể khai báo một biến cục bộ mới.  
-    VD:
-    ```html
-    <style>
-    :root {
-    --blue: #1e90ff;
-    --white: #ffffff; 
-    }
-
-    body {
-    background-color: var(--blue);
-    }
-
-    h2 {
-    border-bottom: 2px solid var(--blue);
-    }
-
-    .container {
-    color: var(--blue);
-    background-color: var(--white);
-    padding: 15px;
-    }
-
-    button {
-    --button-pink: #ff00ff; /* new local variable */
-    background-color: var(--white);
-    color: var(--button-blue);
-    border: 1px solid var(--button-pink);
-    padding: 5px;
-    }
-    </style>
-
-    <h1>New Local Variable</h1>
-    <div class="container">
-    <h2>Lorem Ipsum</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit.</p>
-    <p>
-        <button>Yes</button>
-        <button>No</button>
-    </p>
-    </div>
-    ```
-
-<p align = "center">
-<img width = 400 src="../images/lesson5/new_local_var.png">
-</p>
-
-# 2. CSS Box Sizing
-- Thuộc tính CSS `box-sizing` cho phép chúng ta bao gồm cả phần `padding` và đường viền vào trong chiều rộng và chiều cao của một phần tử
-## 2.1. VD không sử dụng thuộc tính CSS box-sizing
-- Mặc định, kích thước của một phần tử được tính theo công thức như sau:
-
-    `width + padding + border = chiều rộng thực tế của một phần tử`
-
-    `height + padding + border = chiều cao thực tế của một phần tử`
-
-- Điều này có nghĩa là dù kích thước của một phần tử được thiết lập ban đầu là bao nhiêu thì khi hiển thị cũng sẽ thay đổi tùy thuộc vào kích thước của đường viền và `padding` được khai báo.
-
-    VD:
-    ```html
-    <style> 
-    .div1 {
-    width: 300px;
-    height: 100px;
-    border: 1px solid blue;
-    }
-
-    .div2 {
-    width: 300px;
-    height: 100px;  
-    padding: 50px;
-    border: 1px solid red;
-    }
-    </style>
-    <h1>Without box-sizing</h1>
-
-    <div class="div1">This div is smaller (width is 300px and height is 100px).</div>
-    <br>
-    <div class="div2">This div is bigger (width is also 300px and height is 100px).</div>
-    ```
-
-<p align = "center">
-<img width = 400 src="../images/lesson5/without_box_sizing.png">
-</p>
-
-## 2.2. VD với thuộc tính box-sizing
-- Nếu chúng ta khai báo thuộc tính `box-sizing: border-box;` cho một phần tử, thì phần `padding` và `border` đã được bao gồm trong kích thước của phần tử đó.
-- Có nghĩa là khi chúng ta đã thiết lập một kích thước cho một phần tử, sau đó có khai báo phần `padding` và `border` bao nhiêu đi nữa thì khi hiển thị kích thước của phần tử vẫn không thay đổi.
-
-    VD:
-    ```html
-    <style> 
-    .div1 {
-    width: 300px;
-    height: 100px;
-    border: 1px solid blue;
-    box-sizing: border-box;
-    }
-
-    .div2 {
-    width: 300px;
-    height: 100px;  
-    padding: 50px;
-    border: 1px solid red;
-    box-sizing: border-box;
-    }
-    </style>
-    <h1>With box-sizing</h1>
-
-    <div class="div1">Both divs are the same size now!</div>
-    <br>
-    <div class="div2">Hooray!</div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/with_box_sizing.png">
-</p>
-
-# 3. CSS Media Queries
-## 3.1. CSS2 đã giới thiệu về Media Types
-- Quy tắc `@media`, được giới thiệu trong CSS2, cho phép xác định các quy tắc kiểu style khác nhau cho các loại phương tiện khác nhau.
-
-VD: chúng ta có thể có một bộ quy tắc kiểu cho màn hình máy tính, một cho máy in, một cho thiết bị cầm tay, một cho thiết bị kiểu tivi...
-## 3.2. CSS3 đã giới thiệu về Media Queries
-- `Truy vấn phương tiện (media queries)` trong CSS3 đã mở rộng ý tưởng về `loại phương tiện (media type)` trong CSS2: Thay vì tìm kiếm một loại thiết bị, chúng xem xét khả năng của thiết bị.
-- Truy vấn phương tiện có thể được sử dụng để kiểm tra nhiều thứ, chẳng hạn như:
-    - Chiều rộng và chiều cao của khung nhìn
-    - Chiều rộng và chiều cao của thiết bị
-    - Hướng (máy tính bảng/điện thoại ở chế độ ngang hay dọc?)
-    - Nghị quyết
-- Sử dụng truy vấn phương tiện là một kỹ thuật phổ biến để cung cấp để định kiểu phù hợp cho máy tính để bàn, máy tính xách tay, máy tính bảng và điện thoại di động.
-
-## 3.3. Cú pháp media query
-- Truy vấn phương tiện bao gồm một loại phương tiện và có thể chứa một hoặc nhiều biểu thức, các biểu thức này giải quyết đúng hoặc sai.  
-Cú pháp:
-    ```css
-    @media not|only mediatype and (expressions) {
-    CSS-Code;
-    }
-    ```
-- Kết quả của truy vấn là đúng nếu như thỏa mãn các điều kiện sau:
-    - Loại phương tiện được chỉ định trùng khớp với loại thiết bị mà tài liệu đang được hiển thị.
-    - Tất cả các biểu thức trong truy vấn phương tiện đều đúng.
-
-- Khi truy vấn phương tiện là đúng, bảng biểu định kiểu hoặc quy tắc kiểu tương ứng sẽ được áp dụng, tuân theo quy tắc xếp tầng thông thường.
-- Chúng ta cũng có thể có các biểu định kiểu khác nhau cho các phương tiện khác nhau:
-```html
-<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
-```
-## 3.4. Các loại phương tiện trong CSS3
-- Một số loại phương tiện trong CSS3 là:
-    - `all`: sử dụng cho tất cả các thiết bị
-    - `print`: sử dụng cho máy in
-    - `screen`: sử dụng cho màn hình máy tính, máy tính bảng, điện thoại,..
-    - `speech`: sử dụng cho màn hình đọc bằng âm thanh
-
-## 3.5. Một số ví dụ sử dụng truy vấn phương tiện
-
-- VD1: thay đổi màu nền thành màu xanh nhạt nếu chế độ xem rộng 480 pixel hoặc rộng hơn (nếu chế độ xem nhỏ hơn 480 pixel, màu nền sẽ có màu hồng):
-
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    body {
-    background-color: pink;
-    }
-
-    @media screen and (min-width: 480px) {
-    body {
-        background-color: lightgreen;
-    }
-    }
-    </style>
-    <h1>Resize the browser window to see the effect!</h1>
-    <p>The media query will only apply if the media type is screen and the viewport is 480px wide or wider.</p>
-    ```
-    - Khi màn hình có độ rộng nhỏ hơn 480px:
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/viewport_less_480.png">
-    </p>
-
-    - Khi màn hình có độ rộng bằng hoặc lớn hơn 480px:
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/viewport_480.png">
-    </p>
-
-- VD2: hiển thị menu sẽ nổi ở bên trái của trang nếu chế độ xem rộng 480 pixel hoặc rộng hơn (nếu chế độ xem nhỏ hơn 480 pixel, menu sẽ ở trên cùng của nội dung):
-
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    .wrapper {overflow: auto;}
-
-    #main {margin-left: 4px;}
-
-    #leftsidebar {
-    float: none;
-    width: auto;
-    }
-
-    #menulist {
-    margin: 0;
-    padding: 0;
-    }
-
-    .menuitem {
-    background: #CDF0F6;
-    border: 1px solid #d4d4d4;
-    border-radius: 4px;
-    list-style-type: none;
-    margin: 4px;
-    padding: 2px;
-    }
-
-    @media screen and (min-width: 480px) {
-    #leftsidebar {
-        width: 200px;
-        float: left;
-        }
-    #main {
-        margin-left: 216px;
-        }
-    }
-    </style>
-    <div class="wrapper">
-    <div id="leftsidebar">
-        <ul id="menulist">
-        <li class="menuitem">Menu-item 1</li>
-        <li class="menuitem">Menu-item 2</li>
-        <li class="menuitem">Menu-item 3</li>
-        <li class="menuitem">Menu-item 4</li>
-        <li class="menuitem">Menu-item 5</li>
-        </ul>
-    </div>
-    
-    <div id="main">
-        <h1>Resize the browser window to see the effect!</h1>
-        <p>This example shows a menu that will float to the left of the page if the viewport is 480 pixels wide or wider. If the viewport is less than 480 pixels, the menu will be on top of the content.</p>
-    </div>
-    </div>
-    ```
-
-    - Khi màn hình có độ rộng nhỏ hơn 480px:
-
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/viewport_less_480_2.png">
-    </p>
-
-    - Khi màn hình có độ rộng bằng hoặc lớn hơn 480px:
-
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/viewport_480_2.png">
-    </p>
-
-- Chúng ta có thể tham khảo thêm 1 số ví dụ khác của truy vấn phương tiện tại [Media Queries Examples](https://www.w3schools.com/css/css3_mediaqueries_ex.asp)
-
-# 4. CSS Responsive
-## 4.1. Responsive Web Design - Introduction
-- `Responsive Web Design (RWD - thiết kết web có tính linh hoạt)` làm cho trang web của chúng ta nhìn đẹp mắt trên tất cả các thiết bị.
-- RWD `chỉ` sử dụng HTML và CSS, đây không phải là một chương trình hoặc Javascript.
-- Các trang web không nên bỏ qua thông tin để phù hợp với các thiết bị nhỏ hơn, mà nên điều chỉnh nội dung của nó để phù hợp với bất kỳ thiết bị nào.
-
-    VD: Bố cục của 1 trang web được điều chỉnh để hiển thị trên các thiết bị khác nhau:
-<p align = "center">
-<img width = 400 src="../images/lesson5/rwd.png">
-</p>
-
-=> **Một trang web được gọi là RWD khi chúng ta tạo trang web sử dụng HTML và CSS để thay đổi kích thước, ẩn, thu nhỏ, phóng to hoặc di chuyển nội dung để làm cho nội dung trông đẹp mắt trên bất kỳ màn hình nào**.
-
-## 4.2. Responsive Web Design - The Viewport
-### 4.2.1. Khung nhìn là gì?
-- Khung nhìn là khu vực hiển thị của người dùng trên trang web.
-- Khung nhìn thay đổi theo thiết bị và sẽ nhỏ hơn trên điện thoại di động so với trên màn hình máy tính.
-- Trước đây, trang web chỉ được thiết kế cho màn hình máy tính, các trang web thường có thiết kế và kích thước cố định.
-- Tuy nhiên, sau này nhu cầu sử dụng các thiết bị như máy tính bảng và điện thoại nhiều hơn, các thiết bị này có kích thước màn hình nhỏ hơn máy tính nên việc hiện thị các trang web trên đây sẽ không được phù hợp. Để khắc phục điều này, các trình duyệt trên các thiết bị đó đã thu nhỏ toàn bộ trang web để vừa với màn hình.
-
-### 4.2.2. Thiết lập khung nhìn
-- HTML5 đã giới thiệu một phương pháp cho phép các lập trình viên web kiểm soát chế độ xem, thông qua thẻ `<meta>`
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    ```
-- Trong đó:
-    - Phần `width=device-width` đặt chiều rộng của trang theo chiều rộng màn hình của thiết bị (sẽ thay đổi tùy theo thiết bị).
-    - Phần `initial-scale=1.0` đặt mức thu phóng ban đầu khi trang được trình duyệt tải lần đầu tiên.
-
-### 4.2.3. Kích thước nội dung cho khung hình
-- Người dùng thường sử dụng thanh cuộn trang web theo chiều dọc trên tất cả các thiết bị để xem các nội dung.
-- Người dùng chỉ sử dụng thanh cuộn ngang khi phóng to trang web lên, tuy nhiên điều này sẽ gây khó khăn khi muốn xem hết nội dung trên trang.
-
-- Một số quy tắc trong việc xác định kích thước nội dung trong khung nhìn:
-    - `KHÔNG sử dụng các phần tử có chiều rộng cố định lớn` - Ví dụ: nếu một hình ảnh được hiển thị ở chiều rộng rộng hơn khung nhìn, nó có thể khiến khung nhìn cuộn theo chiều ngang. Hãy nhớ điều chỉnh nội dung này để vừa với chiều rộng của khung nhìn.
-    - `KHÔNG để nội dung dựa vào chiều rộng của khung nhìn cụ thể để hiển thị tốt` - Vì kích thước và chiều rộng của màn hình tính bằng pixel CSS rất khác nhau giữa các thiết bị, nên nội dung không nên dựa vào chiều rộng của khung nhìn cụ thể để hiển thị tốt.
-    - `Sử dụng truy vấn phương tiện CSS` để áp dụng định kiểu style khác nhau cho các màn hình có kích thước khác nhau.
-
-## 4.3. Respopsive Web Design - Grid-view
-### 4.3.1. Định nghĩa
-- Nhiều trang web dựa trên chế độ xem dạng lưới, có nghĩa là trang được chia thành các cột.
-- Sử dụng chế độ xem dạng lưới rất hữu ích khi thiết kế trang web. Nó làm cho việc đặt các phần tử trên trang dễ dàng hơn.
-- Chế độ xem dạng lưới linh hoạt thường có 12 cột và có tổng chiều rộng là 100%, đồng thời sẽ thu nhỏ và mở rộng khi bạn thay đổi kích thước cửa sổ trình duyệt.  
-VD:
-<p align = "center">
-<img width = 400 src="../images/lesson5/grid-view.png">
-</p>
-
-### 4.3.2. Xây dựng một chế độ xem dạng lưới linh hoạt
-
-Xây dựng 1 chế độ xem dạng lưới theo các bước sau:
-
-- Đầu tiên, đảm bảo rằng tất cả các phần tử HTML được khai báo thuộc tính `box-sizing: border-box;` như sau:
-    ```css
-    * {
-        box-sizing: border-box;
-    }
-    ```
-- Tính toán kích thước % của mỗi cột trên trang web: `100% / 12 cột = 8.33% / cột`
-- Tiếp theo tạo một lớp cho mỗi cột trong số 12 cột đó, `class="col-"` và một số xác định số lượng cột mà phần đó sẽ kéo dài, tức là mỗi cột sẽ có chiều rộng là bao nhiêu (tương ứng với bao nhiêu cột):
-VD:
-    ```css
-    .col-1 {width: 8.33%;} /*col-1 có kích thước chiều dài tương ứng với 1 cột*/
-    .col-2 {width: 16.66%;} /*col-2 có kích thước chiều dài tương ứng với 2 cột*/
-    .col-3 {width: 25%;} /*col-1 có kích thước chiều dài tương ứng với 4 cột*/
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
-    ```
-- Tất cả các cột này phải nổi ở bên trái và có phần padding là 15px:
-    ```css
-    [class*="col-"] {
-    float: left;
-    padding: 15px;
-    }
-    ```
-- Mỗi hàng phải được bao bọc trong một `<div>`. Số cột bên trong một hàng phải luôn bằng 12:
-
-    ```html
-    <div class="row">
-    <div class="col-3">...</div> <!-- 25% -->
-    <div class="col-9">...</div> <!-- 75% -->
-    </div>
-    ```
-- Thêm một phong cách xóa luồng:
-    ```css
-    .row::after {
-    content: "";
-    clear: both;
-    display: table;
-    }
-    ```
-- Kết hợp thêm 1 số định kiểu style và màu sắc cho các phần tử được ví dụ sau:
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    * {
-    box-sizing: border-box;
-    }
-
-    .row::after {
-    content: "";
-    clear: both;
-    display: table;
-    }
-
-    [class*="col-"] {
-    float: left;
-    padding: 15px;
-    }
-
-    .col-1 {width: 8.33%;}
-    .col-2 {width: 16.66%;}
-    .col-3 {width: 25%;}
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
-
-    html {
-    font-family: "Lucida Sans", sans-serif;
-    }
-
-    .header {
-    background-color: #9933cc;
-    color: #ffffff;
-    padding: 15px;
-    }
-
-    .menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    }
-
-    .menu li {
-    padding: 8px;
-    margin-bottom: 7px;
-    background-color: #33b5e5;
-    color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    }
-
-    .menu li:hover {
-    background-color: #0099cc;
-    }
-    </style>
-    <div class="header">
-    <h1>Chania</h1>
-    </div>
-
-    <div class="row">
-    <div class="col-3 menu">
-        <ul>
-        <li>The Flight</li>
-        <li>The City</li>
-        <li>The Island</li>
-        <li>The Food</li>
-        </ul>
-    </div>
-
-    <div class="col-9">
-        <h1>The City</h1>
-        <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
-        <p>Resize the browser window to see how the content respond to the resizing.</p>
-    </div>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/responsive_grid_view.png">
-</p>
-
-## 4.4. Responsive Web Design - Media Queries
-### 4.4.1. Thêm một điểm dừng
-- Ở ví dụ của phần trước, chúng ta đã tạo ra một chế độ xem dạng lưới linh hoạt cho trang web, tuy nhiên nó sẽ khác được đẹp mắt khi hiển thị trên màn hình có kích thước nhỏ.
-- Do đó, chúng ta có thể sử dụng `media queries` để giải quyết điều này. 
-- Chúng ta có thể thêm một điểm dừng trong đó các phần nhất định của thiết kế sẽ hoạt động khác nhau ở mỗi bên của điểm dừng.  
-    VD: Chúng ta thêm điểm dừng tại 600px
-    ```css
-    @media only screen and (max-width: 600px) {
-    [class*="col-"] {
-        width: 100%;
-    }
-    }
-    ```
-    - Khi kích thước màn hình lớn hơn 600px, trình duyệt hiển thị như sau:
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/responsive_grid_view.png">
-    </p>
-
-    - Còn khi kích thước màn hình nhỏ hơn bằng 600px
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/breakpoint_600px.png">
-    </p>
-
-**Lưu ý:** Nguyên tắc luôn thiết kế cho kích thước điện thoại đầu tiên.
-### 4.4.2. Các loại điểm dừng của các thiết bị
-- Có rất nhiều màn hình và thiết bị có chiều cao và chiều rộng khác nhau, vì vậy rất khó để tạo điểm dừng chính xác cho từng thiết bị. Để giữ cho mọi thứ đơn giản, chúng ta có thể chia thành năm nhóm sau:
-
-    ```css
-    /* Extra small devices (phones, 600px and down) */
-    @media only screen and (max-width: 600px) {...}
-
-    /* Small devices (portrait tablets and large phones, 600px and up) */
-    @media only screen and (min-width: 600px) {...}
-
-    /* Medium devices (landscape tablets, 768px and up) */
-    @media only screen and (min-width: 768px) {...}
-
-    /* Large devices (laptops/desktops, 992px and up) */
-    @media only screen and (min-width: 992px) {...}
-
-    /* Extra large devices (large laptops and desktops, 1200px and up) */
-    @media only screen and (min-width: 1200px) {...}
-    ```
-### 4.4.3. Hướng: ngang/dọc
-- `Media queries` cũng có thể được sử dụng để thay đổi bố cục của 1 trang web dựa vào hướng của trình duyệt/thiết bị
-- Chúng ta có thể có một tập hợp các thuộc tính CSS sẽ chỉ áp dụng khi cửa sổ trình duyệt rộng hơn chiều cao của nó, được gọi là hướng `"nằm ngang" (landscape)`. Ngược lại sẽ là hướng `"nằm dọc" (portrait)`
-
-    VD:
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    body {
-    background-color: lightgreen;
-    }
-
-    @media only screen and (orientation: landscape) {
-    body {
-        background-color: lightblue;
-    }
-    }
-    </style>
-    <p>Resize the browser window. When the width of this document is larger than the height, the background color is "lightblue", otherwise it is "lightgreen".</p>
-    ```
-    - Kết quả theo hướng nằm ngang của trình duyệt, màu nền có màu xanh da trời
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/landscape_view.png">
-    </p>
-
-    - Kết quả theo hướng nằm dọc của trình duyệt, màu nền có màu xanh lá
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/portrait_view.png">
-    </p>
-
-### 4.4.4. Ẩn các phần tử với media queries
-VD: Phần tử `<div>` có class="example" sẽ bị ẩn đi khi kích thước của trình duyệt nhỏ hơn 600px.
-```css
-@media screen and (max-width: 600px) {
-  div.example {
-    display: none;
+# 0. Content
+1. CSS Tooltips
+2. CSS Styling Image
+3. CSS Image Reflections
+4. CSS object-fit property
+5. CSS object-position property
+6. CSS Masking
+7. CSS Buttons
+8. CSS Pagination
+9. CSS Multiple Columns
+10. CSS User Interface
+# 1. CSS Tooltips
+- `Tooltip` là một thành phần giúp bạn chú thích thêm thông tin khi người dùng di chuột vào một đối tượng nào đó trong trang web.
+## 1.1 Công cụ chú thích cơ bản
+- Tạo một `tooltips` (công cụ chú giải) đơn giản sẽ xuất hiện khi người dùng di chuột vào một phần tử:
+
+  VD:
+  ```html
+  <!-- CSS -->
+  <style>
+  /* Tooltip container */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; 
   }
-}
-```
 
-## 4.5. Responsive Web Design - Images
-### 4.5.1. Sử dụng thuộc tính width, max-width
-- Nếu thuộc tính `width` được thiết lập với một giá trị phần trăm và thuộc tính `height` được thiết lập là "auto" thì hình ảnh lúc này cũng sẽ có thể thay đổi tăng giảm kích thước một cách linh hoạt.  
-VD:
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+  </style>
+
+  <!-- HTML-->
+  <div class="tooltip">Hover over me
+    <span class="tooltiptext">Tooltip text</span>
+  </div>
+  ```
+
+
+**Giải thích**: Chia làm 2 phần HTML và CSS
+
+- Về HTML:
+    - Sử dụng một phần tử chứa (vd như thẻ `<div>`) và đặt tên class cho thẻ `<div>` này là `class="tooltip"`. 
+    - Sử dụng một phần tử nội tuyến (vd như `<span>`) để chứa đoạn văn bản chú thích, đặt tên class cho thẻ `<span>` này là `class="tooltiptext"`.
+    - Khi di chuột vào thẻ `<div>` thì phần văn bản chú thích sẽ được hiển thị ra.
+- Về CSS:
+    - `Class tooltip` sử dụng thuộc tính `position:relative`, giá trị cần thiết để thiết lập ví trí của văn bản chú giải (`position:absolute`).
+    - `Class tooltip` chứa văn bản chú thích. Mặc định nó được ẩn đi, và sẽ được hiển thị khi di chuột vào phần `class tooltip (:hover)`. Chúng ta cũng có thể thêm 1 số định kiểu cơ bản cho nó: như `width`, `background-color`, `color`,...
+    - Thuộc tính `border-radius` được sử dụng để bo góc cho văn bản chú thích
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/basic_tooltip.png">
+</p>
+
+## 1.2. Xác định vị trí của công cụ chú thích 
+- Dựa vào ví dụ trên để xác định các vị trí khác nhau cho `tooltip`
+### 1.2.1 Tooltip đặt ở bên phải của phần di chuột 
+- Thiết lập các thuộc tính sau cho phần tử class `tooltiptext`
+  ```css
+  .tooltip .tooltiptext {
+    top: -5px;
+    left: 105%;
+  }
+  ```
+  - `top: -5px;` được sử dụng để đặt `tooltip` nằm ở giữa của phần tử chứa nó. Sử dụng giá trị 5 vì văn bản `tooltip` có `padding` trên và dưới là 5px.
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/right_tooltip.png">
+</p>
+
+### 1.2.2. Tooltip đặt ở bên trái của phần di chuột 
+- Tương tự thiết lập thuộc tính `right:105%;` ta sẽ xác định được vị trí `tooltip` nằm bên trái
+  ```css
+  .tooltip .tooltiptext {
+    top: -5px;
+    right: 105%;
+  }
+  ```
+
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/left_tooltip.png">
+  </p>
+
+### 1.2.3. Tooltip đặt ở phía trên của phần di chuột 
+- Thiết lập các giá trị sau cho class `tooltiptext` để đặt vị trí `tooltip` ở phía bên trên của phần di chuột 
+  ```css
+  .tooltip .tooltiptext {
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  ```
+  - Sử dụng thuộc tính `margin-left` với giá trị -60px. Thao tác này nhằm căn giữa `tooltip` bên trên/bên dưới văn bản có thể di chuột. Nó được đặt bằng một nửa chiều rộng của `tooltip` (120/2 = 60).
+
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/above_tooltip.png">
+</p>
+
+### 1.2.4. Tooltip đặt ở phía dưới của phần di chuột 
+- Thiết lập các giá trị sau cho class `tooltiptext` để đặt vị trí `tooltip` ở phía bên trên của phần di chuột 
+  ```css
+  .tooltip .tooltiptext {
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  ```
+
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/bottom_tooltip.png">
+  </p>
+
+## 1.3. Mũi tên tooltip
+- Để tạo một mũi tên sẽ xuất hiện từ một phía cụ thể của `tooltip`, hãy thêm nội dung "trống" sau `tooltip`, với `pseudo-element` class `::after` cùng với thuộc tính nội dung. Bản thân mũi tên được tạo bằng các đường viền. 
+
+  VD: Mũi tên ở bên dưới `tooltip`, tức là phần `tooltip` ở phía trên của phần có thể di chuột.
+  - Thêm các thiết lập sau kết hợp với phần định vị các ví trí ở ví dụ phía trên ta sẽ có được một mũi tên ở phía dưới `tooltip`, hướng vào phần di chuột
+
+  ```css
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* đặt vị trí mũi tên ở phía dưới tooltip*/
+    left: 50%; /*căn mũi tên ở trung tâm*/
+    border-width: 5px; /*chỉ định kích thước của mũi tên*/
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    margin-left: -5px; /*thay đổi theo giá trị border-width*/
+  }
+  ```
+  <p align = "center">
+    <img width = 500 src="../images/lesson4/arrow_tooltip.png">
+  </p>
+
+## 1.4. Hoạt ảnh trong tooltips
+- Sử dụng thuộc tính `transition` CSS cùng với thuộc tính `opacity` để chuyển văn bản `tooltip` từ hoàn toàn ẩn sang hiển thị rõ 100% trong một số giây được chỉ định.
+
+  VD:
+  ```html
+  <style>
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  </style>
+
+  <div class="tooltip">Hover over me
+    <span class="tooltiptext">Tooltip text</span>
+  </div>
+  ```
+# 2. CSS Styling Image
+## 2.1. Bo góc hình ảnh
+- Sử dụng thuộc tính `border-radius` để tạo những hình ảnh được bo góc.
+
+  VD:
+  ```html
+  <style>
     img {
+    border-radius: 30%;
+  }
+  </style>
+  <img src="paris.jpg" alt="Paris" width="300" height="300">
+  ```
+<p align = "center">
+  <img width = 500 src="../images/lesson4/rounded_image.png">
+</p>
+
+## 2.2. Thumbnail Image
+- Một `thumbnail image` (hình ảnh thu nhỏ) là một hình ảnh nhỏ đại diện cho một hình ảnh lớn hơn, và thường được nhận ra với một đường viền bao quanh nó
+- Sử dụng thuộc tính border để tạo 1 hình ảnh thu nhỏ
+
+  VD:
+  ```html
+  <style>
+  img {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 150px; /* Set a small width */
+  }
+
+  /* Add a hover effect (blue shadow) */
+  img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+  </style>
+  <body>
+
+  <a target="_blank" href="img_forest.jpg">
+    <img src="img_forest.jpg" alt="Forest">
+  </a>
+  </body>
+  ```
+<p align = "center">
+  <img width = 500 src="../images/lesson4/thumbnail.png">
+</p>
+
+## 2.3. Đặt một hình ảnh ở trung tâm
+VD: 
+  ```html
+  <style>
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  </style>
+  <img src="paris.jpg" alt="Paris" class="center">
+  ```
+*Lưu ý:* Hình ảnh không thể được đặt ở vị trí trung tâm nếu như nó được thiết lập chiều rộng là 100% (full-width)
+<p align = "center">
+  <img width = 500 src="../images/lesson4/center_image.png">
+</p>
+
+## 2.4. Responsive Image
+- Hình ảnh linh hoạt là hình ảnh sẽ tự động thay đổi kích thước để phù hợp với kích thước của màn hình trình duyệt.
+
+  VD:
+  ```html
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .responsive {
     width: 100%;
     height: auto;
-    }
-    </style>
-    <img src="img_chania.jpg" width="460" height="345">
-    <p>Resize the browser window to see how the image will scale.</p>
-    ```
-- Ở ví dụ trên, hình ảnh có thể thay đổi thành kích thước lớn hơn kích thước ban đầu của nó. Một giải pháp tốt hơn là sử dụng thuộc tính `max-width` thay cho `width`. Lúc này, kích thước hình ảnh sẽ không bao giờ lớn hơn kích thước gốc ban đầu của nó cho dù chiều rộng của màn hình lớn hơn nó rất nhiều.
-    ```css
-    img {
+  }
+  </style>
+  </head>
+  <img src="img_nature.jpg" alt="Nature" class="responsive" width="600" height="400">
+  ```
+- Nếu muốn giảm tỷ lệ kích thước của một hình ảnh, những không bao giờ được tăng tỷ lệ kích thước của một hình ảnh lớn hơn kích thước ban đầu của nó thì sử dụng thuộc tính `max-width: 100%` thay cho `width: 100%`.
+
+  VD:
+  ```html
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .responsive {
     max-width: 100%;
     height: auto;
-    }
-    ```
+  }
+  </style>
+  </head>
+  <img src="img_nature.jpg" alt="Nature" class="responsive" width="600" height="400">
+  ```
+- Khi kích thước màn hình nhỏ hơn kích thước ảnh, hình ảnh sẽ thu nhỏ tỷ lệ bằng chiều rộng của màn hình
 <p align = "center">
-<img width = 400 src="../images/lesson5/max-width.png">
+  <img width = 500 src="../images/lesson4/responsive_img.png">
 </p>
 
-### 4.5.2. Background images
-- Hình nền cũng có thể đáp ứng với thay đổi kích thước và tỷ lệ
-- Sử dụng thuộc tính `background-size` để điều chỉnh kích thước hình nền, nó có các giá trị thiết lập như sau:
-    - `background-size: contain;` - hình nền sẽ chia tỷ lệ và cố gắng khớp với vùng nội dung. Tuy nhiên, hình ảnh sẽ giữ nguyên tỷ lệ khung hình (mối quan hệ tỷ lệ giữa chiều rộng và chiều cao của hình ảnh).
-    - `background-size: 100% 100%;` - hình nền sẽ kéo dài để bao phủ toàn bộ khu vực nội dung.
-    - `background-size: cover;` - hình nền sẽ mở rộng để bao phủ toàn bộ khu vực nội dung. Lưu ý rằng giá trị "`cover`" giữ tỷ lệ khung hình và một số phần của hình nền có thể bị cắt bớt.
-
-VD:
-- `background-size: contain;`
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    div {
-    width: 100%;
-    height: 400px;
-    background-image: url('img_flowers.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: 1px solid red;
-    }
-    </style>
-    <div></div>
-    ```
+- Tăng kích thước màn hình cho đến khi lớn hơn kích thước ảnh, hình ảnh sẽ tăng kích thước đến khi bằng kích thước ban đầu của nó rồi dừng lại không tăng thêm để bằng chiều rộng của màn hình
 <p align = "center">
-<img width = 400 src="../images/lesson5/bg-size-contain.png">
+  <img width = 500 src="../images/lesson4/responsive_img_large.png">
 </p>
 
-- `background-size: cover;`
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    div {
-    width: 100%;
-    height: 400px;
-    background-image: url('img_flowers.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 1px solid red;
-    }
-    </style>
-    <div></div>
-    ```
+## 2.5. Polaroid Images/Cards
+  VD
+  ```html
+  <style>
+  body {margin:25px;}
+
+  div.polaroid {
+    width: 80%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+  }
+
+  div.container {
+    text-align: center;
+    padding: 10px 20px;
+  }
+  </style>
+  <div class="polaroid">
+    <img src="img_5terre.jpg" alt="5 Terre" style="width:100%">
+    <div class="container">
+    <p>Cinque Terre</p>
+    </div>
+  </div>
+  ```
 <p align = "center">
-<img width = 400 src="../images/lesson5/bg-size-cover.png">
+  <img width = 500 src="../images/lesson4/polaroid_image.png">
 </p>
 
-### 4.5.3. Các hình ảnh khác nhau cho các thiết bị khác nhau
-- Một hình ảnh lớn có thể hoàn hảo trên màn hình máy tính lớn, nhưng lại vô dụng trên một thiết bị nhỏ. Do đó, chúng ta có thể sử dụng `media queries` để hiển thị các hình ảnh khác nhau trên các thiết bị khác nhau.
+## 2.6. Transparent Image
+- Sử dụng thuộc tính `opacity` để làm cho hình ảnh có độ mờ.
+ Thuộc tính này nhận các giá trị từ `0.0-1.0`
 
-    VD:
-    ```html
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    /* For width smaller than 400px: */
-    body {
-    background-repeat: no-repeat;
-    background-image: url('img_smallflower.jpg'); 
-    }
+  VD:
+  ```html
+  <style>
+  div {
+  float: left;
+  margin: 30px;
+  }
+  .img1 {
+    opacity: 0.3;
+  }
+  .img2 {
+    opacity: 0.7;
+  }
+  </style>
+  <div>
+    <p>Image with 30% opacity:</p>
+    <img class="img1" src="img_forest.jpg" alt="Forest" width="170" height="100">
+  </div>
+  <div>
+    <p>Image with 70% opacity:</p>
+    <img class="img2" src="img_forest.jpg" alt="Forest" width="170" height="100">
+  </div>
+  ```
+<p align = "center">
+  <img width = 500 src="../images/lesson4/opacity_image.png">
+</p>
 
-    /* For width 400px and larger: */
-    @media only screen and (min-width: 400px) {
-    body { 
-        background-image: url('img_flowers.jpg'); 
-    }
-    }
-    </style>
-    <p style="margin-top:360px;">Resize the browser width and the background image will change at 400px.</p>
-    ```
-    - Khi kích thước màn hình nhỏ hơn 400px:
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/different_image_small.png">
-    </p>
-    - Khi kích thước màn hình lớn hơn hoặc bằng 400px:
-    
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/different_image_large.png">
-    </p>
-### 4.5.4. Phần tử HTML <picture>
-- Phần tử `<picture>` mang lại cho những lập trình web linh hoạt hơn trong việc xác định các nguồn ảnh.
-- Cách sử dụng phổ biến nhất của phần tử `<picture>` sẽ dành cho các hình ảnh được sử dụng trong các thiết kế linh hoạt. Thay vì có một hình ảnh được phóng to hoặc thu nhỏ dựa trên chiều rộng của khung nhìn, nhiều hình ảnh có thể được thiết kế để lấp đầy khung nhìn của trình duyệt một cách độc đáo hơn.
-- Phần tử `<picture>` hoạt động tương tự như phần tử `<video>` và `<audio>`. Chúng ta thiết lập các nguồn khác nhau và nguồn đầu tiên phù hợp với trình duyệt đang được sử dụng.
-- Cú pháp:
-    ```html
-    <picture>
-        <source srcset="image source" media="media query">
-        <source srcset="image source">
-        <img src="image source" alt="text">
-    </picture>
-    ```
-    - Trong đó:
-        - Thuộc tính `srcset` là bắt buộc, chỉ định nguồn ảnh
-        - Thuộc tính `media` là tùy chọn, sử dụng 1 điều kiện `media query`
-        - Luôn định nghĩa 1 phần tử `<img>` cuối cùng để trình duyệt áp dụng trong trường hợp trình duyệt đang sử dụng không hỗ trợ phần tử `<picture>`
+## 2.7. Image Filters
+- Thuộc tính `filter` của CSS được sử dụng để thêm những hiệu ứng hình ảnh (giống như làm mờ hay độ bão hòa) cho một phần tử
 
-        VD:
-        ```html
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <picture>
-        <source srcset="img_smallflower.jpg" media="(max-width: 400px)">
-        <source srcset="img_flowers.jpg">
-        <img src="img_flowers.jpg" alt="Flowers" style="width:auto;">
-        </picture>
+  VD:
+  ```html
+  <style>
+  body {
+    background-color:white;
+  }
+  img {
+    width: 33%;
+    height: auto;
+    float: left; 
+    max-width: 235px;
+  }
 
-        <p>Resize the browser width and the background image will change at 400px.</p>
-        ```
-        - Khi kích thước màn hình nhỏ hơn hoặc bằng 400px:
-        <p align = "center">
-        <img width = 400 src="../images/lesson5/different_image_small.png">
-        </p>
+  .blur {filter: blur(4px);}
+  .brightness {filter: brightness(250%);}
+  .contrast {filter: contrast(180%);}
+  .grayscale {filter: grayscale(100%);}
+  .huerotate {filter: hue-rotate(180deg);}
+  .invert {filter: invert(100%);}
+  </style>
+  <img src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <img class="blur" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <img class="brightness" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <img class="contrast" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <img class="grayscale" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  <img class="huerotate" src="pineapple.jpg" alt="Pineapple" width="300" height="300">
+  ```
+<p align = "center">
+  <img width = 500 src="../images/lesson4/filter_image.png">
+</p>
 
-        - Khi kích thước màn hình lớn hơn 400px:
-        
-        <p align = "center">
-        <img width = 400 src="../images/lesson5/different_image_large.png">
-        </p>
+## 2.8.Image Hover Overlay
 
-## 4.6. Responsive Web Design - Videos
-- Ví dụ thêm một video vào trang web
-    ```html
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-    video {
+- Tạo một hiệu ứng che phủ hình ảnh khi di chuột vào một phần tử
+
+  VD: Khi di chuột vào ảnh, ảnh sẽ mờ đi vào bị che phủ bởi một khối văn bản
+  ```html
+  <style>
+  .container {
+    position: relative;
+    width: 50%;
+  }
+
+  .image {
+    opacity: 1;
+    display: block;
     width: 100%;
     height: auto;
-    }
-    </style>
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
 
-    <video width="400" controls autoplay>
-    <source src="mov_bbb.mp4" type="video/mp4">
-    <source src="mov_bbb.ogg" type="video/ogg">
-    Your browser does not support HTML5 video.
-    </video>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/video.png">
-</p>
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
 
-## 4.7. References
-- Chúng ta có thể tham khảo một số mẫu thiết kế web linh hoạt tại [Responsive Web Design - Templates](https://www.w3schools.com/css/css_rwd_templates.asp)
+  .container:hover .image {
+    opacity: 0.3;
+  }
 
-# 5. CSS Flexbox
-## 5.1. CSS Flexbox Layout Module
-- Trước module bố cục flexbox, đã có 4 chế độ bố cục như:
-    - `Khối (block)` cho các phần trong 1 trang web.
-    - `Nội tuyến (inline)` cho văn bản.
-    - `Bảng (table)` cho dữ liệu bảng 2 chiều.
-    - `Vị trí`, cho vị trí rõ ràng của một phần tử
+  .container:hover .middle {
+    opacity: 1;
+  }
 
-- Module bố cục `Flexbox` làm cho thiết kế cấu trúc bố cục trở nên linh hoạt hơn mà không sử dụng `float` hay xác định vị trí.
-
-## 5.2 Flexbox Elements
-- Để bắt đầu sử dụng mô hình `Flexbox`, trước tiên chúng ta phải định nghĩa một phần tử chứa flex (vd như thẻ `<div>`).
-
-    VD:
-    ```html
-    <div class="flex-container">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>  
-    </div>
-    ```
-## 5.3. CSS Flex Container
-### 5.3.1. Parent Element (Container)
-- Ở ví dụ của phần trước, chúng ta đã tạo một thẻ `<div>` cha có `class="flex-container"` chứa ba danh mục flex 1, 2, 3. Khi hiển thị lên trình duyệt nó chỉ có dạng như sau:
-
-<p align = "center">
-<img width = 400 src="../images/lesson5/no_flex.png">
-</p>
-
-- Để cho phần tử chứa flex trở nên linh hoạt hơn, chúng ta phải thiết lập thuộc tính `display: flex;` cho phần tử chứa, và thêm 1 số định kiểu style khác cho các phần tử danh mục flex như ví dụ dưới đây:
-    VD:
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        margin: 10px;
-        padding: 20px;
-        font-size: 30px;
-    }
-    </style>
-    <h1>Create a Flex Container</h1>
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/display_flex.png">
-    </p>
-
-### 5.3.2. Thuộc tính flex-direction
-- Thuộc tính `flex-direction` xác định hướng mà bộ chứa muốn xếp chồng các mục flex.
-- Thuộc tính `flex-direction` có các giá trị sau:
-    - `flex-direction: column;` - xếp các mục flex theo chiều dọc (từ trên xuống dưới)
-    - `flex-direction: column-reverse;` - xếp các mục flex theo chiều dọc (từ dưới lên trên)
-    - `flex-direction: row;` - xếp các mục flex theo chiều ngang (từ trái sang phải)
-    - `flex-direction: row-reverse;` - xếp các mục flex theo chiều ngang (từ phải sang trái)
-
-    VD:
-    ```html
-    <style>
-    .flex-container1 {
-        display: flex;
-        flex-direction: column;
-        background-color: DodgerBlue;
-    }
-    .flex-container2 {
-        display: flex;
-        flex-direction: column-reverse;
-        background-color: DodgerBlue;
-    }
-    .flex-container3 {
-        display: flex;
-        flex-direction: row;
-        background-color: DodgerBlue;
-    }
-    .flex-container4 {
-        display: flex;
-        flex-direction: row-reverse;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 5px;
-        text-align: center;
-        line-height: 30px;
-        font-size: 15px;
-    }
-    </style>
-
-    <h3>The flex-direction: column;</h3>
-    <div class=" flex-container flex-container1">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The flex-direction: column-reverse;</h3>
-    <div class="flex-container flex-container2">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The flex-direction: row;</h3>
-    <div class="flex-container flex-container3">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The flex-direction: row-reverse;</h3>
-    <div class="flex-container flex-container4">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    ```
-
-<p align = "center">
-<img width = 400 src="../images/lesson5/flex_direction.png">
-</p>
-
-### 5.3.3. Thuộc tính flex-wrap
-- Thuộc tính `flex-wrap` chỉ định xem các mục flex có nên xuống dòng hay không.
-- Thuộc tính `flex-wrap` có các giá trị sau:
-    - `flex-wrap: wrap;` - chỉ định các mục flex sẽ xuống dòng khi cần thiết.
-    - `flex-wrap: nowrap;` - chỉ định các mục flex sẽ không ngắt xuống dòng. (mặc định)
-    - `flex-wrap: wrap-reverse;` - chỉ định các mục flex sẽ xuống dòng khi cần thiết với thứ tự từ dưới lên.
-
-    VD:
-- `flex-wrap: wrap;`
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <p>The "flex-wrap: wrap;"</p>
-
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>  
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>  
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/flex_wrap_wrap.png">
-    </p>
-
-- `flex-wrap: nowrap;`
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        flex-wrap: nowrap;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <p>The "flex-wrap: nowrap;"</p>
-
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>  
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>  
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/flex_wrap_nowrap.png">
-    </p>
-
-- `flex-wrap: wrap-reverse;`
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap-reverse;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <p>The "flex-wrap: wrap-reverse;"</p>
-
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>  
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>  
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/flex_wrap_reverse.png">
-    </p>
-
-### 5.3.4. Thuộc tính flex-flow
-- Thuộc tính `flex-flow` là thuộc tính viết gọn cho thiết lập thuộc tính `flex-direction` và `flex-wrap`.  
-VD:
-    ```css
-    .flex-container {
-    display: flex;
-    flex-flow: row wrap; /* các mục flex xếp theo hướng nằm ngang và xuống dòng khi cần thiết*/
-    background-color: DodgerBlue;
-    }
-    ```
-### 5.3.5. Thuộc tính justify-content
-- Thuộc tính `justify-content` được sử dụng để căn chỉnh vị trí cho các mục flex (theo chiều ngang của phần tử chứa)
-- Thuộc tính `justify-content` có các giá trị như:
-    - `justify-content: flex-start` - (mặc định),căn các mục flex về phía bên trái của phần tử chứa.
-    - `justify-content: flex-end` - căn các mục flex về phía bên phải của phần tử chứa.
-    - `justify-content: center` - căn các mục flex ở giữa của phần tử chứa
-    - `justify-content: space-between` - giá trị này giúp cho khoảng cách giữa các mục flex luôn bằng nhau, tuy nhiên mục flex đầu tiên luôn nằm sát phía bên trái, mục flex cuối cùng luôn nằm sát phía bên phải của phần tử chứa..
-    - `justify-content: space-around` - giá trị này giúp cho khoảng cách giữa các mục flex luôn bằng nhau, tuy nhiên Khoảng trống trước mục đầu tiên và sau mục cuối cùng bằng một nửa khoảng trống giữa mỗi cặp mục liền kề.
-
-    VD:
-    ```html
-    <style>
-    .flex-container1 {
-        display: flex;
-        justify-content: flex-start;
-        background-color: DodgerBlue;
-    }
-    .flex-container2 {
-        display: flex;
-        justify-content: flex-end;
-        background-color: DodgerBlue;
-    }
-    .flex-container3 {
-        display: flex;
-        justify-content: center;
-        background-color: DodgerBlue;
-    }
-    .flex-container4 {
-        display: flex;
-        justify-content: space-around;
-        background-color: DodgerBlue;
-    }
-    .flex-container5 {
-        display: flex;
-        justify-content: space-between;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 30px;
-        font-size: 20px;
-    }
-    </style>
-    <h3>justify-content: flex-start;</h3>
-    <div class="flex-container flex-container1">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>justify-content: flex-end;</h3>
-    <div class="flex-container flex-container2">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>justify-content: center;</h3>
-    <div class="flex-container flex-container3">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>justify-content: space-around;</h3>
-    <div class="flex-container flex-container4">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>justify-content: space-between;</h3>
-    <div class="flex-container flex-container5">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/justify_content.png">
-    </p>
-
-### 5.3.6. Thuộc tính align-items
-- Thuộc tính `align-items` được sử dụng để căn chỉnh các mục flex theo chiều dọc (chiều cao của phần tử chứa).
-- Thuộc tính `align-items` có các giá trị như:
-    - `align-items: flex-start;` - căn chỉnh các mục flex ở phía trên của phần tử chứa.
-    - `align-items: flex-end;` - căn chỉnh các mục flex ở phía dưới của phần tử chứa.
-    - `align-items: center;` - căn chỉnh các mục flex ở giữa của phần tử chứa.
-    - `align-items: stretch;` - kéo dài các mục flex để lấp đầy phần tử chứa (mặc định).
-    - `align-items: baseline;` - căn chỉnh đường cơ sở của các mục flex.
-
-    VD:
-    ```html
-    <style>
-    .flex-container1 {
-        display: flex;
-        height: 80px;
-        align-items: flex-start;
-        background-color: DodgerBlue;
-    }
-    .flex-container2 {
-        display: flex;
-        height: 80px;
-        align-items: flex-end;
-        background-color: DodgerBlue;
-    }
-    .flex-container3 {
-        display: flex;
-        height: 80px;
-        align-items: center;
-        background-color: DodgerBlue;
-    }
-    .flex-container4 {
-        display: flex;
-        height: 80px;
-        align-items: stretch;
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 30px;
-        font-size: 20px;
-    }
-    </style>
-    <h3>The align-items: flex-start;</h3>
-    <div class="flex-container flex-container1">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The align-items: flex-end;</h3>
-    <div class="flex-container flex-container2">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The align-items: center;</h3>
-    <div class="flex-container flex-container3">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    <h3>The align-items: stretch;</h3>
-    <div class="flex-container flex-container4">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/align_items.png">
-    </p>
-
-### 5.3.7. Thuộc tính align-content
-- Thuộc tính `align-content` được sử dụng để căn chỉnh các dòng flex
-- Thuộc tính `align-content` có các giá trị như:
-    - `align-content: space-between;` - hiển thị các dòng flex với khoảng cách bằng nhau giữa các dòng, tuy nhiên dòng flex đầu tiên nằm sát phía trên của phần tử chứa, dòng flex cuối cùng nằm sát phía dưới của phần tử chứa.
-    - `align-content: space-between;` - hiển thị các dòng flex với khoảng cách bằng nhau giữa các dòng, Khoảng cách trước dòng đầu tiên và sau dòng cuối cùng bằng một nửa khoảng trống giữa mỗi cặp dòng liền kề.
-    - `align-content: stretch;` - kéo dài các dòng flex theo chiều cao để lấp đầy phần tử chứa (mặc định).
-    - `align-content: center;` - hiển thị các dòng flex ở giữa vùng chứa.
-    - `align-content: flex-start;` - hiển thị các dòng flex ở phía trên của phần tử chứa.
-    - `align-content: flex-end;` - hiển thị các dòng flex ở phía dưới của phần tử chứa.
-
-VD:
-- `align-content: flex-start;`
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        height: 600px;
-        flex-wrap: wrap;
-        align-content: flex-start;
-        overflow: scroll;  
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>  
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>  
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/align_content_start.png">
-    </p>
-
-- `align-content: space-around;`
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        height: 600px;
-        flex-wrap: wrap;
-        align-content: space-around;
-        overflow: scroll;  
-        background-color: DodgerBlue;
-    }
-
-    .flex-container > div {
-        background-color: #f1f1f1;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>  
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>  
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>  
-        <div>10</div>
-        <div>11</div>
-        <div>12</div>  
-    </div>
-    ```
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/align_content_around.png">
-    </p>
-
-*Lưu ý:* Sử dụng kết hợp cả `justify-content: center;` và `align-items: center;` để mục flex được căn chỉnh ở vị trí trung tâm 1 cách hoàn hảo nhất.
-
-## 5.4. CSS Flex Items
-### 5.4.1. Phần tử con (các mục flex)
-- Các phần tử con trực tiếp của một phần tử chứa flex sẽ tự động trở thành các mục flex
-### 5.4.2. Thuộc tính order
-- Thuộc tính `order` chỉ định thứ tự hiển thị của các mục flex.
-- Giá trị của thuộc tính `order` phải là một số, giá trị mặc định là 0.  
-    VD:
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        align-items: stretch;
-        background-color: #f1f1f1;
-    }
-
-    .flex-container>div {
-        background-color: DodgerBlue;
-        color: white;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <h1>The order Property</h1>
-    <div class="flex-container">
-        <div style="order: 3">1</div>
-        <div style="order: 2">2</div>
-        <div style="order: 4">3</div> 
-        <div style="order: 1">4</div>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/order_items.png">
-</p>
-
-### 5.4.3. Thuộc tính flex-grow
-- Thuộc tính `flex-grow` chỉ định một mục flex sẽ kéo dài như thế nào so với phần còn lại của các mục flex.
-- Giá trị của thuộc tính phải là một con số, mặc định là 0  
-    VD:
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        align-items: stretch;
-        background-color: #f1f1f1;
-    }
-
-    .flex-container > div {
-        background-color: DodgerBlue;
-        color: white;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <h1>The flex-grow Property</h1>
-
-    <div class="flex-container">
-        <div style="flex-grow: 1">1</div>
-        <div style="flex-grow: 1">2</div>
-        <div style="flex-grow: 8">3</div>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/flex-grow.png">
-</p>
-
-### 5.4.4. Thuộc tính flex-shrink
-- Thuộc tính `flex-shrink` chỉ định một mục linh hoạt sẽ co lại bao nhiêu so với phần còn lại của các mục linh hoạt.
-- Giá trị của thuộc tính phải là một số, giá trị mặc định là 1.  
-    VD:
-    ```html
-    <style>
-    .flex-container {
-    display: flex;
-    align-items: stretch;
-    background-color: #f1f1f1;
-    }
-
-    .flex-container>div {
-    background-color: DodgerBlue;
+  .text {
+    background-color: #4CAF50;
     color: white;
-    width: 100px;
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-    }
-    </style>
-    <h1>The flex-shrink Property</h1>
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div style="flex-shrink: 0">3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-        <div>9</div>
-        <div>10</div>
+    font-size: 16px;
+    padding: 16px 32px;
+  }
+  </style>
+  <h2>Fade in a Box</h2>
+
+  <div class="container">
+    <img src="img_avatar.png" alt="Avatar" class="image" style="width:100%">
+    <div class="middle">
+      <div class="text">John Doe</div>
     </div>
-    ```
+  </div>
+  ```
 <p align = "center">
-<img width = 400 src="../images/lesson5/flex-shrink.png">
+  <img width = 500 src="../images/lesson4/overlay_image.png">
 </p>
 
-### 5.4.5. Thuộc tính flex-basis
-- Thuộc tính `flex-basis` chỉ định độ dài ban đầu của một mục flex.  
-    VD:
-    ```html
-    <style>
-    .flex-container {
-    display: flex;
-    align-items: stretch;
-    background-color: #f1f1f1;
-    }
+- Có thêm tham khảo một số hiệu ứng che phủ hình ảnh khác tại [Image Hover Overlay](https://www.w3schools.com/css/css3_images.asp)
 
-    .flex-container > div {
-    background-color: DodgerBlue;
-    color: white;
-    width: 100px;
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-    }
-    </style>
-    <h1>The flex-basis Property</h1>
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div style="flex-basis:200px">3</div>
-        <div>4</div>
-    </div>
-    ```
-<p align = "center">
-<img width = 400 src="../images/lesson5/flex-basis.png">
-</p>
+## 2.9. Flip an Image
+- Để `đảo/lật ngược` một hình ảnh khi di chuột vào, chúng ta sử dụng thuộc tính `transform: scale()`
 
-### 5.4.6. Thuộc tính flex
-- Thuộc tính `flex` là thuộc tính viết gọn của các thuộc tính: `flex-grow`, `flex-shrink`, và `flex-basis`.  
 VD:
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        align-items: stretch;
-        background-color: #f1f1f1;
-    }
-    .flex-container>div {
-        background-color: DodgerBlue;
-        color: white;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <h1>The flex Property</h1>
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div style="flex: 0 0 200px">3</div>
-        <div>4</div>
-    </div>
-    ```
+- Lật ngược hình ảnh theo phương ngang (trục X):
+  ```html
+  <style>
+  .imgX:hover {
+    transform: scaleX(-1);
+  }
+  img {
+  margin: 20px;
+  }
+  </style>
+  <img src="paris.jpg" alt="Paris" width="200" height="150">
+
+  <!--Hình ảnh lật khi di chuột-->
+  <img class="imgX" src="paris.jpg" alt="Paris" width="200" height="150"> 
+  ```
 <p align = "center">
-<img width = 400 src="../images/lesson5/flex.png">
+  <img width = 500 src="../images/lesson4/flipX_image.png">
 </p>
 
-### 5.4.7. Thuộc tính align-self
-- Thuộc tính `align-self` chỉ định căn chỉnh cho mục flex đã chọn bên trong vùng chứa flex.
-- Thuộc tính `align-self` ghi đè căn chỉnh mặc định được thiết lập bởi thuộc tính `align-items` của vùng chứa.  
-VD: mục flex thứ 3 đã được căn chỉnh thành `center`, thay vì được căn chỉnh mặc định `stretch` như các mục còn lại
-    ```html
-    <style>
-    .flex-container {
-        display: flex;
-        height: 200px;
-        background-color: #f1f1f1;
-    }
-    .flex-container > div {
-        background-color: DodgerBlue;
-        color: white;
-        width: 100px;
-        margin: 10px;
-        text-align: center;
-        line-height: 75px;
-        font-size: 30px;
-    }
-    </style>
-    <h1>The align-self Property</h1>
-    <div class="flex-container">
-        <div>1</div>
-        <div>2</div>
-        <div style="align-self: center">3</div>
-        <div>4</div>
-    </div>
-    ```
+- Lật ngược hình ảnh theo trục Y:
+  ```html
+  <style>
+  .imgY:hover {
+    transform: scaleY(-1);
+  }
+  img {
+  margin: 20px;
+  }
+  </style>
+  <img src="paris.jpg" alt="Paris" width="200" height="150">
+  <br>
+  <!--Hình ảnh lật khi di chuột-->
+  <img class="imgY" src="paris.jpg" alt="Paris" width="200" height="150"> 
+  ```
 <p align = "center">
-<img width = 400 src="../images/lesson5/align-self.png">
+  <img width = 500 height=400 src="../images/lesson4/flipY_image.png">
 </p>
 
-## 5.5. CSS Flex Responsive
-- Chúng ta có thể sử dụng `media queries` để tạo những bố cục khác nhau cho các kích thước màn hình và thiết bị khác nhau.
-- Ví dụ đơn giản với responsive flexbox, khi chúng ta muốn tạo bố cục 2 cột cho các kích thước màn hình lớn, bố cục 1 cột cho các kích thước màn hình nhỏ (như điện thoại), chúng ta có thể thay đổi thuộc tính `flex-direction` từ giá trị `row` sang `column` tại điểm dừng được chỉ định trong `media queries`.
+# 3. CSS Image Reflections
+## 3.1. Image reflections
+- Thuộc tính `box-reflect` được sử dụng để tạo sự phản chiếu của một hình ảnh.
+- Thuộc tính `box-reflect` có các giá trị sau: `below`, `above`, `left`, hoặc `right`.
 
-    VD:
-    ```html
-    <style>
-    * {
-    box-sizing: border-box;
+VD:
+- Tạo phản chiếu sang bên phải của hình ảnh:
+
+  ```html
+  <style>
+  img {
+    -webkit-box-reflect: right;
+  }
+  </style>
+  <p>Show the reflection to the right of the image:</p>
+  <img src="img_tree.png">
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/reflect_image.png">
+  </p>
+
+## 3.2. Reflection Offset
+- Để chỉ định một `khoảng cách giữa hình ảnh và sự phản chiếu` của nó, ta `thêm 1 giá trị khoảng cách` vào thuộc tính `box-refect`:
+
+  VD:
+  ```html
+  <style>
+  img {
+    -webkit-box-reflect: right 50px;
+  }
+  </style>
+  <p>Show the reflection to the right of the image:</p>
+  <img src="img_tree.png">
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/reflect_image_size.png">
+</p>
+
+## 3.3. Reflection with gradient
+- Để tạo một hiệu ứng chuyển đổi cho phần phản chiều của một hình ảnh, bằng cách thêm hàm `linear-gradient(direction, color1, color2,...)`
+
+  VD:
+  ```html
+  <style>
+  img {
+    -webkit-box-reflect: right 0px linear-gradient(to right, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+  }
+  </style>
+  <img src="img_tree.png">
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/reflect_image_gradient.png">
+</p>
+
+# 4. CSS object-fit property
+## 4.1. Thuộc tính object-fit
+- Thuộc tính `object-fit` được sử dụng để định nghĩa một hình ảnh hoặc video nên được đặt lại kích thước như thế nào để phù hợp với phần chứa nó.
+- Thuộc tính này yêu cầu nội dung để lấp đầy phần chứa bằng nhiều cách khác nhau, ví dụ như giữ nguyên tỷ lệ khung hình đó hoặc kéo dãn và chiếm một khoảng không gian nhiều nhất có thể.
+- Thuộc tính `object-fit` có các giá trị sau:
+  - `fill`: (mặc định)-hình ảnh được đặt lại kích thước để lấp đầy kích thước được chỉ định. Nếu cần thiết, hình ảnh sẽ được kéo dãn hoặc co lại để cho phù hợp.
+  - `contain`: Hình ảnh giữ nguyên tỷ lệ, những nó được đặt lại kích thước để phù hợp với kích thước được chỉ định.
+  - `cover`: Hình ảnh giữ nguyên tỷ lệ và lấp đầy kích thước được chỉ định. Hình ảnh sẽ được cắt bớt để cho phù hợp.
+  - `none`: Hình ảnh không được đặt lại kích thước
+  - `scale-down`: Hình ảnh được thu nhỏ lại thành phiên bản nhỏ nhất của `none` và `contain`.
+
+VD: 
+- `object-fit: cover;`
+  ```html
+  <style>
+  div{
+    float: left;
+    margin: 20px;
+  }
+  .img1 {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+  }
+  </style>
+
+  <div>
+    <h3>Using object-fit: cover</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-fit property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object_fit_cover.png">
+  </p>
+
+- `object-fit: fill;`
+  ```html
+  <style>
+  div{
+    float: left;
+    margin: 20px;
+  }
+  .img1 {
+    width: 200px;
+    height: 300px;
+    object-fit: fill;
+  }
+  </style>
+
+  <div>
+    <h3>Using object-fit: fill</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-fit property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object_fit_fill.png">
+  </p>
+
+- `object-fit: contain;`
+  ```html
+  <style>
+  div{
+    float: left;
+    margin: 20px;
+  }
+  .img1 {
+    width: 200px;
+    height: 300px;
+    object-fit: contain;
+  }
+  </style>
+
+  <div>
+    <h3>Using object-fit: contain</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-fit property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object_fit_contain.png">
+  </p>
+
+- `object-fit: none;`
+  ```html
+  <style>
+  div{
+    float: left;
+    margin: 20px;
+  }
+  .img1 {
+    width: 200px;
+    height: 300px;
+    object-fit: none;
+  }
+  </style>
+
+  <div>
+    <h3>Using object-fit: none</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-fit property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object_fit_none.png">
+  </p>
+- `object-fit: scale-down;`
+  ```html
+  <style>
+  div{
+    float: left;
+    margin: 20px;
+  }
+  .img1 {
+    width: 200px;
+    height: 300px;
+    object-fit: scale-down;
+  }
+  </style>
+
+  <div>
+    <h3>Using object-fit: scale-down</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-fit property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object_fit_scale_down.png">
+  </p>
+
+# 5. CSS object-position property
+- Thuộc tính `object-position` được sử dụng để chỉ định một hình ảnh hay video được đặt ở vị trí nào trong phần tử chứa nó.
+- Giả sử rằng một phần của hình ảnh được hiển thị mà không phải vị trí như chúng ta muốn. Xác định vị trí hình ảnh mong muốn, chúng ta sẽ sử dụng thuộc tính `object-position`.
+- Nó có 2 giá trị: một trục là `trên-dưới` và 2 là `trái-phải`. Những con số này có thể được để là `phần trăm (%), pixel(px), đơn vị đo lường, có thể là giá trị âm` hoặc cũng có thể là các giá trị như `center`, `top`, `right`, `bottom`,...
+
+  VD:
+  ```html
+  <style>
+    div{
+      float: left;
+      margin: 20px;
+    }
+    .img1 {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+      object-position: 80% 100%;
+    }
+  </style>
+
+  <div>
+    <h3>Using object-position</h3>
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+  </div>
+
+  <div>
+    <h3>Don't use object-position property</h3>
+    <img src="paris.jpg" alt="Paris" width="200" height="300">
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/object-position.png">
+  </p>
+
+# 6. CSS Masking
+- Sử dụng CSS masking tạo một lớp mặt nạ để đặt lên trên một phần tử để ẩn đi một phần hoặc toàn bộ các thành phần của phần tử đó.
+## 6.1. Thuộc tính mask-image
+- Thuộc tính `mask-image` định nghĩa một hình ảnh được sử dụng như một lớp mặt nạ cho một phần tử .
+- Hình ảnh lớp mặt nạ có thể là một hình ảnh PNG, SVG, gradient,...
+### 6.1.1. Sử dụng hình ảnh như lớp mặt nạ
+- Để sử dụng một hình ảnh PNG hoặc SVG như một lớp mặt nạ, sử dụng một giá trị `url()` để chuyển hình ảnh vào lớp mặt nạ
+- Hình ảnh mặt nạ cần có một vùng trong suốt hoặc bán trong suốt. Màu đen hiển thị hoàn toàn trong suốt.  
+
+VD:
+- Chúng ta sử dụng hình ảnh dưới đây như là một hình ảnh mặt nạ - `w3logo.png`:
+<p align = "center">
+<img width = 500 src="../images/lesson4/w3_school.png">
+</p>
+
+- Đây là một hình ảnh gốc ban đầu - `img_5terre.jpg`:
+
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/image.png">
+  </p>
+- Chương trình:
+  ```html
+  <style>
+  .mask1 {
+    -webkit-mask-image: url(w3logo.png);
+    mask-image: url(w3logo.png);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;    
+  }
+  </style>
+    <h3>An image with a mask layer image:</h3>
+    <div class="mask1">
+    <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/mask_image.png">
+</p>
+
+### 6.1.2. Sử dụng gradiens như lớp mặt nạ
+- CSS `linear` và `radial gradients` cũng có thể được sử dụng như những hình ảnh mặt nạ
+- Cú pháp:
+  ```css
+  selector {
+    /* Linear-gradient*/
+    mask-image: linear-gradient(direction, color, transparent);
+
+    /* radial-gradient*/
+    mask-image: radial-gradient(shape, color, transparent);
+  }
+  ```
+
+VD: 
+- `Linear gradient` như một lớp mặt nạ
+  ```html
+  <style>
+  .mask1 {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  }
+  </style>
+  <h3>A linear gradient as a mask layer:</h3>
+  <div class="mask1">
+  <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/linear_gradient_mask.png">
+</p>
+
+- `Radial gradient` như một lớp mặt nạ
+
+  ```html
+  <style>
+  .mask2 {
+    -webkit-mask-image: radial-gradient(circle, black 30%, rgba(0, 0, 0, 0.5) 30%);
+    mask-image: radial-gradient(circle, black 30%, rgba(0, 0, 0, 0.5) 30%);
+  }
+  </style>
+  <h3>A radial gradient as a mask layer (a circle):</h3>
+  <div class="mask2">
+  <img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+  </div>
+  ```
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/radial_gradient_mask.png">
+</p>
+
+### 6.1.3. Sử dụng SVG như một lớp mặt nạ
+- Phần tử SVG `<mask>` có thể được sử dụng bên trong đồ họa SVG để tạo hiệu ứng mặt nạ.
+
+  VD:
+  - Một `SVG mask layer` (formed as a triangle):
+
+  ```html
+  <h3>An SVG mask layer (được hiển thị như một tam giác):</h3>
+  <svg width="600" height="400">
+    <mask id="svgmask1">
+      <polygon fill="#ffffff" points="200 0, 400 400, 0 400"></polygon>
+    </mask>
+    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img_5terre.jpg" mask="url(#svgmask1)"></image>
+  </svg>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/svg_mask.png">
+</p>
+
+- Một `SVG mask layer` (được hiển thị như một hình tròn):
+  ```html
+  <svg width="600" height="400">
+    <mask id="svgmask3">
+      <circle fill="#ffffff" cx="75" cy="75" r="75"></circle>
+      <circle fill="#ffffff" cx="80" cy="260" r="75"></circle>
+      <circle fill="#ffffff" cx="270" cy="160" r="75"></circle>
+      <circle fill="#ffffff" cx="470" cy="120" r="85"></circle>
+    </mask>
+    <image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img_5terre.jpg" mask="url(#svgmask3)"></image>
+  </svg>
+  ```
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/circle_mask.png">
+</p>
+
+# 7. CSS Buttons
+## 7.1 Basic Button Styling
+- Có các cách để tạo một button đơn giản như ví dụ dưới đây
+
+  ```html
+  <style>
+  .button {
+    background-color: #4CAF50;
+    border: 2px solid red;
+    color: white;
+    padding: 15px 32px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  </style>
+  <button>Default Button</button>
+  <a href="#" class="button">Link Button</a>
+  <button class="button">Button</button>
+  <input type="button" class="button" value="Input Button">
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/button.png">
+</p>
+
+- Ở ví dụ trên, trong phần định kiểu style cho button chúng ta đã sử dụng các thuộc tính của CSS như:
+  - `background-color`: để thay đổi màu nền cho một button.
+  - `color`: để chỉ định màu chữ trong button.
+  - `padding`: để thay đổi phần đệm (padding) của một button.
+  - `border`: đễ xác định đường viền: độ dày, loại và màu đường viền.
+  - `width`: xác định chiều rộng của button
+  - `border-radius`: để bo góc cho đường viền .
+  - `font-size`: để xác định kích thước phông chữ của một button.   
+  ...
+
+## 7.2. Một số định kiểu style khác cho button
+### 7.2.1. Hoverable Buttons
+- Sử dụng bộ chọn `:hover` để thay đổi định kiểu của một button khi mà chúng ta di chuột qua nó.
+- Sử dụng thêm thuộc tính `transition-duration` để xác định tốc độ của hiệu ứng sau khi di chuột qua
+
+  VD:
+  ```html
+  <style>
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+  }
+
+  .button1:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  </style>
+  <h2>Hoverable Buttons</h2>
+  <button class="button button1">Green</button>
+  <button class="button button1">Green</button>
+  ```
+- Khi di chuột vào button bên trái, màu nền của button chuyển sang màu xanh lá, màu chữ chuyển sang màu trắng.
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/hover_button.png">
+</p>
+
+### 7.2.2. Shadow Buttons
+- Sử dụng thuộc tính `box-shadow` để thêm những phần đổ bóng cho một button với cú pháp:
+
+  ```css
+  button {
+    box-shadow: h-offset v-offset blur color;
+  }
+  ```
+### 7.2.3. Disabled Buttons
+- Sử dụng thuộc tính `opacity` để thêm độ trong suốt tới một button (giống như tạo ra một cái nút bị vô hiệu hóa).
+- Chúng ta cũng có thể thêm thuộc tính `cursor: not-allowed;` để khi di chuột vào button sẽ có một `ký hiệu cấm` được hiển thị lên.  
+VD: 
+  ```css
+  .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  ```
+
+  VD: `Shawdow và Disabled Buttons`
+  ```html
+  <style>
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+    box-shadow: 5px 5px 3px gray, 3px 3px 3px rgba(125,125,125,0.6)
+  }
+
+  .button2 {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  </style>
+  <h2>Shadow Buttons</h2>
+  <button class="button button1">Button1</button>
+  <h2>Disabled Buttons</h2>
+  <button class="button button2">Button2</button>
+  ```
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/shadow_disable_button.png">
+</p>
+
+### 7.2.4. Button groups
+- Để tạo một nhóm các button, chúng ta bỏ thuộc tính `margin` đi và thêm một thuộc tình `float:left;` vào trong phần định kiểu của button
+
+  VD:
+  ```html
+  <style>
+  .btn-group .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+  }
+  </style>
+  <div class="btn-group">
+    <button class="button">Button</button>
+    <button class="button">Button</button>
+    <button class="button">Button</button>
+    <button class="button">Button</button>
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/group_button.png">
+</p>
+
+- Như ví dụ trên, nhóm button được tạo đặt theo hàng ngang, nếu chúng ta muốn có một nhóm các button đặt theo hàng dọc, thì chúng ta bỏ thuộc tính `float:left;` đi và thay bằng thuộc tính `display:block;`
+
+<p align = "center">
+<img width = 500 src="../images/lesson4/vertical_group_button.png">
+</p>
+
+### 7.2.5. Hoạt ảnh của button
+- Ví dụ tạo một hiệu ứng nhấn khi click vào button
+
+  ```html
+  <style>
+  .button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  </style>
+  <button class="button">Click Me</button>
+  ```
+- Sử dụng thuộc tính `transform: translateY(4px);` để khi button được click vào thì button sẽ dịch chuyển vị trí xuống dưới theo trục Y 1 khoảng để tạo hiệu ứng giống như nó được nhấn xuống.   
+...
+
+# 8. CSS Pagination
+## 8.1. Simple Pagination
+- Nếu một trang web có nhiều trang, chúng ta có thể thêm vào 1 phân trang đơn giản tới mỗi trang web như sau:
+  ```html
+  <style>
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  </style>
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+  ```
+<p align = "center">
+<img width = 500 src="../images/lesson4/simple_pagination.png">
+</p>
+
+## 8.2. Active and Hoverable Pagination
+- Định kiểu làm nổi bật trang web hiện tại với một class `.active`, và sử dụng bộ chọn `:hover` để thay đổi kiểu cho liên kết mỗi trang khi người dùng di chuột qua nó.  
+VD:
+  ```html
+  <style>
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  /*Định kiểu cho trang web hiện tại: màu nền xanh, chữ màu trắng, bo góc */
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+  }
+
+  /*Định kiểu cho những liên kết trang khác với màu nền xám, bo góc khi di chuột qua nó*/
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  </style>
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a href="#" class="active">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+  ```
+
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/active_hover_page.png">
+  </p>
+
+## 8.3. Rounded Borders
+- Ở ví dụ bên trên, chúng ta đã thực hiện tạo đường viền và bo góc cho tất cả các liên kết trang. Ví dụ sau đây chúng ta chỉ tạo bo góc cho liên kết đầu tiên và cuối cùng của danh sách phân trang bằng cách sử dụng bộ chọn `:first-child` và `:last-child`
+
+  ```html
+  <style>
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  .pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  </style>
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#">1</a>
+    <a class="active" href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/first_last_border_radius.png">
+  </p>
+
+## 8.4. Một số định kiểu khác cho phân trang
+- Tạo khoảng cách giữa các liên kết trong trang: sử dụng thuộc tính `margin`
+- Thay đổi kích thước phân trang: sử dụng thuộc tính `font-size`
+- Căn giữa cho phân trang: sử dụng thuộc tính `text-align: center;`
+
+  VD:
+  ```html
+  <style>
+  .center {
+    text-align: center;
+  }
+  .pagination {
+    display: inline-block;
+  }
+
+  .pagination a {
+    color: black;
+    float: left;
+    font-size: 30px;
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+  }
+
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+  }
+
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  </style>
+  <div class="center">
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a class="active" href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">&raquo;</a>
+    </div>
+  </div>
+  ```
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/pagination_more.png">
+  </p>
+
+# 9. CSS Multiple Columns
+- Bố cục nhiều cột trong CSS cho phép xác định số lượng cột của văn bản một cách dễ dàng - giống như trên những tờ báo/tạp chí
+- Những thuộc tính của CSS `multi-column`:
+  - `column-count`: định nghĩa một phần tử có thể được chia thành bao nhiêu cột
+  - `column-gap`: định nghĩa khoảng cách giữa các cột
+  - `column-rule-style`: định nghĩa kiểu style phân tách giữa các cột (có thể là `solid, dotted, double`,...)
+  - `column-rule-width`: định nghĩa độ dày của đường phân tách giữa các cột.
+  - `column-rule-color`: định nghĩa màu sắc của đường phân tách.
+  - `column-rule`: là thuộc tính viết gọn cho các thuộc tính theo thứ tự `column-rule-width`, `column-rule-style`, `column-rule-color`.
+  - `column-span`: định nghĩa một phần tử sẽ phân chia nội dung trải dài qua bao nhiêu cột.
+  - `column-width`: định nghĩa chiều rộng được khuyến cáo, tối ưu cho các cột.
+
+  VD:
+  ```html
+    <style> 
+    .newspaper {
+      column-count: 3;
+      column-gap: 40px;
+      column-rule: 3px dashed lightblue;
     }
 
-    .flex-container {
-        display: flex;
-        flex-direction: row;
-        font-size: 30px;
-        text-align: center;
+    h2 {
+      column-span: all;
     }
 
-    .flex-item-left {
-        background-color: #f1f1f1;
-        padding: 10px;
-        flex: 50%;
-    }
-
-    .flex-item-right {
-        background-color: dodgerblue;
-        padding: 10px;
-        flex: 50%;
-    }
-
-    /* Responsive layout - makes a one column-layout instead of two-column layout */
-    @media (max-width: 500px) {
-    .flex-container {
-        flex-direction: column;
-    }
+    p {
+      column-width: 150px;
     }
     </style>
-    </head>
-    <body>
 
-    <h1>Responsive Flexbox</h1>
-    <div class="flex-container">
-        <div class="flex-item-left">1</div>
-        <div class="flex-item-right">2</div>
+    <div class="newspaper">
+    <h2>Lorem Ipsum Dolor Sit Amet</h2>
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
     </div>
+    <h3>Column-width property</h3>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
     ```
-    - Khi kích thước màn hình lớn hơn 500px
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/responsive_flexbox_1.png">
-    </p>
 
-    - Khi kích thước màn hình nhỏ hơn hoặc bằng 500px
-    <p align = "center">
-    <img width = 400 src="../images/lesson5/responsive_flexbox_2.png">
-    </p>
+  <p align = "center">
+  <img width = 500 src="../images/lesson4/multi_column.png">
+  </p>
 
-- Một cách khác là thay đổi phần trăm thuộc tính `flex` của các mục flex để tạo các bố cục khác nhau cho các kích thước màn hình khác nhau. Lưu ý rằng chúng ta cũng phải bao gồm `flex-wrap: wrap;` trên bộ chứa flex để ví dụ này hoạt động:  
-    VD:
-    ```css
-    .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    }
+# 10. CSS User Interface
+## 10.1. CSS Resizing
+- Sử dụng thuộc tính `resize` để định nghĩa một phần tử có thể được người dùng thay đổi kích thước như thế nào.
+- Để thay đổi kích thước phần tử trên cửa sổ trình duyệt, chúng ta đặt con trỏ chuột vào góc dưới cùng bên phải của một phần tử để thực hiện.  
 
-    .flex-item-left {
-    flex: 50%;
-    }
+VD:
+- Người dùng `chỉ có thể thay đổi được chiều rộng` của một phần tử sử dụng thuộc tính `resize: horizontal;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm ngang. 
+  ```html
+  <style> 
+  div {
+    border: 2px solid;
+    padding: 20px; 
+    width: 300px;
+    resize: horizontal; 
+    overflow: auto;
+  }
+  </style>
+  <h1>The resize Property</h1>
 
-    .flex-item-right {
-    flex: 50%;
-    }
+  <div>
+    <p>Let the user resize only the width of this div element.</p>
+    <p>To resize: Click and drag the bottom right corner of this div element.</p>
+  </div>
+  ```
 
-    /* Responsive layout - makes a one column layout instead of a two-column layout */
-    @media (max-width: 500px) {
-    .flex-item-right, .flex-item-left {
-        flex: 100%;
-    }
-    }
-    ```
-- Chúng ta có thể tham khảo thêm các ví dụ về responsive flex tại [Flexbox responsive](https://www.w3schools.com/css/css3_flexbox_responsive.asp)
+- Người dùng `chỉ có thể thay đổi được chiều cao` của một phần tử sử dụng thuộc tính `resize: vertical;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm dọc. 
+  ```html
+  <style> 
+  div {
+    border: 2px solid;
+    padding: 20px; 
+    width: 300px;
+    resize: vertical; 
+    overflow: auto;
+  }
+  </style>
+  <h1>The resize Property</h1>
+
+  <div>
+    <p>Let the user resize only the height of this div element.</p>
+    <p>To resize: Click and drag the bottom right corner of this div element.</p>
+  </div>
+  ```
+- Người dùng `có thể thay đổi được cả chiều rộng và chiều cao` của một phần tử sử dụng thuộc tính `resize: both;`. Khi đặt con trỏ chuột vào góc dưới cùng bên phải, con trỏ chuột chuyển sang mũi tên nằm chéo. 
+  ```html
+  <style> 
+  div {
+    border: 2px solid;
+    padding: 20px; 
+    width: 300px;
+    resize: both; 
+    overflow: auto;
+  }
+  </style>
+  <h1>The resize Property</h1>
+
+  <div>
+    
+    <p>To resize: Click and drag the bottom right corner of this div element.</p>
+  </div>
+  ```
+## 10.2. CSS outline Offset
+- Thuộc tính `outline-offset` định nghĩa 1 khoảng cách giữa một đường bao ngoài (`outline`) và đường viền (`border`) của một phần tử.  
+VD:
+  ```html
+  <style> 
+  div.ex1 {
+    margin: 20px;
+    border: 1px solid black;
+    outline: 4px solid red;
+    outline-offset: 15px;
+  }  
+  </style>
+  <h1>The outline-offset Property</h1>
+
+  <div class="ex1">This div has a 4 pixels solid red outline 15 pixels outside the border edge.</div>
+  ```
+<p align = "center">
+  <img width = 500 src="../images/lesson4/outline_offset.png">
+  </p>
+
+# Summary
+- Qua bài học này, chúng ta đã biết cách tạo ra những chú thích cho các phần tử, xác định các vị trí phần tử, cách phân trang, tạo bố cục nhiều cột cho các trang web...
