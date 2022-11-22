@@ -1,4 +1,4 @@
-<h1 style=" text-align:center;">Tìm hiểu vể CSS</h1>
+<h1 style=" text-align:center;">Tìm hiểu về CSS</h1>
 
 # 0. Content
 1. Giới thiệu về CSS
